@@ -41,3 +41,23 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# VS Multi-device Hybrid app files
+bin/
+bld/
+packages/
+*.sln
+*.suo
+packages.config
+*.jsproj
+*.jsproj.user
+merges/
+
+# AngularJS local files
+scripts/i18n/
+
+# VS plugins only
+plugins/
+
+# WebServer files
+WebApi/

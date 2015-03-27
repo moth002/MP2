@@ -1,0 +1,38 @@
+﻿<div class="c1" ng-init="init()">
+    <div class="list">
+        <div class="item item-text-wrap">
+            <h4>User</h4>
+            <h3 style="color: steelblue;">{{user.Name}}</h3>
+        </div>
+        <div class="item item-thumbnail-right">
+            <img src="./images/SarahRogers.png"/>
+            <h4>Patient</h4>
+            <h3 style="color: steelblue;">{{patient.Name}} ({{patient.NHI}})</h3>
+            <h3 style="color: steelblue;">{{patient.Gender}}, {{patient.DOB}},</h3>
+            <h3 style="color: steelblue;">{{patient.Age}}</h3>
+        </div>
+        <div class="item item-text-wrap">
+            <h4>Order</h4>
+            <h3 style="color: steelblue;">{{order.OrderId}}</h3>
+        </div>
+    </div>
+</div>
+<div class="c3">
+    <div class="welcome-message">{{model.message}}</div>
+    <div class="card" style="margin: 0; padding-bottom: 10px;">
+        <div class="list" style="margin-bottom: 10px;">
+            <div class="item item-checkbox" ng-repeat="item in model.chkboxSpecimens">
+                <label class="checkbox checkbox-eclair">
+                    <input type="checkbox" ng-checked="item.checked" disabled="disabled">
+                </label>
+                {{ item.name }}
+            </div>
+        </div>
+        <button class="button button-block button-footer" style="margin: 0;" ng-click="scanCode()">Scan</button>
+    </div>
+</div>
+
+<script id="dateTime-Confirm.html" type="text/ng-template">
+    <span>Please confirm the date and time of the collection</span>
+    <input ng-model="model.dateTime" style="color:steelblue; width: 100%; -webkit-appearance: none; -moz-appearance: none; text-align: right;" type="datetime-local">
+</script>

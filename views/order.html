@@ -1,0 +1,41 @@
+﻿<div class="c1" ng-init="init()">
+    <div class="list">
+        <div class="item item-text-wrap">
+            <h4>User</h4>
+            <h3 style="color: steelblue;">{{user.Name}}</h3>
+        </div>
+        <div class="item item-thumbnail-right">
+            <img src="./images/SarahRogers.png"/>
+            <h4>Patient</h4>
+            <h3 style="color: steelblue;">{{patient.Name}} ({{patient.NHI}})</h3>
+            <h3 style="color: steelblue;">{{patient.Gender}}, {{patient.DOB}},</h3>
+            <h3 style="color: steelblue;">{{patient.Age}}</h3>
+        </div>
+        <div class="item item-text-wrap">
+            <h4>Order</h4>
+            <h3 style="color: steelblue;">{{order.OrderId}}</h3>
+        </div>
+    </div>
+</div>
+<div class="c3">
+    <div class="card">
+        <div class="item item-divider" style="background-color: #b6d55f">
+            Testing Requested:
+        </div>
+        <div class="item item-text-wrap">
+            <div ng-repeat="t in order.Tests">
+                <div style="color: steelblue">{{t}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="item item-divider" style="background-color: #b6d55f">
+            Specimens to be collected:
+        </div>
+        <div class="item item-text-wrap">
+            <div ng-repeat="s in order.Specimens">
+                <div style="color: steelblue">{{s}}</div>
+            </div>
+        </div>
+    </div>
+</div>

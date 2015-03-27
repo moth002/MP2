@@ -1,0 +1,181 @@
+﻿body, html
+{
+    padding:0;
+    margin:0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    overflow:visible;
+    width:100%;
+    height:100%;
+}
+
+.frame
+{
+    margin: auto;
+    width:100%;
+    height:100%;
+}
+
+.data-text {
+    padding-left: 10px;
+    color: steelblue;
+    font-size: 14px; 
+}
+
+.blockData {
+    display: inline-table;
+    font-size: 12px;
+}
+
+.blockPhoto {
+    
+}
+
+.rowBox {
+    display: table-row;
+}
+
+.eclair-mobile-frame    
+{
+    /*margin: 10px 10px 0 10px;*/
+    padding:20px;
+    padding-right: 10px;
+    
+    /* Background images */
+    background-image:url("../Content/images/sysmex_logo.png");
+    background-size: auto 44px, 100% auto;
+    background-position:1px top, 40px 65px, left bottom;
+    background-repeat:no-repeat;  
+}
+
+.c1
+{
+    /*margin-top: 40px;
+    margin-bottom: 2%;*/
+}
+
+.c2 {
+    margin-top: 10px; 
+    font-size: 12px;  
+}
+
+.c3
+{
+    /* Inner content */
+    padding: 4%; 
+}
+.error-message {
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.welcome-message
+{ 
+    display:block;
+    font-family: Arial;
+    font-size: 16px;
+    color: #005BAC;
+}
+
+form {
+    /*margin-top: 10px;*/
+    /*margin-right: 20px;*/
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+form.login-input {
+    display: block;
+    background: transparent;
+    width: 95%;
+    font-size: 1.2em;
+}
+
+form.label {
+    display: block;
+    background: transparent;
+    width: 95%;
+    font-size: 1.2em;
+}
+
+.logon-button {
+    background-color: white;
+}
+
+.button-scan-container {
+    padding-left: 50%;
+}
+
+button {
+    background-color: white;
+    -webkit-border-radius: 50px;
+    padding: 10px;
+    color: steelblue
+}
+
+a {
+    color: steelblue;
+    background-color: white;
+    -webkit-border-radius: 50px;
+}
+
+.patient_image {
+    float: right;
+    margin-top: 20px;
+}
+
+.center-vertical {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+ 
+.center-vertical > * {
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.button-stretch {
+    width: 100%;
+}
+ 
+.col-offset-15 {
+    margin-left: 15%;
+}

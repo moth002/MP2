@@ -1,0 +1,28 @@
+﻿<div class="c1" ng-init="init()">
+
+    <div class="list">
+        <div class="item">
+            <h4>User</h4>
+            <h3 style="color: steelblue;">{{user.Name}}</h3>
+        </div>
+        <div class="item item-thumbnail-right">
+            <img src="./images/SarahRogers.png"/>
+            <h4>Patient</h4>
+            <h3 style="color: steelblue;">{{patient.Name}} ({{patient.NHI}})</h3>
+            <h3 style="color: steelblue;">{{patient.Gender}}, {{patient.DOB}},</h3>
+            <h3 style="color: steelblue;">{{patient.Age}}</h3>
+        </div>
+    </div>
+</div>
+<div class="c3">
+    <div class="welcome-message">{{model.message}}</div>
+    <hr/>
+    <div class="list">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input ng-model="idList.orderId" type="text" placeholder="Order number" />
+            </label>
+            <button class="button button-clear icon-left ion-camera" ng-click="scanCode()">Scan</button>
+        </div>
+    </div>
+</div>

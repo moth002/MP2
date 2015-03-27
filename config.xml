@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" xmlns:gap = "http://phonegap.com/ns/1.0" id="io.cordova.BlankCordovaApp" version="1.0.0.0" xmlns="http://www.w3.org/ns/widgets">
+  <name>BlankCordovaApp</name>
+  <description>
+    A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.
+  </description>
+  <author href="http://cordova.io" email="dev@cordova.apache.org">
+    Apache Cordova Team
+  </author>
+  <content src="index.html" />
+  <access origin="*" />
+  <vs:features />
+  <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
+  <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+  <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" version="1.2.0" />
+  <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+  <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.3.3" />
+  <gap:plugin name="nl.x-services.plugins.toast" version="1.0" />
+  <gap:plugin name="com.inazar.datepicker" version="0.4.0" />
+  <preference name="SplashScreen" value="screen" />
+</widget>

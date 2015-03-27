@@ -1,0 +1,86 @@
+﻿<div class="c1"></div>
+<div class="c3" ng-init="init()">
+    <div class="welcome-message">{{model.message}}</div>
+    <hr />
+    <div class="list">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input ng-model="idList.userId" type="text" placeholder="User ID"/>
+            </label>
+            <button class="button button-clear icon-left ion-camera" ng-click="scanCode()">Scan</button>
+        </div>
+    </div>
+</div>
+
+<script id="Pincode-modal.html" type="text/ng-template">
+    <div class="card" style="position: absolute; bottom: 0; left: 0; right: 0;">
+        <div class="item item-divider" style="border: 1px solid #b6d55f; background-color:white; padding: 0;" ng-init="initModal()">
+            <div class="row" style="text-align: center">
+                <div>
+                    <h1>&nbsp</h1>
+                </div>
+                <div class="col col-10 col-offset-10" ng-if="passcode.substring(0, 1).length === 1">
+                    <h1 style="color: #0066b3">{{passDots}}</h1>
+                </div>
+                <div class="col col-10 col-offset-10" ng-if="passcode.substring(1, 2).length === 1">
+                    <h1 style="color: #0066b3">{{passDots}}</h1>
+                </div>
+                <div class="col col-10 col-offset-10" ng-if="passcode.substring(2, 3).length === 1">
+                    <h1 style="color: #0066b3">{{passDots}}</h1>
+                </div>
+                <div class="col col-10 col-offset-10" ng-if="passcode.substring(3, 4).length === 1">
+                    <h1 style="color: #0066b3">{{passDots}}</h1>
+                </div>
+                <div>
+                    <h1>&nbsp</h1>
+                </div>
+            </div>
+        </div>
+        <div class="item item-text-wrap" style="border: 1px solid #b6d55f; padding: 0;">
+            <div class="row">
+                <div class="col col-20 col-offset-20">
+                    <button class="button button-light button-stretch" ng-click="add(1)">1</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(2)">2</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(3)">3</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-20 col-offset-20">
+                    <button class="button button-light button-stretch" ng-click="add(4)">4</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(5)">5</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(6)">6</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-20 col-offset-20">
+                    <button class="button button-light button-stretch" ng-click="add(7)">7</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(8)">8</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(9)">9</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-20 col-offset-20">
+                    <button class="button ion-home button-light button-stretch" ng-click="goHome()"></button>
+                </div>
+                <div class="col col-20">
+                    <button class="button button-light button-stretch" ng-click="add(0)">0</button>
+                </div>
+                <div class="col col-20">
+                    <button class="button icon ion-arrow-left-a button-light button-stretch" ng-click="delete()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

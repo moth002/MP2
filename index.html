@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <!-- MPwithAngularJS references -->
+
+    <link href="Content/ionic.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/ionic.eclair.theme.css" rel="stylesheet" />
+
+    <script src="scripts/ionic.bundle.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-resource.min.js"></script>
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script type="text/javascript">
+        var apiUrl = "http://mohammed-pc/Eclair/api/MobilePhlebotomy/";
+    </script>
+
+    <script src="index.js"></script>
+    <script src="services/CordovaReadyService.js"></script>
+    <script src="services/FooterBtnService.js"></script>
+    <script src="services/GlobalIdService.js"></script>
+    <script src="controllers/FooterBtnCtrl.js"></script>
+    <script src="controllers/HeaderBtnCtrl.js"></script>
+    <script src="controllers/MainCtrl.js"></script>
+    <script src="controllers/UserCtrl.js"></script>
+    <script src="controllers/PatientCtrl.js"></script>
+    <script src="controllers/OrderCtrl.js"></script>
+    <script src="controllers/CollectCtrl.js"></script>
+    <script src="controllers/SideMenuBtnCtrl.js"></script>
+    <script src="controllers/CompleteCtrl.js"></script>
+    <script src="controllers/ScheduleCtrl.js"></script>
+    <script src="services/NotificationDlgService.js"></script>
+    <script src="services/LabelPrintService.js"></script>
+
+</head>
+<body>
+    <ion-side-menus>
+        <ion-side-menu-content>
+            <ion-header-bar align-title="center" class="bar-eclair" ng-controller="HeaderBtnCtrl">
+                <button class="button button-icon ion-navicon-round" style="color: white;" ng-click="btnSideMenu()"></button>
+                <h1 class="title">
+                    <img src="./Content/images/header_logo.png" width="165" height="39"/>
+                </h1>
+                <!--<button class="button button-icon icon ion-arrow-left-a" ng-click="btnGoBack()"></button>-->
+            </ion-header-bar>
+            <ion-content padding="false" class="scroll-content has-header has-footer">
+                <div ng-view></div>
+            </ion-content>
+
+            <ion-footer-bar class="bar-stable" ng-controller="FooterBtnCtrl">
+                <div class="button-bar">
+                    <button class="button button-footer icon-left ion-home" ng-show="leftButton.isVisible" ng-click="btnLeft()">Home</button>
+                    <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
+                    <button class="button button-footer icon-right ion-arrow-right-a" ng-show="rightButton.isVisible" ng-click="btnRight()">{{rightButton.title}}</button>
+                </div>
+            </ion-footer-bar>
+        </ion-side-menu-content>
+        <ion-side-menu class="sideMenu" side="left" ng-controller="SideMenuBtnCtrl">
+            <div class="item item-divider">
+                <div class="item item-toggle">
+                    Device active
+                    <label class="toggle-eclair toggle">
+                        <input type="checkbox" ng-model="ctlDeviceActive.value" ng-change="deviceActiveChanged()">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item" style="color: #b2b2b2" ng-click="btnHome()">
+                    <i class="icon ion-home"></i>
+                    <span style="padding-left: 10px;">Home</span>
+                </div>
+                <label class="item item-input item-select" style="color: #b2b2b2" ng-click="btnBluetooth()" ng-init="init()">
+                    <i class="icon ion-bluetooth"></i>
+                    <span style="padding-left: 10px;">
+                        {{bluetooth}}
+                    </span>
+                    <select class="select" ng-model="selectedPrinter" ng-options="printer.name for printer in printerOptions"></select>
+                </label>
+            </div>
+        </ion-side-menu>
+    </ion-side-menus>
+    
+</body>
+</html>

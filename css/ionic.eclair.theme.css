@@ -1,0 +1,79 @@
+﻿
+.menu.sideMenu {
+    /*background-image: linear-gradient(#00b1e8, #0066b3);*/
+    background-color: #0066b3;
+    padding-top: 22px;
+}.menu.sideMenu .item {
+    padding: 8px 16px;
+}.menu.sideMenu .toggle {
+       top: 5px;
+}.menu.sideMenu input:checked + .track {
+     border-color: #b6d55f;
+     background-color: #b6d55f;
+}.menu.sideMenu .track {
+     width: 45px;
+     height: 25px;
+}.menu.sideMenu .handle {
+     width: 20px;
+     height: 20px;
+}.menu.sideMenu .select {
+     padding: 11px 30px 0 0; 
+     font-size: 10px;
+}
+
+.popup { border-radius: 8px !important; }
+.popup-body { overflow: hidden; }
+
+.spinner svg {
+  width: 68px;
+  height: 68px;
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+
+.checkbox.checkbox-eclair input:before, .checkbox.checkbox-eclair .checkbox-icon:before {
+  border-color: #b6d55f; }
+.checkbox.checkbox-eclair input:checked:before, .checkbox.checkbox-eclair input:checked + .checkbox-icon:before {
+  background: #00b1e8; }
+
+.bar.bar-eclair {
+    background-size: 100%; 
+    background-image: linear-gradient(#00b1e8, #0066b3);
+    border-bottom: 5px solid #b6d55f;
+}.bar.bar-eclair .title {
+     height: 45px;
+}.bar.bar-eclair.bar-footer {
+     border: 0;
+     border-top: 5px solid #b6d55f;
+}   
+
+.button.button-footer {
+    border-color: #b6d55f;
+    background-color: #00b1e8;
+    color: #fff;
+    margin: 0 1%;}
+    .button.button-footer:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-footer.active, .button.button-footer.activated {
+      border-color: #145fd7;
+      background-color: #145fd7;
+      box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.15); }
+    .button.button-footer.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #4a87ee; }
+    .button.button-footer.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-footer.button-outline {
+      border-color: #4a87ee;
+      background: transparent;
+      color: #4a87ee; }
+      .button.button-footer.button-outline.active, .button.button-footer.button-outline.activated {
+        background-color: #4a87ee;
+        box-shadow: none;
+        color: #fff; 
+
+      }

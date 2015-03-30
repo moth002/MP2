@@ -55,22 +55,33 @@
                 });
 
                 var rightButtonClick = function () {
+                    var d = new Date();
+                    $scope.model.dateTime = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
                     $ionicPopup.prompt({
                         title: 'Please confirm',
                         templateUrl: 'dateTime-Confirm.html',
-                        okType: 'button-footer',
-                        scope: $scope
-                    }).then(function () {
-                        if ($scope.model.dateTime) {
-                            var needToReschedule = false;
-                            $scope.model.chkboxSpecimens.forEach(function (item) {
-                                if (item.checked === undefined) {
-                                    needToReschedule = true;
-                                }
-                            });
-                            $ionicLoading.show();
-                            window.location = needToReschedule ? '#/schedule' : '#/complete';
-                        }    
+                        scope: $scope,
+                        buttons: [{ // Array[Object] (optional). Buttons to place in the popup footer.
+                            text: 'Cancel',
+                            type: 'button-default',
+                            onTap: function () {}
+                        }, {
+                            text: 'OK',
+                            type: 'button-footer',
+                            onTap: function () {
+                                // Returning a value will cause the promise to resolve with the given value.
+                                if ($scope.model.dateTime) {
+                                    var needToReschedule = false;
+                                    $scope.model.chkboxSpecimens.forEach(function (item) {
+                                        if (item.checked === undefined) {
+                                            needToReschedule = true;
+                                        }
+                                    });
+                                    $ionicLoading.show();
+                                    window.location = needToReschedule ? '#/schedule' : '#/complete';
+                                }    
+                            }
+                        }]
                     });
                 };
 

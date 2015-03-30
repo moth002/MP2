@@ -14,7 +14,7 @@
                 };
 
                 $scope.btnLeft = function () {
-                    window.location = '#/';
+                    navigator.app.backHistory();
                 };
 
                 $scope.btnMiddle = function () {

@@ -1,7 +1,7 @@
 ﻿angular.module('myApp')
     .controller("HomeCtrl", [
-        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicModal', '$q', '$ionicLoading',
-        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicModal, $q, $ionicLoading) {
+        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q', '$ionicLoading',
+        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q, $ionicLoading) {
 
             var defer = $q.defer();
 
@@ -27,6 +27,7 @@
 
             $scope.initModal = function () {
                 $scope.passcode = "";
+                //$scope.passcodeModal._deregisterBackButton();
             }
 
             $scope.add = function (value) {
@@ -44,32 +45,32 @@
                 }
             }
 
-            $ionicModal.fromTemplateUrl('Pincode-modal.html', {
-                scope: $scope,
-                backdropClickToClose: false,
-                hardwareBackButtonClose : false
-            }).then(function (modal) {
-                $scope.modal = modal;
-            });
+            //$ionicModal.fromTemplateUrl('Pincode-modal.html', {
+            //    scope: $scope,
+            //    backdropClickToClose: false,
+            //    hardwareBackButtonClose : false
+            //}).then(function (modal) {
+            //    $scope.modal = modal;
+            //});
 
             $scope.openModal = function () {
-                $scope.modal.show();
+                $scope.passcodeModal = $ionicPopup.show({
+                    scope: $scope,
+                    title: 'Enter your passcode',
+                    templateUrl: 'Pincode-modal.html'
+                });
             };
 
             $scope.closeModal = function () {
-                $scope.modal.hide();
+                $scope.passcodeModal.close();
                 defer.resolve($scope.passcode);
             };
 
             $scope.goHome = function () {
-                $scope.modal.hide();
+                $scope.passcodeModal.close();
                 $scope.passcode = "";
                 window.location = "#/";
             };
-
-            $scope.$on('$destroy', function () {
-                $scope.modal.remove();
-            });
 
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(

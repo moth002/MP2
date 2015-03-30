@@ -24,6 +24,20 @@
 .popup { border-radius: 8px !important; }
 .popup-body { overflow: hidden; }
 
+.row.row-numbers {
+    padding: 0;
+}
+.col.col-numbers {
+    padding: 0;
+}
+.row.row-passCode {
+    padding: 0 5px 15px 5px;
+}
+.row.row-passCode .button.disabled, .button[disabled] {
+    opacity: 1;
+    color: #0091e8;
+}
+
 .loading-container .loading {
     background-color: rgba(0, 0, 0, 0.005);
     opacity: 1;

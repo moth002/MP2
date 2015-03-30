@@ -1,7 +1,9 @@
 ﻿angular.module("myApp", ['ionic', 'ngRoute', 'ngResource'])
 
-    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', function ($ionicPlatform, globalIdService, $injector, cordovaReadyService) {
-        $ionicPlatform.ready(function () {
+    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$ionicPopup',
+        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $ionicPopup) {
+            $ionicPlatform.ready(function () {
+
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -15,6 +17,28 @@
             }
             ionic.Platform.isFullScreen = true;
         });
+
+            $ionicPlatform.registerBackButtonAction(function (event) {
+                if (false) {
+                    navigator.app.exitApp();
+                }
+                else {
+                    //navigator.app.backHistory();
+                }
+            }, 100);
+
+        //$ionicPlatform.onHardwareBackButton(function() {
+        //    if (true) { // your check here
+        //        $ionicPopup.confirm({
+        //            title: 'System warning',
+        //            template: 'are you sure you want to exit?'
+        //        }).then(function(res) {
+        //            if (res) {
+        //                navigator.app.exitApp();
+        //            }
+        //        });
+        //    }
+        //});
 
         // Override the transform Request, $injector get the object
         $injector.get("$http").defaults.transformRequest = function (data, headersGetter) {

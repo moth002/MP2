@@ -14,7 +14,15 @@
                 };
 
                 $scope.btnLeft = function () {
-                    navigator.app.backHistory();
+                    var nav = window.navigator;
+                    if( this.phonegapNavigationEnabled &&
+                        nav &&
+                        nav.app &&
+                        nav.app.backHistory ){
+                        nav.app.backHistory();
+                    } else {
+                        window.history.back();
+                    }
                 };
 
                 $scope.btnMiddle = function () {

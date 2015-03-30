@@ -1,18 +1,21 @@
 ﻿angular.module('myApp')
     .controller("PatientCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
             $scope.init = function () {
                 var defer = $q.defer();
 
-                var rightButtonClick = function () { window.location = '#/order/1858' };
+                var rightButtonClick = function() {
+                    window.location = '#/order/1858';
+                    $ionicLoading.show();
+                };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
                 footerBtnService.setLeft(true);
 
                 defer.promise.then(function () {
-                    cordovaReadyService(window.plugins.spinnerDialog.hide());
+                    $ionicLoading.hide();
                 });
 
                 var patientModel = {
@@ -55,8 +58,8 @@
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
                         $scope.userId = result.text;
+                        $ionicLoading.show();
                         window.location = '#/order/' + result.text;
-                        window.plugins.spinnerDialog.show(null, "Getting Data", true);
                     },
                     function (error) {
                         alert("Scanning failed: " + error);

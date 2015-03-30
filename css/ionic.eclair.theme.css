@@ -24,11 +24,17 @@
 .popup { border-radius: 8px !important; }
 .popup-body { overflow: hidden; }
 
+.loading-container .loading {
+    background-color: rgba(0, 0, 0, 0.005);
+    opacity: 1;
+    font-size: 25px;
+}
+
 .spinner svg {
   width: 68px;
   height: 68px;
-  stroke: #ffffff;
-  fill: #ffffff;
+  stroke: #b6d55f;
+  fill: #0066b3;
 }
 
 .checkbox.checkbox-eclair input:before, .checkbox.checkbox-eclair .checkbox-icon:before {

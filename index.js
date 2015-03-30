@@ -27,8 +27,8 @@
 
     .config(["$routeProvider", function ($routeProvider) {
         $routeProvider.when("/", {
-            templateUrl: "views/main.html",
-            controller: "MainCtrl"
+            templateUrl: "views/home.html",
+            controller: "HomeCtrl"
         })
         .when("/user/:usercode/pin/:pincode", {
             templateUrl: "views/user.html",
@@ -60,7 +60,7 @@
     }])
 
     .constant('$ionicLoadingConfig', {
-        template: '<div class="item-icon"><ion-spinner icon="bubbles"/></div><p>Loading</p>'
+        template: '<div class="item-icon"><ion-spinner icon="bubbles"/></div>'
     })
 
 

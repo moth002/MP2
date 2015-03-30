@@ -14,20 +14,11 @@
                 };
 
                 $scope.btnLeft = function () {
-                   // cordovaReadyService(navigator.notification.alert(
-                   //    'You are the winner!',  // message
-                   //    alertDismissed,         // callback
-                   //    'Game Over',            // title
-                   //    'Done'                  // buttonName
-                    //));
-                    //notificationDlgService.alertDialog();
                     window.location = '#/';
                 };
 
                 $scope.btnMiddle = function () {
                     $scope.middleButton.click();
-                    //labelPrintService.print();
-                    //labelPrintService.print('Cold, Power PRP1660', 'Male, 23-Jan-1980.   Purple Top, 10ml', 'DB0010H001');
                 }
                 
             }

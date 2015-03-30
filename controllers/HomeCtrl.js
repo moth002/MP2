@@ -1,5 +1,5 @@
 ﻿angular.module('myApp')
-    .controller("MainCtrl", [
+    .controller("HomeCtrl", [
         '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicModal', '$q', '$ionicLoading',
         function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicModal, $q, $ionicLoading) {
 
@@ -9,9 +9,7 @@
 
                 var rightButtonClick = function() {
                     window.location = '#/user/MO/pin/4321';
-                    $ionicLoading.show({
-                        noBackdrop: true
-                    });
+                    $ionicLoading.show();
                 };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);

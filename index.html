@@ -29,7 +29,7 @@
     <script src="services/GlobalIdService.js"></script>
     <script src="controllers/FooterBtnCtrl.js"></script>
     <script src="controllers/HeaderBtnCtrl.js"></script>
-    <script src="controllers/MainCtrl.js"></script>
+    <script src="controllers/HomeCtrl.js"></script>
     <script src="controllers/UserCtrl.js"></script>
     <script src="controllers/PatientCtrl.js"></script>
     <script src="controllers/OrderCtrl.js"></script>
@@ -49,7 +49,7 @@
                 <h1 class="title">
                     <img src="./Content/images/header_logo.png" width="165" height="39"/>
                 </h1>
-                <!--<button class="button button-icon icon ion-arrow-left-a" ng-click="btnGoBack()"></button>-->
+                <button class="button button-icon icon ion-home" style="color: white;" ng-click=" btnGoHome()"></button>
             </ion-header-bar>
             <ion-content padding="false" class="scroll-content has-header has-footer">
                 <div ng-view></div>
@@ -57,7 +57,7 @@
 
             <ion-footer-bar class="bar-stable" ng-controller="FooterBtnCtrl">
                 <div class="button-bar">
-                    <button class="button button-footer icon-left ion-home" ng-show="leftButton.isVisible" ng-click="btnLeft()">Home</button>
+                    <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">Back</button>
                     <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
                     <button class="button button-footer icon-right ion-arrow-right-a" ng-show="rightButton.isVisible" ng-click="btnRight()">{{rightButton.title}}</button>
                 </div>

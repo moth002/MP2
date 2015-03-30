@@ -1,14 +1,14 @@
 ﻿angular.module('myApp')
     .controller("HeaderBtnCtrl", [
-        '$scope', '$rootScope', '$ionicSideMenuDelegate', 'cordovaReadyService',
-            function ($scope, $rootScope, $ionicSideMenuDelegate, cordovaReadyService) {
+        '$scope', '$rootScope', '$ionicSideMenuDelegate',
+            function ($scope, $rootScope, $ionicSideMenuDelegate) {
 
                 $scope.btnSideMenu = function () {
                     $ionicSideMenuDelegate.toggleLeft();
                 };
 
-                $scope.btnGoBack = function () {
-                    $rootScope.history.back();
+                $scope.btnGoHome = function () {
+                    window.location = '#/';
                 };
             }
     ]);

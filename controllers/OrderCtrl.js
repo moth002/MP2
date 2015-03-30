@@ -1,12 +1,12 @@
 ﻿angular.module('myApp')
     .controller("OrderCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', 'labelPrintService', '$ionicPopup',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, labelPrintService, $ionicPopup) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', 'labelPrintService', '$ionicPopup', '$ionicLoading',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, labelPrintService, $ionicPopup, $ionicLoading) {
             $scope.init = function () {
                 var defer = $q.defer();
 
                 defer.promise.then(function () {
-                    cordovaReadyService(window.plugins.spinnerDialog.hide());
+                    $ionicLoading.hide();
                 });
 
                 $scope.idList = globalIdService.getIDs();
@@ -65,9 +65,12 @@
                     }              
                 };
 
-                var rightButtonClick = function () { window.location = '#/collect' };
+                var rightButtonClick = function() {
+                    window.location = '#/collect';
+                    $ionicLoading.show();
+                };
 
-                footerBtnService.setRight('Next', true, rightButtonClick);
+                footerBtnService.setRight('Collect', true, rightButtonClick);
                 footerBtnService.setMiddle('Print Labels', true, setMiddleClick);
                 footerBtnService.setLeft(true);
             }

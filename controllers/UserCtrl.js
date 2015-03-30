@@ -5,7 +5,10 @@
             $scope.init = function () {
                 var defer = $q.defer();
 
-                var rightButtonClick = function () { window.location = '#/patient/I0I0039' };
+                var rightButtonClick = function() {
+                    window.location = '#/patient/I0I0039';
+                    $ionicLoading.show();
+                };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
@@ -54,8 +57,8 @@
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
                         $scope.patientId = result.text;
+                        $ionicLoading.show();
                         window.location = '#/patient/' + result.text;
-                        window.plugins.spinnerDialog.show(null, "Getting Data", true);
                     },
                     function (error) {
                         alert("Scanning failed: " + error);

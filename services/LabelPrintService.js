@@ -1,5 +1,5 @@
 ﻿angular.module('myApp')
-    .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', function (cordovaReadyService, globalIdService) {
+    .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', '$ionicLoading', function (cordovaReadyService, globalIdService, $ionicLoading) {
 
         function connect() {
             // do something
@@ -26,7 +26,11 @@
                 var idList = globalIdService.getIDs();
                 var printer = idList.printerId;
 
-                cordovaReadyService(window.plugins.toast.showShortCenter("\n Connecting to printer \n", success, failure));
+                $ionicLoading.show({
+                    template: 'Connecting to printer',
+                    duration: '1500'
+                });
+
                 cordovaReadyService(window.bluetoothSerial.connect(printer, success, failure));
 
                 var str = "^XA^DFR:FA.ZPL^FS^FO53,96^LL240^BY2^BCN,77,Y,N^FN1^FS^FT39,200^CI0^FT77,40^A0N,28,39^FD$msg$".replace("$msg$", msg1);
@@ -36,7 +40,10 @@
                 try
                 {
                     setTimeout(function () {
-                        cordovaReadyService(window.plugins.toast.showShortCenter("\n Printing .... \n", success, failure));
+                        $ionicLoading.show({
+                            template: 'Printing....',
+                            duration: '2000'
+                        });
                         cordovaReadyService(window.bluetoothSerial.write(str, success, failure));
                         cordovaReadyService(window.bluetoothSerial.disconnect(success, failure));
                         return true;

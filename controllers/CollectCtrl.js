@@ -1,7 +1,7 @@
 ﻿angular.module('myApp')
     .controller("CollectCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
             $scope.init = function () {
                 var defer = $q.defer();
 
@@ -12,7 +12,7 @@
                 }
 
                 defer.promise.then(function () {
-                    cordovaReadyService(window.plugins.spinnerDialog.hide());
+                    $ionicLoading.hide();
 
                     for (var i = 0; i < $scope.order.Specimens.length; i++) {
                         $scope.model.chkboxSpecimens.push({ name: $scope.order.Specimens[i], code: $scope.order.Barcodes[i], checked: undefined });
@@ -68,6 +68,7 @@
                                     needToReschedule = true;
                                 }
                             });
+                            $ionicLoading.show();
                             window.location = needToReschedule ? '#/schedule' : '#/complete';
                         }    
                     });

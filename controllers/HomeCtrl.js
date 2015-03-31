@@ -7,6 +7,8 @@
 
             $scope.init = function () {
 
+                $ionicLoading.hide();
+
                 var rightButtonClick = function() {
                     window.location = '#/user/MO/pin/4321';
                     $ionicLoading.show();

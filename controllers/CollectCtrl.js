@@ -94,12 +94,14 @@
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
-                        $scope.model.chkboxSpecimens.forEach(function(item) {
-                            if (item.code === result.text) {
-                                item.checked = 'checked';
-                                $scope.$apply(); // refresh the $scope
-                            }
-                        });
+                        if (!result.cancelled){
+                            $scope.model.chkboxSpecimens.forEach(function(item) {
+                                if (item.code === result.text) {
+                                    item.checked = 'checked';
+                                    $scope.$apply(); // refresh the $scope
+                                }
+                            });
+                        }
                     },
                     function (error) {
                         alert("Scanning failed: " + error);

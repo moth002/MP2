@@ -56,9 +56,11 @@
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
-                        $scope.patientId = result.text;
-                        $ionicLoading.show();
-                        window.location = '#/patient/' + result.text;
+                        if (!result.cancelled){
+                            $scope.patientId = result.text;
+                            $ionicLoading.show();
+                            window.location = '#/patient/' + result.text;
+                        }
                     },
                     function (error) {
                         alert("Scanning failed: " + error);

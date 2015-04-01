@@ -1,9 +1,11 @@
 ﻿angular.module('myApp')
     .controller("CollectCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'chkbxSpecimenService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, chkbxSpecimenService) {
             $scope.init = function () {
                 var defer = $q.defer();
+
+                $ionicLoading.show();
 
                 $scope.model = {
                     message: "Scan the collected and labelled samples",
@@ -77,8 +79,8 @@
                                             needToReschedule = true;
                                         }
                                     });
-                                    $ionicLoading.show();
-                                    window.location = needToReschedule ? '#/schedule' : '#/complete';
+                                    chkbxSpecimenService.setSpecimenList($scope.model.chkboxSpecimens);
+                                    window.location = needToReschedule ? '#/schedule' : '#/complete/' + $scope.model.dateTime;
                                 }    
                             }
                         }]

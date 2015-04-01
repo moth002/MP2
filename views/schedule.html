@@ -14,5 +14,31 @@
     </div>
 </div>
 <div class="c3">
-    <div class="welcome-message">Need to Schedule</div>
+    <div class="list">
+        <div class="item item-icon-left" style="border: 0; white-space: normal;">
+            <i class="icon ion-android-checkmark-circle" style="color: #00ff00; font-size: 45px;"></i>
+            Collection for order {{idList.orderId}} comlpete
+        </div>
+        <div class="item item-icon-left" style="border: 0; white-space: normal;">
+            <i class="icon ion-ios-information-outline" style="color: blue; font-size: 45px;"></i>
+            Reschedule the following missed collection(s)
+        </div>
+        <div class="list" style="margin: 0 20px;">
+            <div class="item item-checkbox" ng-repeat="item in model.chkboxSpecimens" style="font-size: 12px;">
+                <label class="checkbox checkbox-eclair">
+                    <input type="checkbox" ng-checked="item.checked" disabled="disabled">
+                </label>
+                {{ item.name }}
+            </div>
+        </div>
+    </div>
 </div>
+
+<script id="reschedule-Confirm.html" type="text/ng-template">
+    <span>Please set the new date and time of the collection</span>
+    <input ng-model="model.dateTime" style="color:steelblue; width: 100%; -webkit-appearance: none; -moz-appearance: none; text-align: right;" type="datetime-local">
+    <span style="font-size:10px; text-align: center; position: absolute; right: 0; left: 0; color: Gray">Tap field to change date</span>
+    <br />
+    <span>Reason for rescheduling</span>
+    <input style="color:steelblue; width: 100%;" type="text">
+</script>

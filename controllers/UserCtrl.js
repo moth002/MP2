@@ -5,9 +5,10 @@
             $scope.init = function () {
                 var defer = $q.defer();
 
+                $ionicLoading.show();
+
                 var rightButtonClick = function() {
                     window.location = '#/patient/I0I0039';
-                    $ionicLoading.show();
                 };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
@@ -58,7 +59,6 @@
                     function (result) {
                         if (!result.cancelled){
                             $scope.patientId = result.text;
-                            $ionicLoading.show();
                             window.location = '#/patient/' + result.text;
                         }
                     },

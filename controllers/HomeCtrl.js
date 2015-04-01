@@ -1,17 +1,13 @@
 ﻿angular.module('myApp')
     .controller("HomeCtrl", [
-        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q', '$ionicLoading',
-        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q, $ionicLoading) {
+        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q',
+        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q ) {
 
             var defer = $q.defer();
 
             $scope.init = function () {
-
-                $ionicLoading.hide();
-
                 var rightButtonClick = function() {
                     window.location = '#/user/MO/pin/4321';
-                    $ionicLoading.show();
                 };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
@@ -80,7 +76,6 @@
                         if (!result.cancelled){
                             $scope.openModal();
                             defer.promise.then(function (pinCode) {
-                                $ionicLoading.show();
                                 window.location = '#/user/' + result.text + '/pin/' + pinCode; 
                             });
                         }

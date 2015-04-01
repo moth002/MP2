@@ -5,9 +5,10 @@
             $scope.init = function () {
                 var defer = $q.defer();
 
+                $ionicLoading.show();
+
                 var rightButtonClick = function() {
                     window.location = '#/order/1858';
-                    $ionicLoading.show();
                 };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
@@ -37,7 +38,8 @@
                             alert("Pateint not found");
                         if (status === 401) {
                             $ionicPopup.alert({
-                                template: "<img src='./images/Unauthorised-Error.png' style='max-width: 100%; max-height: 100%;' />",
+                                templateUrl: 'unauthorised-error.html',
+                                //template: "<img src='./images/Unauthorised-Error.png' style='max-width: 100%; max-height: 100%;' />",
                                 okType: 'button-footer'
                             }).then(function () {
                                 window.location = '#/';
@@ -59,7 +61,6 @@
                     function (result) {
                         if (!result.cancelled){
                             $scope.userId = result.text;
-                            $ionicLoading.show();
                             window.location = '#/order/' + result.text;
                         }
                     },

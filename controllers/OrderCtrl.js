@@ -5,6 +5,8 @@
             $scope.init = function () {
                 var defer = $q.defer();
 
+                $ionicLoading.show();
+
                 defer.promise.then(function () {
                     $ionicLoading.hide();
                 });
@@ -31,7 +33,8 @@
                         defer.resolve();
                         if (status === 404)
                             $ionicPopup.alert({
-                                template: "<img src='./images/Mismatch-Error.png' style='max-width: 100%; max-height: 100%;' />",
+                                templateUrl: "mismatched-error.html",
+                                //template: "<img src='./images/Mismatch-Error.png' style='max-width: 100%; max-height: 100%;' />",
                                 okType: 'button-footer'
                             }).then(function () {
                                 window.location = '#/patient/' + $scope.idList.patientId;
@@ -67,7 +70,6 @@
 
                 var rightButtonClick = function() {
                     window.location = '#/collect';
-                    $ionicLoading.show();
                 };
 
                 footerBtnService.setRight('Collect', true, rightButtonClick);

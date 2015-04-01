@@ -27,19 +27,6 @@
                 }
             }, 100);
 
-        //$ionicPlatform.onHardwareBackButton(function() {
-        //    if (true) { // your check here
-        //        $ionicPopup.confirm({
-        //            title: 'System warning',
-        //            template: 'are you sure you want to exit?'
-        //        }).then(function(res) {
-        //            if (res) {
-        //                navigator.app.exitApp();
-        //            }
-        //        });
-        //    }
-        //});
-
         // Override the transform Request, $injector get the object
         $injector.get("$http").defaults.transformRequest = function (data, headersGetter) {
             var idList = globalIdService.getIDs();
@@ -70,7 +57,7 @@
             templateUrl: "views/collect.html",
             controller: "CollectCtrl"
         })
-        .when("/complete", {
+        .when("/complete/:dateTime", {
             templateUrl: "views/complete.html",
             controller: "CompleteCtrl"
         })

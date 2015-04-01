@@ -3,6 +3,12 @@
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading) {
             $scope.init = function () {
+
+                $ionicLoading.show();
+
+                var d = new Date($routeParams.dateTime);
+                $scope.dateTime = d.toDateString();
+
                 $scope.idList = globalIdService.getIDs();
                 var defer = $q.defer();
 

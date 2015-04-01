@@ -34,15 +34,17 @@
                         if (status === 404)
                             $ionicPopup.alert({
                                 templateUrl: "mismatched-error.html",
-                                //template: "<img src='./images/Mismatch-Error.png' style='max-width: 100%; max-height: 100%;' />",
                                 okType: 'button-footer'
                             }).then(function () {
                                 window.location = '#/patient/' + $scope.idList.patientId;
                             });
                         if (status === 401) {
-                            alert("Unauthorized User");
-                            
-                            window.location = '#/';
+                            $ionicPopup.alert({
+                                templateUrl: 'unauthorised-error.html',
+                                okType: 'button-footer'
+                            }).then(function () {
+                                window.location = '#/';
+                            });
                         }
                     });
 

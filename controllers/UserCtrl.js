@@ -34,7 +34,7 @@
                         defer.resolve();
                         if (status === 404){
                             $ionicPopup.alert({
-                                template: "<img src='./images/usercodeAndPin-Warning.png' style='max-width: 100%; max-height: 100%;' />",
+                                templateUrl: 'usercodeAndPin-Warning.html',
                                 okType: 'button-footer'
                             }).then(function () {
                                 window.location = '#/';

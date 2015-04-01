@@ -35,11 +35,15 @@
                     .error(function (err, status) {
                         defer.resolve();
                         if (status === 404)
-                            alert("Pateint not found");
+                            $ionicPopup.alert({
+                                templateUrl: "noPatient-warning.html",
+                                okType: 'button-footer'
+                            }).then(function () {
+                                window.location = '#/user/' + $scope.idList.userId;
+                            });
                         if (status === 401) {
                             $ionicPopup.alert({
                                 templateUrl: 'unauthorised-error.html',
-                                //template: "<img src='./images/Unauthorised-Error.png' style='max-width: 100%; max-height: 100%;' />",
                                 okType: 'button-footer'
                             }).then(function () {
                                 window.location = '#/';

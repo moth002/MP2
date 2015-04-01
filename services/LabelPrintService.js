@@ -12,17 +12,16 @@
         }
 
         function success(result) {
-            //alert("Success to " + result);
+            return true;
         }
 
         function failure(result) {
-            //alert("Fail to " + result);
+            return false;
         };
 
         var labelPrinter = {
 
-            print: function (msg1, msg2, barCode) {
-
+            connect: function() {
                 var idList = globalIdService.getIDs();
                 var printer = idList.printerId;
 
@@ -31,8 +30,10 @@
                     duration: '1500'
                 });
 
-                cordovaReadyService(window.bluetoothSerial.connect(printer, success, failure));
+                return cordovaReadyService(window.bluetoothSerial.connect(printer, success, failure));
+            },
 
+            print: function (msg1, msg2, barCode) {
                 var str = "^XA^DFR:FA.ZPL^FS^FO53,96^LL240^BY2^BCN,77,Y,N^FN1^FS^FT39,200^CI0^FT77,40^A0N,28,39^FD$msg$".replace("$msg$", msg1);
                 str += "^FS^FT29,67^A0N,23,32^FD$msg2$^FS^PQ1,0,1,Y^XZ\n".replace("$msg2$", msg2);
                 str += "^XA^XFR:FA.ZPL^FS^FN1^FD$barcode$^FS^XZ\n".replace("$barcode$", barCode);
@@ -44,16 +45,19 @@
                             template: 'Printing....',
                             duration: '2000'
                         });
-                        cordovaReadyService(window.bluetoothSerial.write(str, success, failure));
-                        cordovaReadyService(window.bluetoothSerial.disconnect(success, failure));
-                        return true;
+                        cordovaReadyService(window.bluetoothSerial.write(str, success, failure));        
+                        //return true;
                     }, 5000);
                 }
                 catch (e)
                 {
-                    return false;
+                    //return false;
                 }
-                return cordovaReadyService(window.bluetoothSerial.disconnect(success, failure));
+                //return cordovaReadyService(window.bluetoothSerial.disconnect(success, failure));
+            },
+
+            close: function() {
+                cordovaReadyService(window.bluetoothSerial.disconnect(success, failure));
             }
         };
 

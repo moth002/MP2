@@ -22,21 +22,21 @@
         <div class="item item-divider" style="background-color: #b6d55f">
             Testing Requested:
         </div>
-        <div class="item item-text-wrap">
-            <div ng-repeat="t in order.Tests">
+        <ul class="list" >
+            <li class="item" ng-repeat="t in order.Tests">
                 <div style="color: steelblue">{{t}}</div>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
     <div class="card">
         <div class="item item-divider" style="background-color: #b6d55f">
             Specimens to be collected:
         </div>
-        <div class="item item-text-wrap">
-            <div ng-repeat="s in order.Specimens">
+        <ul class="list">
+            <li class="item item-text-wrap" ng-repeat="s in order.Specimens">
                 <div style="color: steelblue">{{s}}</div>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </div>
 

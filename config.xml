@@ -15,10 +15,15 @@
   <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.3.3" />
   <gap:plugin name="nl.x-services.plugins.insomnia" version="4.0.1" />
 
+  <!-- Android -->
   <icon src="res/icons/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
   <icon src="res/icons/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
   <icon src="res/icons/android/icon-72-hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
   <icon src="res/icons/android/icon-96-xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+
+  <!-- iPhone / iPod Touch  -->
+  <icon src="res/icons/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
+  <icon src="res/icons/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
   
   <preference name="SplashScreen" value="screen" />
 </widget>

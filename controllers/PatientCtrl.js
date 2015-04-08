@@ -8,7 +8,7 @@
                 $ionicLoading.show();
 
                 var rightButtonClick = function() {
-                    window.location = '#/order/2093';
+                    window.location = '#/order/2108';
                 };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);

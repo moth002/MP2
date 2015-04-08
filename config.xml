@@ -22,10 +22,10 @@
   <icon src="res/icons/android/icon-96-xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
 
   <!-- Android -->
-  <gap:splash src="res/icons/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="ldpi" />
-  <gap:splash src="res/icons/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="mdpi" />
-  <gap:splash src="res/icons/android/screen-hdpi-portrait.png" gap:platform="android" gap:qualifier="hdpi" />
-  <gap:splash src="res/icons/android/screen-xhdpi-portrait.png" gap:platform="android" gap:qualifier="xhdpi" />
+  <gap:splash src="res/screens/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="ldpi" />
+  <gap:splash src="res/screens/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="mdpi" />
+  <gap:splash src="res/screens/android/screen-hdpi-portrait.png" gap:platform="android" gap:qualifier="hdpi" />
+  <gap:splash src="res/screens/android/screen-xhdpi-portrait.png" gap:platform="android" gap:qualifier="xhdpi" />
 
   <!-- iPhone / iPod Touch  -->
   <icon src="res/icons/ios/icon-60.png" gap:platform="ios" width="60" height="60" />

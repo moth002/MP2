@@ -43,14 +43,6 @@
                 }
             }
 
-            //$ionicModal.fromTemplateUrl('Pincode-modal.html', {
-            //    scope: $scope,
-            //    backdropClickToClose: false,
-            //    hardwareBackButtonClose : false
-            //}).then(function (modal) {
-            //    $scope.modal = modal;
-            //});
-
             $scope.openModal = function () {
                 $scope.passcodeModal = $ionicPopup.show({
                     scope: $scope,

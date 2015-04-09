@@ -30,7 +30,7 @@
             }, 100);
 
             $ionicPlatform.on('resume', function() {
-                alert('We are here');
+                //alert('We are here');
             });
 
         // Override the transform Request, $injector get the object

@@ -14,14 +14,18 @@
                 };
 
                 $scope.btnLeft = function () {
-                    var nav = window.navigator;
-                    if( this.phonegapNavigationEnabled &&
-                        nav &&
-                        nav.app &&
-                        nav.app.backHistory ){
-                        nav.app.backHistory();
+                    if ($scope.leftButton.click === null) {
+                        var nav = window.navigator;
+                        if (this.phonegapNavigationEnabled &&
+                            nav &&
+                            nav.app &&
+                            nav.app.backHistory) {
+                            nav.app.backHistory();
+                        } else {
+                            window.history.back();
+                        }
                     } else {
-                        window.history.back();
+                        $scope.leftButton.click();
                     }
                 };
 

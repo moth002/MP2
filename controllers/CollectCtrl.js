@@ -89,7 +89,7 @@
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft(true);
+                footerBtnService.setLeft('Back', true, null);
 
             }
 

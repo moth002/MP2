@@ -7,13 +7,34 @@
 
                 $ionicLoading.show();
 
-                var rightButtonClick = function() {
-                    window.location = '#/patient/I0I0018';
+                var rightButtonClick = function () {
+                    if ($scope.idList.patientId) {
+                        window.location = '#/patient/' + $scope.idList.patientId;
+                    }
                 };
+
+                var leftButtonClick = function() {
+                    $ionicPopup.confirm({
+                        title: 'Log off',
+                        template: 'Are you sure you want to Log Off?'
+                    }).then(function (res) {
+                        if (res) {
+                            var nav = window.navigator;
+                            if( this.phonegapNavigationEnabled &&
+                                nav &&
+                                nav.app &&
+                                nav.app.backHistory ){
+                                nav.app.backHistory();
+                            } else {
+                                window.history.back();
+                            }
+                        }
+                    });
+                }
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft(true);
+                footerBtnService.setLeft('Log Off', true, leftButtonClick);
 
                 defer.promise.then(function () {
                     $ionicLoading.hide();

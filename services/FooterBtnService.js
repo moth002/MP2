@@ -36,8 +36,10 @@
             getLeft: function () {
                 return leftButton;
             },
-            setLeft: function(v) {
+            setLeft: function (t, v, c) {
+                leftButton.title = t;
                 leftButton.isVisible = v;
+                leftButton.click = c;
             }
         }
     }]);

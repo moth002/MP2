@@ -31,9 +31,13 @@
                     defer.resolve();
                 });
 
-                footerBtnService.setRight('Next', false, null);
+                var rightButtonClick = function () {
+                    window.location = '#/user/' + $scope.idList.userId + '/pin/4321';
+                };
+
+                footerBtnService.setRight('Next Patient', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft(true);
+                footerBtnService.setLeft('Back', false, null);
 
             }
         }

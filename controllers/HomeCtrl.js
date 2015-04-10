@@ -5,27 +5,34 @@
 
             var defer = $q.defer();
 
-            $scope.init = function () {
-                var rightButtonClick = function() {
-                    window.location = '#/user/MO/pin/4321';
-                };
-
-                footerBtnService.setRight('Next', true, rightButtonClick);
-                footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft(false);
-            }
-
-            $scope.passDots = '*';
-
             $scope.model = {
                 message: "Scan or enter your ID"
             }
 
-            $scope.idList = globalIdService.getIDs;
+            $scope.init = function () {
+
+                globalIdService.setIDs('', '', '', '');        
+
+                var rightButtonClick = function () {
+                    if ($scope.idList.userId) {
+                        $scope.openModal();
+                        defer.promise.then(function (pinCode) {
+                            window.location = '#/user/' + $scope.idList.userId + '/pin/' + pinCode;
+                        });
+                    }
+                };
+
+                footerBtnService.setRight('Next', true, rightButtonClick);
+                footerBtnService.setMiddle('', false, null);
+                footerBtnService.setLeft('', false, null);
+
+                $scope.idList = globalIdService.getIDs;
+            }
+
+            
 
             $scope.initModal = function () {
                 $scope.passcode = "";
-                //$scope.passcodeModal._deregisterBackButton();
             }
 
             $scope.add = function (value) {

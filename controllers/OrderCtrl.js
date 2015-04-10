@@ -81,7 +81,7 @@
 
                 footerBtnService.setRight('Collect', true, rightButtonClick);
                 footerBtnService.setMiddle('Print Labels', true, setMiddleClick);
-                footerBtnService.setLeft(true);
+                footerBtnService.setLeft('Back', true, null);
             }
         }
     ]);

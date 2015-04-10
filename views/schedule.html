@@ -5,7 +5,8 @@
             <h3 style="color: steelblue;">{{user.Name}}</h3>
         </div>
         <div class="item item-thumbnail-right">
-            <img src="./images/SarahRogers.png"/>
+            <img ng-if="patient.Gender == 'Female'" src="./images/Female.png" />
+            <img ng-if="patient.Gender == 'Male'" src="./images/Male.png" />
             <h4>Patient</h4>
             <h3 style="color: steelblue;">{{patient.Name}} ({{patient.NHI}})</h3>
             <h3 style="color: steelblue;">{{patient.Gender}}, {{patient.DOB}},</h3>
@@ -17,7 +18,7 @@
     <div class="list">
         <div class="item item-icon-left" style="border: 0; white-space: normal;">
             <i class="icon ion-android-checkmark-circle" style="color: #00ff00; font-size: 45px;"></i>
-            Collection for order {{idList.orderId}} comlpete
+            Collection for order {{idList.orderId}} complete
         </div>
         <div class="item item-icon-left" style="border: 0; white-space: normal;">
             <i class="icon ion-ios-information-outline" style="color: blue; font-size: 45px;"></i>

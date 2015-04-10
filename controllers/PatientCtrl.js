@@ -8,12 +8,14 @@
                 $ionicLoading.show();
 
                 var rightButtonClick = function() {
-                    window.location = '#/order/2108';
+                    if ($scope.idList.orderId) {
+                        window.location = '#/order/' + $scope.idList.orderId;
+                    }
                 };
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft(true);
+                footerBtnService.setLeft('Back', true, null);
 
                 defer.promise.then(function () {
                     $ionicLoading.hide();

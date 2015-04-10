@@ -59,7 +59,7 @@
 
         <ion-footer-bar class="bar-stable" ng-controller="FooterBtnCtrl">
             <div class="button-bar">
-                <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">Back</button>
+                <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
                 <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
                 <button class="button button-footer icon-right ion-arrow-right-a" ng-show="rightButton.isVisible" ng-click="btnRight()">{{rightButton.title}}</button>
             </div>

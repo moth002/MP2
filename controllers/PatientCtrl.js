@@ -41,7 +41,7 @@
                                 templateUrl: "noPatient-warning.html",
                                 okType: 'button-footer'
                             }).then(function () {
-                                window.location = '#/user/' + $scope.idList.userId;
+                                window.location = '#/user/' + $scope.idList.userId + '/pin/4321';
                             });
                         if (status === 401) {
                             $ionicPopup.alert({

@@ -36,6 +36,8 @@
                 //str += "^FS^FT29,67^A0N,23,32^FD$msg2$^FS^PQ1,0,1,Y^XZ\n".replace("$msg2$", msg2);
                 //str += "^XA^XFR:FA.ZPL^FS^FN1^FD$barcode$^FS^XZ\n".replace("$barcode$", "MO");
 
+                //var str = "^XA^DFR:FA.ZPL^FS^FO220,6^BY3^BCN,50,Y,N^FN1^FS^XZ^XA^XFR:FA.ZPL^FS^FN1^FDMO^FS^XZ";
+
                 try
                 {
                     setTimeout(function () {

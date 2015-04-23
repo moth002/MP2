@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("FooterBtnCtrl", [
         '$scope', 'footerBtnService', 'globalIdService', 'notificationDlgService',
             function ($scope, footerBtnService, globalIdService, notificationDlgService) {

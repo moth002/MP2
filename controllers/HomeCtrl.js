@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("HomeCtrl", [
         '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q',
         function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q ) {

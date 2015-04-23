@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .factory('notificationDlgService', ['cordovaReadyService', function (cordovaReadyService) {
 
         //////---------------------------------------------------------------------

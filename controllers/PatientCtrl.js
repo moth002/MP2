@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("PatientCtrl", [
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
@@ -28,7 +28,7 @@
 
                 $scope.idList = globalIdService.getIDs();
 
-                $http.post(window.apiUrl + 'GetPatientData', patientModel)
+                $http.post(window.apiUrl + 'PatientValidation', patientModel)
                     .success(function (response) {
                         $scope.patient = response;
                         globalIdService.setIDs($scope.idList.userId, patientModel.nhi, '', $scope.idList.tokenId);

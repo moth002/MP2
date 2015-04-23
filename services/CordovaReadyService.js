@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .factory('cordovaReadyService', function () {
         return function (fn) {
 

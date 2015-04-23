@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'chkbxSpecimenService',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, chkbxSpecimenService) {
@@ -33,7 +33,7 @@
                     scheme: 'NHI'
                 }
 
-                $http.post(window.apiUrl + 'GetOrderData', orderModel)
+                $http.post(window.apiUrl + 'OrderMatching', orderModel)
                     .success(function (response) {
                         $scope.order = response;
                         globalIdService.setIDs($scope.idList.userId, $scope.idList.patientId, $scope.idList.orderId, $scope.idList.tokenId);
@@ -48,7 +48,7 @@
                         window.location = '#/';
                     });
 
-                $http.post(window.apiUrl + 'GetPatientData', patientModel).success(function (response) {
+                $http.post(window.apiUrl + 'PatientValidation', patientModel).success(function (response) {
                     $scope.patient = response;
                 });
 

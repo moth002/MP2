@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("UserCtrl", [
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
@@ -47,6 +47,7 @@
                         defer.resolve();
                         if (status === 404){
                             $ionicPopup.alert({
+                                //title: "<p style='color: steelBlue'>Warning</p>",
                                 templateUrl: 'usercodeAndPin-Warning.html',
                                 okType: 'button-footer'
                             }).then(function () {

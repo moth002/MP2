@@ -1,4 +1,4 @@
-﻿angular.module("myApp", ['ionic', 'ngRoute', 'ngResource'])
+﻿angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource'])
 
     .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$ionicPopup',
         function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $ionicPopup) {
@@ -37,8 +37,10 @@
         $injector.get("$http").defaults.transformRequest = function (data, headersGetter) {
             var idList = globalIdService.getIDs();
             headersGetter()['Authorization'] = idList.tokenId;
-            if (data) // original or base transformRequest
+            if (data) { // original or base transformRequest
                 return angular.toJson(data);
+            }
+            return angular.toJson(data);
         };
     }])
 

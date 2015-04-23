@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .factory('chkbxSpecimenService', function () {
         var a = {
             specimenList: [],

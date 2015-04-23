@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("CompleteCtrl", [
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading) {
@@ -21,7 +21,7 @@
                     scheme: 'NHI'
                 }
 
-                $http.post(window.apiUrl + 'GetPatientData', patientModel).success(function (response) {
+                $http.post(window.apiUrl + 'PatientValidation', patientModel).success(function (response) {
                     $scope.patient = response;
                     defer.resolve();
                 });

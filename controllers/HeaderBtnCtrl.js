@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("HeaderBtnCtrl", [
         '$scope', '$rootScope', '$ionicSideMenuDelegate', '$ionicPopup',
             function ($scope, $rootScope, $ionicSideMenuDelegate, $ionicPopup) {

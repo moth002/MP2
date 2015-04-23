@@ -10,7 +10,7 @@
     function onDeviceReady() {
 
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
-        angular.bootstrap(document, ['myApp']);
+        angular.bootstrap(document, ['mobilePhlebotomy']);
 
         // Handle the Cordova pause and resume events
         //document.addEventListener( 'pause', onPause.bind( this ), false );

@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .factory('footerBtnService', ['globalIdService', function (globalIdService) {
         var rightButton = {
             title: 'Next',

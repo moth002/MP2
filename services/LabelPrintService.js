@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', '$ionicLoading', function (cordovaReadyService, globalIdService, $ionicLoading) {
 
         function success(result) {
@@ -55,7 +55,7 @@
                             cordovaReadyService(window.bluetoothSerial.write(printString, success, failure));
                         }
                         labelPrinter.close();
-                    }, 5000);
+                    }, 1000);
                 }
                 catch (e)
                 {

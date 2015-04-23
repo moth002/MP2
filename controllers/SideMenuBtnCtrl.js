@@ -1,4 +1,4 @@
-﻿angular.module('myApp')
+﻿angular.module('mobilePhlebotomy')
     .controller("SideMenuBtnCtrl", [
         '$scope', 'cordovaReadyService', '$ionicSideMenuDelegate', 'globalIdService',
             function ($scope, cordovaReadyService, $ionicSideMenuDelegate, globalIdService) {

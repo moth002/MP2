@@ -13,9 +13,6 @@
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                window.StatusBar.backgroundColorByName("white");
-                window.StatusBar.show();
-                alert("yes");
                 //cordovaReadyService(window.StatusBar.styleDefault());
                 //cordovaReadyService(window.StatusBar.overlaysWebView(true));
                 //cordovaReadyService(window.StatusBar.backgroundColorByName("white"));

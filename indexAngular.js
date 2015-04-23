@@ -13,6 +13,7 @@
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
+                window.StatusBar.overlaysWebView(true);
                 window.StatusBar.hide();
                 alert("yes");
                 //cordovaReadyService(window.StatusBar.styleDefault());

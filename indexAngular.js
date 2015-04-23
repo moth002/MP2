@@ -13,9 +13,11 @@
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                cordovaReadyService(window.StatusBar.styleDefault());
-                cordovaReadyService(window.StatusBar.overlaysWebView(true));
-                cordovaReadyService(window.StatusBar.backgroundColorByName("white"));
+                window.StatusBar.hide();
+                alert("yes");
+                //cordovaReadyService(window.StatusBar.styleDefault());
+                //cordovaReadyService(window.StatusBar.overlaysWebView(true));
+                //cordovaReadyService(window.StatusBar.backgroundColorByName("white"));
             }
             ionic.Platform.isFullScreen = true;
         });

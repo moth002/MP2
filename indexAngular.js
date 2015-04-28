@@ -1,7 +1,7 @@
 ﻿angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource'])
 
-    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$ionicPopup',
-        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $ionicPopup) {
+    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope',
+        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope) {
             $ionicPlatform.ready(function () {
 
                 cordovaReadyService(window.plugins.insomnia.keepAwake());
@@ -42,6 +42,13 @@
             }
             return angular.toJson(data);
         };
+
+
+        // Edit the lists
+        $rootScope.$on('handleEmit', function (event, args) {
+            $rootScope.$broadcast('handleBroadcast', args);
+        });
+
     }])
 
     .config(["$routeProvider", function ($routeProvider) {

@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("FooterBtnCtrl", [
-        '$scope', 'footerBtnService', 'globalIdService', 'notificationDlgService',
-            function ($scope, footerBtnService, globalIdService, notificationDlgService) {
+        '$scope', 'footerBtnService', 'globalIdService',
+            function ($scope, footerBtnService, globalIdService) {
 
                 $scope.idList = globalIdService.getIDs;
 

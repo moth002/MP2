@@ -28,6 +28,7 @@
     <script src="services/CordovaReadyService.js"></script>
     <script src="services/FooterBtnService.js"></script>
     <script src="services/GlobalIdService.js"></script>
+    <script src="services/EditMainListService.js"></script>
     <script src="controllers/FooterBtnCtrl.js"></script>
     <script src="controllers/HeaderBtnCtrl.js"></script>
     <script src="controllers/HomeCtrl.js"></script>
@@ -46,12 +47,12 @@
 <body>
 <ion-side-menus>
     <ion-side-menu-content>
-        <ion-header-bar align-title="left" class="bar-stable" ng-controller="HeaderBtnCtrl">
-            <button class="button button-icon ion-navicon-round" style="color: #b6d55f;" ng-click="btnSideMenu()"></button>
+        <ion-header-bar align-title="center" class="bar-stable" ng-controller="HeaderBtnCtrl">
+            <button class="button button-icon ion-navicon-round" style="color: #005BAC;" ng-click="btnSideMenu()"></button>
             <h1 class="title">
-                <!--<img src="./images/eclairTouch_logo.png" style="vertical-align: middle; left: 15px;" />-->
+                <img src="./Content/images/product_logo.png" style="vertical-align: middle; width: 50%" />
             </h1>
-            <button class="button button-icon icon ion-home" style="color: white;" ng-click=" btnGoHome()"></button>
+            <button class="button button-icon icon ion-edit" style="color: #005BAC;" ng-click=" btnEditList()"></button>
         </ion-header-bar>
         <ion-content padding="false" class="scroll-content has-header has-footer">
             <div ng-view></div>
@@ -66,9 +67,9 @@
         </ion-footer-bar>
     </ion-side-menu-content>
     <ion-side-menu class="sideMenu" side="left" ng-controller="SideMenuBtnCtrl">
-        <div class="item item-divider" style="background-image: linear-gradient(#00b1e8, #0066b3); text-align: center; margin-top: 22px; border-top: 4px solid #b6d55f; border-bottom: 5px solid #b6d55f; padding: 0;">
+        <!--<div class="item item-divider" style="background-image: linear-gradient(#00b1e8, #0066b3); text-align: center; margin-top: 22px; border-top: 4px solid #b6d55f; border-bottom: 5px solid #b6d55f; padding: 0;">
             <img src="./Content/images/header_logo.png" width="165" height="39" style="margin-bottom: -5px;" />
-        </div>
+        </div>-->
         <div class="item item-divider">
             <div class="item item-toggle">
                 Device active

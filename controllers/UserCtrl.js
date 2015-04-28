@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("UserCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'editMainListService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, editMainListService) {
             $scope.init = function () {
                 var defer = $q.defer();
 
@@ -66,6 +66,8 @@
                 $scope.model = {
                     message: "Scan the patient's wristband or enter the NHI"
                 }
+
+                $scope.shouldShowEdit = editMainListService.getEditAllowed();
             }
 
             $scope.scanCode = function () {
@@ -81,6 +83,10 @@
                     }
                 ));
             }
+
+            $scope.$on('handleBroadcast', function (event, args) {
+                $scope.shouldShowEdit = args.message;
+            });
 
         }
     ]);

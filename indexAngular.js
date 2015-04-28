@@ -43,12 +43,6 @@
             return angular.toJson(data);
         };
 
-
-        // Edit the lists
-        $rootScope.$on('handleEmit', function (event, args) {
-            $rootScope.$broadcast('handleBroadcast', args);
-        });
-
     }])
 
     .config(["$routeProvider", function ($routeProvider) {

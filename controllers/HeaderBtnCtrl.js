@@ -1,15 +1,16 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HeaderBtnCtrl", [
-        '$scope', '$rootScope', '$ionicSideMenuDelegate', '$ionicPopup', 'editMainListService',
-            function ($scope, $rootScope, $ionicSideMenuDelegate, $ionicPopup, editMainListService) {
+        '$scope', '$rootScope', '$ionicSideMenuDelegate', '$ionicPopup', 'headerBtnService',
+            function ($scope, $rootScope, $ionicSideMenuDelegate, $ionicPopup, headerBtnService) {
+
+                $scope.editButton = headerBtnService.getEditButton();
 
                 $scope.btnSideMenu = function () {
                     $ionicSideMenuDelegate.toggleLeft();
                 };
 
-                $scope.btnEditList = function() {
-                    editMainListService.setEditAllowed();
-                    $scope.$emit('handleEmit', { message: editMainListService.getEditAllowed() });
+                $scope.btnEditList = function () {
+                    $scope.editButton.click();
                 };
 
                 $scope.btnGoHome = function () {

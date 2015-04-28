@@ -46,8 +46,8 @@
 }
 
 .spinner svg {
-  width: 68px;
-  height: 68px;
+  width: 48px;
+  height: 48px;
   stroke: #b6d55f;
   fill: #0066b3;
 }
@@ -70,9 +70,9 @@
 
 .button.button-footer {
     border-color: #b6d55f;
-    background-color: #00b1e8;
+    background-color: #005bac;
     color: #fff;
-    margin: 0 1%;}
+    /*margin: 0 1%;*/}
     .button.button-footer:hover {
       color: #fff;
       text-decoration: none; }

@@ -28,7 +28,7 @@
     <script src="services/CordovaReadyService.js"></script>
     <script src="services/FooterBtnService.js"></script>
     <script src="services/GlobalIdService.js"></script>
-    <script src="services/EditMainListService.js"></script>
+    <script src="services/HeaderBtnService.js"></script>
     <script src="controllers/FooterBtnCtrl.js"></script>
     <script src="controllers/HeaderBtnCtrl.js"></script>
     <script src="controllers/HomeCtrl.js"></script>
@@ -47,18 +47,18 @@
 <body>
 <ion-side-menus>
     <ion-side-menu-content>
-        <ion-header-bar align-title="center" class="bar-stable" ng-controller="HeaderBtnCtrl">
-            <button class="button button-icon ion-navicon-round" style="color: #005BAC;" ng-click="btnSideMenu()"></button>
+        <ion-header-bar align-title="center" class="bar-light" ng-controller="HeaderBtnCtrl">
+            <button class="button button-icon ion-navicon-round" style="color: #005BAC;"  ng-click="btnSideMenu()"></button>
             <h1 class="title">
-                <img src="./Content/images/product_logo.png" style="vertical-align: middle; width: 50%" />
+                <img src="./Content/images/product_logo.png" style="vertical-align: middle; width: 50%; height: 40%;" />
             </h1>
-            <button class="button button-icon icon ion-edit" style="color: #005BAC;" ng-click=" btnEditList()"></button>
+            <button class="button button-icon icon ion-edit" style="color: #005BAC;" ng-show="editButton.isVisible" ng-click=" btnEditList()"></button>
         </ion-header-bar>
         <ion-content padding="false" class="scroll-content has-header has-footer">
             <div ng-view></div>
         </ion-content>
 
-        <ion-footer-bar class="bar-stable" ng-controller="FooterBtnCtrl">
+        <ion-footer-bar class="bar-light" ng-controller="FooterBtnCtrl">
             <div class="button-bar">
                 <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
                 <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
@@ -93,6 +93,26 @@
                     </span>
                 <select class="select" ng-model="selectedPrinter" ng-options="printer.name for printer in printerOptions"></select>
             </label>
+            <div class="item" style="color: #b2b2b2" ng-click="btnHome()">
+                <i class="icon ion-home"></i>
+                <span style="padding-left: 10px;">Item 3</span>
+            </div>
+            <div class="item" style="color: #b2b2b2" ng-click="btnHome()">
+                <i class="icon ion-home"></i>
+                <span style="padding-left: 10px;">Item 4</span>
+            </div>
+            <div class="item" style="color: #b2b2b2" ng-click="btnHome()">
+                <i class="icon ion-home"></i>
+                <span style="padding-left: 10px;">Item 5</span>
+            </div>
+            <div class="item" style="color: #b2b2b2" ng-click="btnHome()">
+                <i class="icon ion-home"></i>
+                <span style="padding-left: 10px;">Item 6</span>
+            </div>
+            <div class="item" style="color: #b2b2b2" ng-click="btnHome()">
+                <i class="icon ion-home"></i>
+                <span style="padding-left: 10px;">Item 7</span>
+            </div>
         </div>
     </ion-side-menu>
 </ion-side-menus>

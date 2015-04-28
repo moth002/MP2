@@ -1,9 +1,11 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("PatientCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'headerBtnService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, headerBtnService) {
             $scope.init = function () {
                 var defer = $q.defer();
+
+                $scope.shouldShowEdit = false;
 
                 $ionicLoading.show();
 
@@ -16,6 +18,12 @@
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
                 footerBtnService.setLeft('Back', true, null);
+
+                var editListAllowed = function () {
+                    $scope.shouldShowEdit = !$scope.shouldShowEdit;
+                }
+
+                headerBtnService.setEditButton(true, editListAllowed);
 
                 defer.promise.then(function () {
                     $ionicLoading.hide();

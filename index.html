@@ -48,11 +48,11 @@
 <ion-side-menus>
     <ion-side-menu-content>
         <ion-header-bar align-title="center" class="bar-light" ng-controller="HeaderBtnCtrl">
-            <button class="button button-icon ion-navicon-round" style="color: #005BAC;"  ng-click="btnSideMenu()"></button>
+            <button class="button button-icon ion-navicon-round" style="color: #68BD49;"  ng-click="btnSideMenu()"></button>
             <h1 class="title">
-                <img src="./Content/images/product_logo.png" style="vertical-align: middle; width: 50%; height: 40%;" />
+                <img src="./Content/images/product_logo.png" width="127" height="20" />
             </h1>
-            <button class="button button-icon icon ion-edit" style="color: #005BAC;" ng-show="editButton.isVisible" ng-click=" btnEditList()"></button>
+            <button class="button button-icon icon ion-edit" style="color: #68bd49;" ng-show="editButton.isVisible" ng-click=" btnEditList()"></button>
         </ion-header-bar>
         <ion-content padding="false" class="scroll-content has-header has-footer">
             <div ng-view></div>
@@ -122,28 +122,28 @@
 
 <script id="unauthorised-error.html" type="text/ng-template">
     <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 12px 8px 12px 65px;">
-        <i class="icon ion-close-circled" style="color: red; font-size: 45px;"></i>
+        <i class="icon ion-close-circled" style="color: #E83836; font-size: 45px;"></i>
         Unauthorised access
     </div>
 </script>
 
 <script id="mismatched-error.html" type="text/ng-template">
     <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 8px 8px 8px 65px;">
-        <i class="icon ion-close-circled" style="color: red; font-size: 45px;"></i>
+        <i class="icon ion-close-circled" style="color: #E83836; font-size: 45px;"></i>
         Mismatched order. Please check
     </div>
 </script>
 
 <script id="usercodeAndPin-Warning.html" type="text/ng-template">
     <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 8px 8px 8px 65px;">
-        <i class="icon ion-alert-circled" style="color: #FFCC00 ; font-size: 45px;"></i>
+        <i class="icon ion-alert-circled" style="color: #FCC810 ; font-size: 45px;"></i>
         Unknown user code or pin
     </div>
 </script>
 
 <script id="noPatient-warning.html" type="text/ng-template">
     <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 8px 8px 8px 65px;">
-        <i class="icon ion-alert-circled" style="color: #FFCC00 ; font-size: 45px;"></i>
+        <i class="icon ion-alert-circled" style="color: #FCC810 ; font-size: 45px;"></i>
         No patient found
     </div>
 </script>
@@ -151,28 +151,28 @@
 <script id="Pincode-modal.html" type="text/ng-template">
     <div class="row row-passCode" ng-init="initModal()">
         <div class="col" ng-if="passcode.substring(0, 1).length === 1">
-            <button class="button icon ion-record button-light" disabled></button>
+            <button class="button icon ion-record button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(0, 1).length !== 1">
-            <button class="button button-light" disabled></button>
+            <button class="button button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(1, 2).length === 1">
-            <button class="button icon ion-record button-light" disabled></button>
+            <button class="button icon ion-record button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(1, 2).length !== 1">
-            <button class="button button-light" disabled></button>
+            <button class="button button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(2, 3).length === 1">
-            <button class="button icon ion-record button-light" disabled></button>
+            <button class="button icon ion-record button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(2, 3).length !== 1">
-            <button class="button button-light" disabled></button>
+            <button class="button button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(3, 4).length === 1">
-            <button class="button icon ion-record button-light" disabled></button>
+            <button class="button icon ion-record button-small button-light" disabled></button>
         </div>
         <div class="col" ng-if="passcode.substring(3, 4).length !== 1">
-            <button class="button button-light" disabled></button>
+            <button class="button button-small button-light" disabled></button>
         </div>
     </div>
     <div class="row row-numbers">

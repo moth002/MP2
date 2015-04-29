@@ -1,9 +1,11 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'chkbxSpecimenService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, chkbxSpecimenService) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'chkbxSpecimenService', 'headerBtnService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, chkbxSpecimenService, headerBtnService) {
             $scope.init = function () {
                 var defer = $q.defer();
+
+                $scope.shouldShowEdit = false;
 
                 $ionicLoading.show();
 
@@ -89,7 +91,13 @@
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft('Back', true, null);
+                footerBtnService.setLeft('Back', false, null);
+
+                var editListAllowed = function () {
+                    $scope.shouldShowEdit = !$scope.shouldShowEdit;
+                }
+
+                headerBtnService.setEditButton(true, editListAllowed);
 
             }
 

@@ -28,7 +28,7 @@
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft('Log Off', true, leftButtonClick);
+                footerBtnService.setLeft('Log Off', false, leftButtonClick);
 
                 var editListAllowed = function() {
                     $scope.shouldShowEdit = !$scope.shouldShowEdit;
@@ -55,7 +55,6 @@
                         defer.resolve();
                         if (status === 404){
                             $ionicPopup.alert({
-                                //title: "<p style='color: steelBlue'>Warning</p>",
                                 templateUrl: 'usercodeAndPin-Warning.html',
                                 okType: 'button-footer'
                             }).then(function () {
@@ -90,6 +89,17 @@
                     }
                 ));
             }
+
+            $scope.editListButton = function() {
+                $ionicPopup.confirm({
+                    title: 'Log off',
+                    template: 'Are you sure you want to Log Off?'
+                }).then(function (res) {
+                    if (res) {
+                        window.location = '#/';
+                    }
+                });
+            };
 
         }
     ]);

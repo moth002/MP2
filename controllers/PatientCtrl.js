@@ -17,7 +17,7 @@
 
                 footerBtnService.setRight('Next', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft('Back', true, null);
+                footerBtnService.setLeft('Back', false, null);
 
                 var editListAllowed = function () {
                     $scope.shouldShowEdit = !$scope.shouldShowEdit;
@@ -83,5 +83,16 @@
                     }
                 ));
             }
+
+            $scope.editListButton = function () {
+                $ionicPopup.confirm({
+                    title: 'Log off',
+                    template: 'Are you sure you want to Log Off?'
+                }).then(function (res) {
+                    if (res) {
+                        window.location = '#/';
+                    }
+                });
+            };
         }
     ]);

@@ -19,7 +19,7 @@
 
 .data-text {
     padding-left: 10px;
-    color: steelblue;
+    color: #00539F;
     font-size: 14px; 
 }
 
@@ -115,7 +115,7 @@ button {
 }
 
 a {
-    color: steelblue;
+    color: #00539F;
     background-color: white;
     -webkit-border-radius: 50px;
 }

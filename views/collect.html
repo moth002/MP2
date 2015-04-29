@@ -1,22 +1,31 @@
 ﻿<div class="c1" ng-init="init()">
-    <div class="list">
-        <div class="item item-text-wrap">
+    <ion-list show-reorder="shouldShowEdit">
+        <ion-item class="item">
             <h4>User</h4>
-            <h3 style="color: steelblue;">{{user.Name}}</h3>
-        </div>
-        <div class="item item-thumbnail-right">
+            <h3 style="color: #00539F;">{{user.Name}}</h3>
+            <ion-reorder-button class="ion-edit" style="color: #68BD49"
+                                on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+            </ion-reorder-button>
+        </ion-item>
+        <ion-item class="item item-thumbnail-right">
             <img ng-if="patient.Gender == 'Female'" src="./images/Female.png" />
             <img ng-if="patient.Gender == 'Male'" src="./images/Male.png" />
             <h4>Patient</h4>
-            <h3 style="color: steelblue;">{{patient.Name}} ({{patient.NHI}})</h3>
-            <h3 style="color: steelblue;">{{patient.Gender}}, {{patient.DOB}},</h3>
-            <h3 style="color: steelblue;">{{patient.Age}}</h3>
-        </div>
-        <div class="item item-text-wrap">
+            <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
+            <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
+            <h3 style="color: #00539F;">{{patient.Age}}</h3>
+            <ion-reorder-button class="ion-edit" style="color: #68BD49"
+                                on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+            </ion-reorder-button>
+        </ion-item>
+        <ion-item class="item">
             <h4>Order</h4>
-            <h3 style="color: steelblue;">{{order.OrderId}}</h3>
-        </div>
-    </div>
+            <h3 style="color: #00539F;">{{order.OrderId}}</h3>
+            <ion-reorder-button class="ion-edit" style="color: #68BD49"
+                                on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+            </ion-reorder-button>
+        </ion-item>
+    </ion-list>
 </div>
 <div class="c3">
     <div class="welcome-message">{{model.message}}</div>

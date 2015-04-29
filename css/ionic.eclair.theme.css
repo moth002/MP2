@@ -2,15 +2,16 @@
 .menu.sideMenu {
     /*background-image: linear-gradient(#00b1e8, #0066b3);*/
     /*background-color: #0066b3;*/
-    background-image: linear-gradient(#00b1e8, #005BAC);
+    /*background-image: linear-gradient(#00b1e8, #005BAC); //5*/
+    background-image: linear-gradient(#54C3F1, #009FDD);
     padding-top: 22px;
 }.menu.sideMenu .item {
     padding: 8px 16px;
 }.menu.sideMenu .toggle {
        top: 5px;
 }.menu.sideMenu input:checked + .track {
-     border-color: #b6d55f;
-     background-color: #b6d55f;
+     border-color: #68BD49;
+     background-color: #68BD49;
 }.menu.sideMenu .track {
      width: 45px;
      height: 25px;
@@ -33,10 +34,15 @@
 }
 .row.row-passCode {
     padding: 0 5px 15px 5px;
+    text-align: center;
+}
+.row.row-passCode .button {
+    border: 0;
+    background: none;
 }
 .row.row-passCode .button.disabled, .button[disabled] {
     opacity: 1;
-    color: #0091e8;
+    color: #09BCEF;
 }
 
 .loading-container .loading {
@@ -48,12 +54,12 @@
 .spinner svg {
   width: 48px;
   height: 48px;
-  stroke: #b6d55f;
-  fill: #0066b3;
+  stroke: #00A65E;
+  fill: #0076BE;
 }
 
 .checkbox.checkbox-eclair input:before, .checkbox.checkbox-eclair .checkbox-icon:before {
-  border-color: #b6d55f; }
+  border-color: #00A65E; }
 .checkbox.checkbox-eclair input:checked:before, .checkbox.checkbox-eclair input:checked + .checkbox-icon:before {
   background: #00b1e8; }
 
@@ -69,8 +75,8 @@
 }   
 
 .button.button-footer {
-    border-color: #b6d55f;
-    background-color: #005bac;
+    border-color: #00A65E;
+    background-color: #0076BE;
     color: #fff;
     /*margin: 0 1%;*/}
     .button.button-footer:hover {

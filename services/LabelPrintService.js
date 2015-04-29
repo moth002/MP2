@@ -55,7 +55,7 @@
                             cordovaReadyService(window.bluetoothSerial.write(printString, success, failure));
                         }
                         labelPrinter.close();
-                    }, 1000);
+                    }, 3000);
                 }
                 catch (e)
                 {

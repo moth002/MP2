@@ -25,12 +25,15 @@
 
 .popup { border-radius: 8px !important; }
 .popup-body { overflow: hidden; }
+.popup-title { color: #00539F; }
 
 .row.row-numbers {
     padding: 0;
+    color: #00539F;
 }
 .col.col-numbers {
     padding: 0;
+    color: #00539F;
 }
 .row.row-passCode {
     padding: 0 5px 15px 5px;
@@ -42,7 +45,7 @@
 }
 .row.row-passCode .button.disabled, .button[disabled] {
     opacity: 1;
-    color: #09BCEF;
+    color: #00539F;
 }
 
 .loading-container .loading {
@@ -63,6 +66,9 @@
 .checkbox.checkbox-eclair input:checked:before, .checkbox.checkbox-eclair input:checked + .checkbox-icon:before {
   background: #00b1e8; }
 
+/*.card.card-labels .item:last-child {
+    border-bottom: 1px; }*/
+
 .bar.bar-eclair {
     background-size: 100%; 
     background-image: linear-gradient(#00b1e8, #0066b3);
@@ -72,7 +78,42 @@
 }.bar.bar-eclair.bar-footer {
      border: 0;
      border-top: 5px solid #b6d55f;
-}   
+}
+
+.button.button-passPopup {
+    color: #00539f;}
+    .button.button-passPopup:hover {
+      color: #00539f;}
+    .button.button-passPopup.active, .button.button-passPopup.activated {
+        color: #00539f; }
+    .button.button-passPopup.button-clear {
+        color: #00539f;}
+    .button.button-passPopup.button-icon {
+        color: #00539f;}
+    .button.button-passPopup.button-outline {
+        color: #00539f;}
+      .button.button-passPopup.button-outline.active, .button.button-passPopup.button-outline.activated {
+          color: #00539f; 
+}
+      
+.button.button-card {
+    color: #00A65E;
+    border: 0;
+    background: none;
+}
+    .button.button-card:hover {
+      color: #00A65E;}
+    .button.button-card.active, .button.button-card.activated {
+        color: #00A65E; }
+    .button.button-card.button-clear {
+        color: #00A65E;}
+    .button.button-card.button-icon {
+        color: #00A65E;}
+    .button.button-card.button-outline {
+        color: #00A65E;}
+      .button.button-card.button-outline.active, .button.button-card.button-outline.activated {
+          color: #00A65E; 
+}        
 
 .button.button-footer {
     border-color: #00A65E;

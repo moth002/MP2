@@ -58,7 +58,7 @@
                     $scope.user = result;
                 });
 
-                var setMiddleClick = function() {
+                $scope.setMiddleClick = function() {
                 /////// ------------------------
                 /// This is not correct (if there is a problem with printing) the error will be reported n number of times
                 /// need to pass the information then check if the connection is possible, only then print the n number of lables. 
@@ -82,7 +82,7 @@
                 };
 
                 footerBtnService.setRight('Collect', true, rightButtonClick);
-                footerBtnService.setMiddle('Print Labels', true, setMiddleClick);
+                //footerBtnService.setMiddle('Print Labels', true, setMiddleClick);
                 footerBtnService.setLeft('Back', false, null);
 
                 var editListAllowed = function () {

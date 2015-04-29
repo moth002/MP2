@@ -58,7 +58,7 @@
             <div ng-view></div>
         </ion-content>
 
-        <ion-footer-bar class="bar-light" ng-controller="FooterBtnCtrl">
+        <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="FooterBtnCtrl">
             <div class="button-bar">
                 <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
                 <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
@@ -67,9 +67,6 @@
         </ion-footer-bar>
     </ion-side-menu-content>
     <ion-side-menu class="sideMenu" side="left" ng-controller="SideMenuBtnCtrl">
-        <!--<div class="item item-divider" style="background-image: linear-gradient(#00b1e8, #0066b3); text-align: center; margin-top: 22px; border-top: 4px solid #b6d55f; border-bottom: 5px solid #b6d55f; padding: 0;">
-            <img src="./Content/images/header_logo.png" width="165" height="39" style="margin-bottom: -5px;" />
-        </div>-->
         <div class="item item-divider">
             <div class="item item-toggle">
                 Device active
@@ -177,46 +174,46 @@
     </div>
     <div class="row row-numbers">
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(1)">1</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(1)">1</button>
         </div>
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(2)">2</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(2)">2</button>
         </div>
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(3)">3</button>
-        </div>
-    </div>
-    <div class="row row-numbers">
-        <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(4)">4</button>
-        </div>
-        <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(5)">5</button>
-        </div>
-        <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(6)">6</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(3)">3</button>
         </div>
     </div>
     <div class="row row-numbers">
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(7)">7</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(4)">4</button>
         </div>
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(8)">8</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(5)">5</button>
         </div>
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(9)">9</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(6)">6</button>
         </div>
     </div>
     <div class="row row-numbers">
         <div class="col col-numbers">
-            <button class="button ion-home button-light button-stretch" ng-click="goHome()"></button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(7)">7</button>
         </div>
         <div class="col col-numbers">
-            <button class="button button-light button-stretch" ng-click="add(0)">0</button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(8)">8</button>
         </div>
         <div class="col col-numbers">
-            <button class="button icon ion-backspace button-light button-stretch" ng-click="delete()"></button>
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(9)">9</button>
+        </div>
+    </div>
+    <div class="row row-numbers">
+        <div class="col col-numbers">
+            <button class="button button-passPopup ion-home button-light button-stretch" ng-click="goHome()"></button>
+        </div>
+        <div class="col col-numbers">
+            <button class="button button-passPopup button-light button-stretch" ng-click="add(0)">0</button>
+        </div>
+        <div class="col col-numbers">
+            <button class="button button-passPopup ion-backspace button-light button-stretch" ng-click="delete()"></button>
         </div>
     </div>
 </script>

@@ -1,9 +1,10 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HomeCtrl", [
-        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q',
-        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q ) {
+        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q', '$timeout',
+        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q, $timeout) {
 
             var defer = $q.defer();
+            $scope.emptyInput = true;
 
             $scope.model = {
                 message: "Scan or enter your ID"
@@ -19,6 +20,11 @@
                         defer.promise.then(function (pinCode) {
                             window.location = '#/user/' + $scope.idList.userId + '/pin/' + pinCode;
                         });
+                    } else {
+                        $scope.emptyInput = false;
+                        $timeout(function () {
+                            $scope.emptyInput = true;
+                        }, 100);
                     }
                 };
 
@@ -84,6 +90,10 @@
                     }
                 ));
             }
+
+            $scope.isEmptyInput = function() {
+                return $scope.emptyInput;
+            };
 
         }
     ]);

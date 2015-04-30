@@ -180,3 +180,17 @@ a {
     margin-left: 15%;
 }
 
+.c3.ng-enter, .ng-move{
+	-webkit-animation: wobble 2s;
+	-moz-animation: wobble 2s;
+	-o-animation: wobble 2s;
+	animation: wobble 2s;
+}
+
+.c3.ng-leave{
+	-webkit-animation: fade 0.001s;
+	-moz-animation: fade 0.001s;
+	-o-animation: fade 0.001s;
+	animation: fade 0.01s;
+}
+

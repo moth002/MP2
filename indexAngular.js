@@ -18,7 +18,7 @@
                     cordovaReadyService(window.StatusBar.backgroundColorByName("white"));
                 }
                 ionic.Platform.isFullScreen = true;
-                ionic.Platform.showStatusBar(false);
+                //ionic.Platform.showStatusBar(false);
             });
 
             $ionicPlatform.registerBackButtonAction(function (event) {

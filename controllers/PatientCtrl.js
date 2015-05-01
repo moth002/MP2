@@ -1,7 +1,10 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("PatientCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'headerBtnService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, headerBtnService) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'headerBtnService', '$timeout',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, headerBtnService, $timeout) {
+
+            $scope.emptyInput = true;
+
             $scope.init = function () {
                 var defer = $q.defer();
 
@@ -9,9 +12,16 @@
 
                 $ionicLoading.show();
 
+                $scope.idList = globalIdService.getIDs;
+
                 var rightButtonClick = function() {
                     if ($scope.idList.orderId) {
                         window.location = '#/order/' + $scope.idList.orderId;
+                    } else {
+                        $scope.emptyInput = false;
+                        $timeout(function () {
+                            $scope.emptyInput = true;
+                        }, 100);
                     }
                 };
 
@@ -93,6 +103,10 @@
                         window.location = '#/';
                     }
                 });
+            };
+
+            $scope.isEmptyInput = function () {
+                return $scope.emptyInput;
             };
         }
     ]);

@@ -80,6 +80,10 @@
      border-top: 5px solid #b6d55f;
 }
 
+.card.card-labels .item:last-child {
+    border-bottom: 1px solid lightgray;
+}
+
 .button.button-passPopup {
     color: #00539f;}
     .button.button-passPopup:hover {

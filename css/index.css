@@ -181,10 +181,10 @@ a {
 }
 
 .c3.ng-enter, .ng-move{
-	-webkit-animation: wobble 2s;
-	-moz-animation: wobble 2s;
-	-o-animation: wobble 2s;
-	animation: wobble 2s;
+	-webkit-animation: rubberBand 2s;
+	-moz-animation: rubberBand 2s;
+	-o-animation: rubberBand 2s;
+	animation: rubberBand 2s;
 }
 
 .c3.ng-leave{

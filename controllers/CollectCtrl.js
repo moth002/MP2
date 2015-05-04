@@ -3,6 +3,7 @@
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'chkbxSpecimenService', 'headerBtnService', 'subHeaderService',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, chkbxSpecimenService, headerBtnService, subHeaderService) {
             $scope.init = function () {
+
                 var defer = $q.defer();
 
                 $scope.shouldShowEdit = false;

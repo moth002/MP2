@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CompleteCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading', 'subHeaderService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading, subHeaderService) {
             $scope.init = function () {
 
                 $ionicLoading.show();
@@ -38,6 +38,8 @@
                 footerBtnService.setRight('Next Patient', true, rightButtonClick);
                 footerBtnService.setMiddle('', false, null);
                 footerBtnService.setLeft('Back', false, null);
+
+                subHeaderService.setVisible(false);
 
             }
         }

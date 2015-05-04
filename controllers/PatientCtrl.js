@@ -5,6 +5,26 @@
 
             $scope.emptyInput = true;
 
+            $scope.isEmptyInput = function () {
+                return $scope.emptyInput;
+            };
+
+            $scope.editButtons = headerBtnService.getEditBtnClicks();
+
+            $scope.scanCode = function () {
+                cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
+                    function (result) {
+                        if (!result.cancelled) {
+                            $scope.userId = result.text;
+                            window.location = '#/order/' + result.text;
+                        }
+                    },
+                    function (error) {
+                        alert("Scanning failed: " + error);
+                    }
+                ));
+            }
+
             $scope.init = function () {
                 var defer = $q.defer();
 
@@ -79,34 +99,6 @@
                     message: "Scan the order form or enter the order number"
                 }
             }
-
-            $scope.scanCode = function () {
-                cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
-                    function (result) {
-                        if (!result.cancelled){
-                            $scope.userId = result.text;
-                            window.location = '#/order/' + result.text;
-                        }
-                    },
-                    function (error) {
-                        alert("Scanning failed: " + error);
-                    }
-                ));
-            }
-
-            $scope.editListButton = function () {
-                $ionicPopup.confirm({
-                    title: 'Log off',
-                    template: 'Are you sure you want to Log Off?'
-                }).then(function (res) {
-                    if (res) {
-                        window.location = '#/';
-                    }
-                });
-            };
-
-            $scope.isEmptyInput = function () {
-                return $scope.emptyInput;
-            };
+            
         }
     ]);

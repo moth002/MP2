@@ -1,7 +1,7 @@
 ﻿angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource', 'ngAnimate'])
 
-    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService',
-        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService) {
+    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate',
+        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate) {
             $ionicPlatform.ready(function () {
 
                 cordovaReadyService(window.plugins.insomnia.keepAwake());
@@ -34,15 +34,19 @@
                 //alert('We are here');
             });
 
-        // Override the transform Request, $injector get the object
-        $injector.get("$http").defaults.transformRequest = function (data, headersGetter) {
-            var idList = globalIdService.getIDs();
-            headersGetter()['Authorization'] = idList.tokenId;
-            if (data) { // original or base transformRequest
+            // Override the transform Request, $injector get the object
+            $injector.get("$http").defaults.transformRequest = function (data, headersGetter) {
+                var idList = globalIdService.getIDs();
+                headersGetter()['Authorization'] = idList.tokenId;
+                if (data) { // original or base transformRequest
+                    return angular.toJson(data);
+                }
                 return angular.toJson(data);
-            }
-            return angular.toJson(data);
-        };
+            };
+
+            $rootScope.$on('$routeChangeSuccess', function () {
+                $ionicScrollDelegate.scrollTop();
+            });
 
     }])
 

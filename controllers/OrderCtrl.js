@@ -2,6 +2,15 @@
     .controller("OrderCtrl", [
         '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', 'labelPrintService', '$ionicPopup', '$ionicLoading', 'headerBtnService',
         function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, labelPrintService, $ionicPopup, $ionicLoading, headerBtnService) {
+
+            $scope.emptyInput = true;
+
+            $scope.isEmptyInput = function () {
+                return $scope.emptyInput;
+            };
+
+            $scope.editButtons = headerBtnService.getEditBtnClicks();
+
             $scope.init = function () {
                 var defer = $q.defer();
 

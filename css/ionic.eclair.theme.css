@@ -121,7 +121,10 @@
         color: #00A65E;}
       .button.button-card.button-outline.active, .button.button-card.button-outline.activated {
           color: #00A65E; 
-}        
+}  
+      
+.button.button-card.button.button-icon .icon:before, .button.button-card.button.button-icon:before, .button.button-card.button.button-icon.icon-left:before, .button.button-card.button.button-icon.icon-right:before {
+    font-size: 20px; }            
 
 .button.button-footer {
     border-color: #00A65E;

@@ -54,6 +54,10 @@
     font-size: 25px;
 }
 
+.bar-subheader.user {
+    top:0
+}
+
 .spinner svg {
   width: 48px;
   height: 48px;

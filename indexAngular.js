@@ -1,7 +1,7 @@
 ﻿angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource', 'ngAnimate'])
 
-    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope',
-        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope) {
+    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService',
+        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService) {
             $ionicPlatform.ready(function () {
 
                 cordovaReadyService(window.plugins.insomnia.keepAwake());

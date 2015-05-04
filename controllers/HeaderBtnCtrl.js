@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HeaderBtnCtrl", [
-        '$scope', '$rootScope', '$ionicSideMenuDelegate', '$ionicPopup', 'headerBtnService',
-            function ($scope, $rootScope, $ionicSideMenuDelegate, $ionicPopup, headerBtnService) {
+        '$scope', '$ionicSideMenuDelegate', '$ionicPopup', 'headerBtnService',
+            function ($scope, $ionicSideMenuDelegate, $ionicPopup, headerBtnService) {
 
                 $scope.editButton = headerBtnService.getEditButton();
 

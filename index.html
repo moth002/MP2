@@ -41,9 +41,11 @@
     <script src="controllers/SideMenuBtnCtrl.js"></script>
     <script src="controllers/CompleteCtrl.js"></script>
     <script src="controllers/ScheduleCtrl.js"></script>
+    <script src="controllers/SubHeaderCtrl.js"></script>>
     <script src="services/NotificationDlgService.js"></script>
     <script src="services/LabelPrintService.js"></script>
     <script src="services/ChbxSpecimenService.js"></script>
+    <script src="services/SubHeaderService.js"></script>
     <script src="directives/captaliseDctv.js"></script>
 
 </head>
@@ -51,13 +53,16 @@
 <ion-side-menus>
     <ion-side-menu-content>
         <ion-header-bar align-title="center" class="bar-light" ng-controller="HeaderBtnCtrl">
-            <button class="button button-icon ion-navicon-round" style="color: #68BD49;"  ng-click="btnSideMenu()"></button>
+            <button class="button button-icon ion-navicon-round" style="color: #68BD49;" ng-click="btnSideMenu()"></button>
             <h1 class="title">
-                <img src="./Content/images/product_logo.png" width="127" height="20" />
+                <img src="./Content/images/product_logo.png" width="127" height="20"/>
             </h1>
             <button class="button button-icon icon ion-edit" style="color: #68bd49;" ng-show="editButton.isVisible" ng-click=" btnEditList()"></button>
         </ion-header-bar>
-        <ion-content padding="false" class="scroll-content has-header has-footer">
+        <ion-header-bar class="bar bar-subheader" ng-controller="SubHeaderCtrl" ng-show="subHeader.isVisible">
+            <h2 class="title">Sub Header</h2>
+        </ion-header-bar>
+        <ion-content id="content" padding="false" class="scroll-content has-header has-footer">
             <div ng-view></div>
         </ion-content>
 

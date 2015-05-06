@@ -1,11 +1,8 @@
 ﻿<div class="c1" ng-init="init()">
-    <ion-list show-reorder="shouldShowEdit">
+    <ion-list>
         <ion-item class="item">
             <h4>User</h4>
             <h3 style="color: #00539F;">{{user.Name}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #68BD49"
-                                on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-            </ion-reorder-button>
         </ion-item>
         <ion-item class="item item-thumbnail-right">
             <img ng-if="patient.Gender == 'Female'" src="./images/Female.png" />
@@ -14,16 +11,10 @@
             <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
             <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
             <h3 style="color: #00539F;">{{patient.Age}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #68BD49"
-                                on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-            </ion-reorder-button>
         </ion-item>
         <ion-item class="item">
             <h4>Order</h4>
             <h3 style="color: #00539F;">{{order.OrderId}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #68BD49"
-                                on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-            </ion-reorder-button>
         </ion-item>
     </ion-list>
 </div>

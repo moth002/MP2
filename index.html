@@ -46,7 +46,7 @@
     <script src="services/LabelPrintService.js"></script>
     <script src="services/ChbxSpecimenService.js"></script>
     <script src="services/SubHeaderService.js"></script>
-    <script src="directives/captaliseDctv.js"></script>
+    <script src="directives/Directives.js"></script>
 
 </head>
 <body>
@@ -57,10 +57,10 @@
             <h1 class="title">
                 <img src="./Content/images/product_logo.png" width="127" height="20"/>
             </h1>
-            <button class="button button-icon icon ion-edit" style="color: #00A65E;" ng-show="editButton.isVisible" ng-click=" btnEditList()"></button>
+            <button class="button button-icon icon ion-edit" style="color: #00A65E;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>
         </ion-header-bar>
         <ion-header-bar class="bar bar-subheader" ng-controller="SubHeaderCtrl" ng-show="subHeader.isVisible">
-            <button class="button button-icon button-block button-card ion-plus-round" style="margin: 0">Comment</button>
+            <button class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="openPopup()">Comment</button>
         </ion-header-bar>
         <ion-content id="content" padding="false" class="scroll-content has-header has-footer">
             <div ng-view ></div>
@@ -224,4 +224,37 @@
             <button class="button button-passPopup ion-backspace button-light button-stretch" ng-click="delete()"></button>
         </div>
     </div>
+</script>
+
+<script id="comments-Page.html" type="text/ng-template">
+    <div class="row">
+        <div class="col col col-90">
+            <textarea id="commentsArea" ng-model="model.comment" class="comment-textarea" placeholder="Enter comment"></textarea>
+        </div>
+        <div class="col">
+            <div class="row-center">
+                <button class="button button-icon ion-close" style="color: #00A65E;" ng-click="btnSideMenu()"></button>
+            </div>
+            <div class="row-bottom">
+                <button class="button button-icon ion-checkmark" style="color: #00A65E;" ng-click="btnSideMenu()"></button>
+            </div>
+        </div>
+    </div>
+    <!--<div class="card" style="padding: 5%">
+        <textarea id="commentsArea" class="comment-textarea" placeholder="Enter comment"></textarea>
+        <button class="button button-passPopup ion-home button-light button-stretch" ng-click="goHome()"></button>
+        <button class="button button-passPopup ion-home button-light button-stretch" ng-click="goHome()"></button>
+    </div>-->
+    <!--<ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-light">
+            <button class="button button-clear icon ion-chevron-left" style="color: #00A65E;" ng-click="modal.hide()">Back</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="card" style="padding: 5%">
+                <textarea id="commentsArea" class="comment-textarea" placeholder="Enter comment"></textarea>
+            </div>
+        </ion-content>
+    </ion-modal-view>-->
+
+
 </script>

@@ -182,10 +182,10 @@ a {
 }
 
 .c3.ng-enter, .ng-move{
-	-webkit-animation: rubberBand 2s;
-	-moz-animation: rubberBand 2s;
-	-o-animation: rubberBand 2s;
-	animation: rubberBand 2s;
+	-webkit-animation: shake 1s;
+	-moz-animation: shake 1s;
+	-o-animation: shake 1s;
+	animation: shake 1s;
 }
 
 .c3.ng-leave{
@@ -193,5 +193,12 @@ a {
 	-moz-animation: fade 0.001s;
 	-o-animation: fade 0.001s;
 	animation: fade 0.01s;
+}
+
+.comment-textarea {
+    padding: 10px;
+    background-color: #eeeeee;
+    height: 100px;
+    resize: none;
 }
 

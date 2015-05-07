@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("OrderCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', 'labelPrintService', '$ionicPopup', '$ionicLoading', 'headerBtnService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, labelPrintService, $ionicPopup, $ionicLoading, headerBtnService) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', 'labelPrintService', '$ionicPopup', '$ionicLoading', 'headerBtnService', 'sliderPageService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, labelPrintService, $ionicPopup, $ionicLoading, headerBtnService, sliderPageService) {
 
             $scope.emptyInput = true;
 
@@ -13,6 +13,9 @@
 
             $scope.init = function () {
                 var defer = $q.defer();
+
+                sliderPageService.setPageActive(3);
+                sliderPageService.setReschedule(false);
 
                 $scope.shouldShowEdit = false;
 

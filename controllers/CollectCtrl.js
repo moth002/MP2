@@ -1,12 +1,15 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading',
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'sliderPageService',
         'chkbxSpecimenService', 'headerBtnService', 'subHeaderService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading,
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, sliderPageService,
             chkbxSpecimenService, headerBtnService, subHeaderService) {
             $scope.init = function () {
 
                 var defer = $q.defer();
+
+                sliderPageService.setPageActive(4);
+                sliderPageService.setReschedule(false);
 
                 $scope.shouldShowEdit = false;
 

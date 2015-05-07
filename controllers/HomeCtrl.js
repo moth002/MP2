@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HomeCtrl", [
-        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'subHeaderService',
-        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q, $timeout, headerBtnService, subHeaderService) {
+        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'subHeaderService', 'sliderPageService',
+        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q, $timeout, headerBtnService, subHeaderService, sliderPageService) {
             var deferModal = $q.defer();
             $scope.idList = globalIdService.getIDs;
 
@@ -27,7 +27,10 @@
             }
 
             $scope.init = function () {
-                globalIdService.setIDs('', '', '', '');        
+                globalIdService.setIDs('', '', '', '');
+
+                sliderPageService.setPageActive(0);
+                sliderPageService.setReschedule(false);
 
                 var rightButtonClick = function () {
                     if ($scope.idList.userId) {

@@ -32,6 +32,11 @@
     <script src="services/GlobalIdService.js"></script>
     <script src="services/HeaderBtnService.js"></script>
     <script src="controllers/FooterBtnCtrl.js"></script>
+    <script src="services/NotificationDlgService.js"></script>
+    <script src="services/LabelPrintService.js"></script>
+    <script src="services/ChbxSpecimenService.js"></script>
+    <script src="services/SubHeaderService.js"></script>
+    <script src="services/SliderPageService.js"></script>
     <script src="controllers/HeaderBtnCtrl.js"></script>
     <script src="controllers/HomeCtrl.js"></script>
     <script src="controllers/UserCtrl.js"></script>
@@ -42,10 +47,7 @@
     <script src="controllers/CompleteCtrl.js"></script>
     <script src="controllers/ScheduleCtrl.js"></script>
     <script src="controllers/SubHeaderCtrl.js"></script>>
-    <script src="services/NotificationDlgService.js"></script>
-    <script src="services/LabelPrintService.js"></script>
-    <script src="services/ChbxSpecimenService.js"></script>
-    <script src="services/SubHeaderService.js"></script>
+    <script src="controllers/SliderPageCtrl.js"></script>
     <script src="directives/Directives.js"></script>
 
 </head>
@@ -63,7 +65,14 @@
             <button class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="openPopup()">Comment</button>
         </ion-header-bar>
         <ion-content id="content" padding="false" class="scroll-content has-header has-footer">
-            <div ng-view ></div>
+            <div class="progress-Bar" ng-controller="SliderPageCtrl">
+                <div class="slider-pager">
+                    <div class="slider-pager-page" ng-repeat="slides in pages | filter:{visable : true}" ng-class="{active: slides.active}" id="{{slides.index}}">
+                        <i class="icon ion-record"></i>
+                    </div>
+                </div>
+            </div>
+            <div ng-view></div>
         </ion-content>
 
         <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="FooterBtnCtrl">

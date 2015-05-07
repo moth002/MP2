@@ -1,10 +1,13 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CompleteCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading', 'subHeaderService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading, subHeaderService) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading', 'subHeaderService', 'sliderPageService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading, subHeaderService, sliderPageService) {
             $scope.init = function () {
 
                 $ionicLoading.show();
+
+                sliderPageService.setPageActive(6);
+                sliderPageService.setReschedule(false);
 
                 var d = new Date($routeParams.dateTime);
                 $scope.dateTime = d.toDateString();

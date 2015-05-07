@@ -1,10 +1,13 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("ScheduleCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading', '$ionicPopup', 'chkbxSpecimenService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading, $ionicPopup, chkbxSpecimenService) {
+        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading', '$ionicPopup', 'chkbxSpecimenService', 'sliderPageService',
+        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading, $ionicPopup, chkbxSpecimenService, sliderPageService) {
             $scope.init = function () {
 
                 $ionicLoading.show();
+
+                sliderPageService.setPageActive(5);
+                sliderPageService.setReschedule(true);
 
                 $scope.idList = globalIdService.getIDs();
                 var defer = $q.defer();

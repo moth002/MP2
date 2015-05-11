@@ -1,5 +1,12 @@
-﻿angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource', 'ngAnimate'])
+﻿(function () {
+    var services = angular.module('services', []);
+}());
 
+(function () {
+    var controllers = angular.module('controllers', []);
+}());
+
+angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource', 'ngAnimate', 'services', 'controllers'])
     .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate',
         function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate) {
             $ionicPlatform.ready(function () {
@@ -87,7 +94,5 @@
     .constant('$ionicLoadingConfig', {
         template: '<div class="item-icon"><ion-spinner icon="bubbles"/></div>'
     })
-
-
 
 

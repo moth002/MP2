@@ -1,4 +1,4 @@
-﻿angular.module('mobilePhlebotomy')
+﻿angular.module('services')
     .factory('globalIdService', function () {
         var idList = {
             userId: '',

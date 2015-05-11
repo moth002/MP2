@@ -1,4 +1,4 @@
-﻿angular.module('mobilePhlebotomy')
+﻿angular.module('services')
     .factory('headerBtnService', ['globalIdService', '$ionicPopup', function (globalIdService, $ionicPopup) {
 
     var idList = globalIdService.getIDs();

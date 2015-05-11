@@ -1,4 +1,4 @@
-﻿angular.module('mobilePhlebotomy')
+﻿angular.module('services')
     .factory('subHeaderService', function () {
         var subHeader = {
             isVisible : false

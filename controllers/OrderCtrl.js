@@ -1,107 +1,60 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("OrderCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', 'labelPrintService', '$ionicPopup', '$ionicLoading', 'headerBtnService', 'sliderPageService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, labelPrintService, $ionicPopup, $ionicLoading, headerBtnService, sliderPageService) {
-
+        '$scope', 'webEclairService', '$routeParams', 'footerBtnService', 'labelPrintService', 'headerBtnService', 'sliderPageService',
+        function ($scope, webEclairService, $routeParams, footerBtnService, labelPrintService, headerBtnService, sliderPageService) {
+            
             $scope.emptyInput = true;
-
             $scope.isEmptyInput = function () {
                 return $scope.emptyInput;
             };
 
+            sliderPageService.setPageActive(3);
+            sliderPageService.setReschedule(false);
+
+            $scope.shouldShowEdit = false;
             $scope.editButtons = headerBtnService.getEditBtnClicks();
+            var editListAllowed = function () {
+                $scope.shouldShowEdit = !$scope.shouldShowEdit;
+            }
+            headerBtnService.setEditButton(true, editListAllowed);
 
-            $scope.init = function () {
-                var defer = $q.defer();
+            var rightButtonClick = function () {
+                window.location = '#/collect';
+            };
 
-                sliderPageService.setPageActive(3);
-                sliderPageService.setReschedule(false);
+            footerBtnService.setMainBtn('Collect', true, rightButtonClick);
 
-                $scope.shouldShowEdit = false;
-
-                $ionicLoading.show();
-
-                defer.promise.then(function () {
-                    $ionicLoading.hide();
-                });
-
-                $scope.idList = globalIdService.getIDs();
-
-                var orderModel = {
-                    orderId: $routeParams.orderId,
-                    patientId: $scope.idList.patientId
-                }
-
-                var patientModel = {
-                    nhi: $scope.idList.patientId,
-                    scheme: 'NHI'
-                }
-
-                $http.post(window.apiUrl + 'OrderMatching', orderModel)
-                    .success(function (response) {
-                        $scope.order = response;
-                        globalIdService.setIDs($scope.idList.userId, $scope.idList.patientId, orderModel.orderId, $scope.idList.tokenId);
-                        defer.resolve();
-                    })
-                    .error(function (err, status) {
-                        defer.resolve();
-                        if (status === 404)
-                            $ionicPopup.alert({
-                                templateUrl: "mismatched-error.html",
-                                okType: 'button-footer'
-                            }).then(function () {
-                                window.location = '#/patient/' + $scope.idList.patientId;
-                            });
-                        if (status === 401) {
-                            $ionicPopup.alert({
-                                templateUrl: 'unauthorised-error.html',
-                                okType: 'button-footer'
-                            }).then(function () {
-                                window.location = '#/';
-                            });
-                        }
-                    });
-
-                $http.post(window.apiUrl + 'PatientValidation', patientModel).success(function (response) {
-                    $scope.patient = response;
-                });
-
-                $http.get(window.apiUrl + 'GetUserData', { params: {id: $scope.idList.userId} }).success(function(result) {
-                    $scope.user = result;
-                });
-
-                $scope.setMiddleClick = function() {
+            $scope.printLabels = function () {
                 /////// ------------------------
                 /// This is not correct (if there is a problem with printing) the error will be reported n number of times
                 /// need to pass the information then check if the connection is possible, only then print the n number of lables. 
                 /////// ------------------------
-                    labelPrintService.connect();
-                    //for (var i = 0; i < $scope.order.Specimens.length; i++) {
-                        labelPrintService.printSpecimenLabel(
-                            $scope.patient.Name + " "
-                            +$scope.patient.NHI, $scope.patient.Gender + " "
-                            +$scope.patient.DOB, $scope.order.Specimens,
-                            //+ $scope.patient.DOB, $scope.order.Specimens[i].split(',', 1),
-                            $scope.order.Barcodes);
-                            //$scope.order.Barcodes[i]);
-                    //}
-                    //labelPrintService.close();
+                labelPrintService.connect();
+                //for (var i = 0; i < $scope.order.Specimens.length; i++) {
+                labelPrintService.printSpecimenLabel(
+                    $scope.patient.Name + " "
+                    + $scope.patient.NHI, $scope.patient.Gender + " "
+                    + $scope.patient.DOB, $scope.order.Specimens,
+                    //+ $scope.patient.DOB, $scope.order.Specimens[i].split(',', 1),
+                    $scope.order.Barcodes);
+                //$scope.order.Barcodes[i]);
+                //}
+                //labelPrintService.close();
 
-                };
+            };
 
-                var rightButtonClick = function() {
-                    window.location = '#/collect';
-                };
-
-                footerBtnService.setRight('Collect', true, rightButtonClick);
-                //footerBtnService.setMiddle('Print Labels', true, setMiddleClick);
-                footerBtnService.setLeft('Back', false, null);
-
-                var editListAllowed = function () {
-                    $scope.shouldShowEdit = !$scope.shouldShowEdit;
-                }
-
-                headerBtnService.setEditButton(true, editListAllowed);
+            var orderModel = {
+                orderId: $routeParams.orderId,
+                patientId: null
             }
+            
+            var patientModel = {
+                nhi: null,
+                scheme: 'NHI'
+            }
+            webEclairService.getUserData($scope);
+            webEclairService.orderMatching(orderModel, $scope);
+            webEclairService.patientValidation(patientModel, $scope);         
+
         }
     ]);

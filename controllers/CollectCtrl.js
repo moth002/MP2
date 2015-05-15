@@ -1,109 +1,71 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicPopup', '$ionicLoading', 'sliderPageService',
-        'chkbxSpecimenService', 'headerBtnService', 'subHeaderService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicPopup, $ionicLoading, sliderPageService,
-            chkbxSpecimenService, headerBtnService, subHeaderService) {
-            $scope.init = function () {
+        '$scope', 'webEclairService', 'footerBtnService', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService',
+        function ($scope, webEclairService, footerBtnService, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService) {
 
-                var defer = $q.defer();
-
-                sliderPageService.setPageActive(4);
-                sliderPageService.setReschedule(false);
-
-                $scope.shouldShowEdit = false;
-
-                $ionicLoading.show();
-
-                $scope.model = {
-                    message: "Scan the collected and labelled samples",
-                    chkboxSpecimens: [],
-                    dateTime: undefined
-                }
-
-                defer.promise.then(function () {
-                    $ionicLoading.hide();
-
-                    for (var i = 0; i < $scope.order.Specimens.length; i++) {
-                        $scope.model.chkboxSpecimens.push({ name: $scope.order.Specimens[i], code: $scope.order.Barcodes[i], checked: undefined });
-                    }
-                });
-
-                $scope.idList = globalIdService.getIDs();
-
-                var orderModel = {
-                    orderId: $scope.idList.orderId,
-                    patientId: $scope.idList.patientId
-                }
-
-                var patientModel = {
-                    nhi: $scope.idList.patientId,
-                    scheme: 'NHI'
-                }
-
-                $http.post(window.apiUrl + 'OrderMatching', orderModel)
-                    .success(function (response) {
-                        $scope.order = response;
-                        globalIdService.setIDs($scope.idList.userId, $scope.idList.patientId, $scope.idList.orderId, $scope.idList.tokenId);
-                        defer.resolve();
-                    })
-                    .error(function (err, status) {
-                        if (status === 404)
-                            alert("Order mismatch");
-                        if (status === 401)
-                            alert("Unauthorized User");
-                        defer.resolve();
-                        window.location = '#/';
-                    });
-
-                $http.post(window.apiUrl + 'PatientValidation', patientModel).success(function (response) {
-                    $scope.patient = response;
-                });
-
-                $http.get(window.apiUrl + 'GetUserData', { params: {id: $scope.idList.userId} }).success(function(result) {
-                    $scope.user = result;
-                });
-
-                var rightButtonClick = function () {
-                    var d = new Date();
-                    $scope.model.dateTime = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
-                    $ionicPopup.prompt({
-                        title: 'Please confirm',
-                        templateUrl: 'dateTime-Confirm.html',
-                        scope: $scope,
-                        buttons: [{ // Array[Object] (optional). Buttons to place in the popup footer.
-                            text: 'Cancel',
-                            type: 'button-default',
-                            onTap: function () {}
-                        }, {
-                            text: 'OK',
-                            type: 'button-footer',
-                            onTap: function () {
-                                // Returning a value will cause the promise to resolve with the given value.
-                                if ($scope.model.dateTime) {
-                                    var needToReschedule = false;
-                                    $scope.model.chkboxSpecimens.forEach(function (item) {
-                                        if (item.checked === undefined) {
-                                            needToReschedule = true;
-                                        }
-                                    });
-                                    chkbxSpecimenService.setSpecimenList($scope.model.chkboxSpecimens);
-                                    window.location = needToReschedule ? '#/schedule' : '#/complete/' + $scope.model.dateTime;
-                                }    
-                            }
-                        }]
-                    });
-                };
-
-                footerBtnService.setRight('Next', true, rightButtonClick);
-                footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft('Back', false, null);
-
-                headerBtnService.setEditButton(false, null);
-
-                subHeaderService.setVisible(true);
-
+            $scope.model = {
+                message: "Scan the collected and labelled samples",
+                chkboxSpecimens: [],
+                dateTime: undefined
             }
+
+            sliderPageService.setPageActive(4);
+            sliderPageService.setReschedule(false);
+
+            $scope.shouldShowEdit = false;
+
+            headerBtnService.setEditButton(false, null);
+
+            headerBtnService.setSubHeaderVisible(true);
+
+
+            var orderModel = {
+                orderId: null,
+                patientId: null
+            }
+
+            var patientModel = {
+                nhi: null,
+                scheme: 'NHI'
+            }
+
+            webEclairService.getUserData($scope);
+            webEclairService.orderMatching(orderModel, $scope);
+            webEclairService.patientValidation(patientModel, $scope);
+
+            var rightButtonClick = function () {
+                var d = new Date();
+                $scope.model.dateTime = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
+                $ionicPopup.prompt({
+                    title: 'Please confirm',
+                    templateUrl: 'dateTime-Confirm.html',
+                    scope: $scope,
+                    buttons: [{ // Array[Object] (optional). Buttons to place in the popup footer.
+                        text: 'Cancel',
+                        type: 'button-default',
+                        onTap: function () { }
+                    }, {
+                        text: 'OK',
+                        type: 'button-footer',
+                        onTap: function () {
+                            // Returning a value will cause the promise to resolve with the given value.
+                            if ($scope.model.dateTime) {
+                                var needToReschedule = false;
+                                $scope.model.chkboxSpecimens.forEach(function (item) {
+                                    if (item.checked === undefined) {
+                                        needToReschedule = true;
+                                    }
+                                });
+                                chkbxSpecimenService.setSpecimenList($scope.model.chkboxSpecimens);
+                                window.location = needToReschedule ? '#/schedule' : '#/complete/' + $scope.model.dateTime;
+                            }
+                        }
+                    }]
+                });
+            };
+
+            footerBtnService.setMainBtn('Next', true, rightButtonClick);
+
 
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(

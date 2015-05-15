@@ -5,6 +5,8 @@
 
                 $scope.editButton = headerBtnService.getEditButton();
 
+                $scope.subHeader = headerBtnService.getSubHeader();
+
                 $scope.btnSideMenu = function () {
                     $ionicSideMenuDelegate.toggleLeft();
                 };
@@ -22,6 +24,18 @@
                             window.location = '#/';
                         }
                     });
+                };
+
+                $scope.addComment = function() {
+                    $scope.commentModal = $ionicPopup.show({
+                        title: 'Add a comment',
+                        templateUrl: 'comments-Page.html',
+                        scope: $scope
+                    });
+                };
+
+                $scope.closeModal = function() {
+                    $scope.commentModal.close();
                 };
             }
     ]);

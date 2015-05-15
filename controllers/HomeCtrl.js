@@ -1,14 +1,36 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HomeCtrl", [
-        '$scope', '$http', 'cordovaReadyService', 'footerBtnService', 'globalIdService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'subHeaderService', 'sliderPageService',
-        function ($scope, $http, cordovaReadyService, footerBtnService, globalIdService, $ionicPopup, $q, $timeout, headerBtnService, subHeaderService, sliderPageService) {
-            var deferModal = $q.defer();
-            $scope.idList = globalIdService.getIDs;
+        '$scope', 'cordovaReadyService', 'footerBtnService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'sliderPageService',
+        function ($scope, cordovaReadyService, footerBtnService,  $ionicPopup, $q, $timeout, headerBtnService, sliderPageService) {
 
             $scope.emptyInput = true;
             $scope.isEmptyInput = function () {
                 return $scope.emptyInput;
             };
+
+            sliderPageService.setPageActive(0);
+            sliderPageService.setReschedule(false);
+
+            headerBtnService.setEditButton(false, null);
+
+            headerBtnService.setSubHeaderVisible(false);
+
+            var deferModal = $q.defer();
+            var rightButtonClick = function () {
+                if ($scope.model.userId) {
+                    $scope.openModal();
+                    deferModal.promise.then(function (pinCode) {
+                        window.location = '#/user/' + $scope.model.userId + '/pin/' + pinCode;
+                    });
+                } else {
+                    $scope.emptyInput = false;
+                    $timeout(function () {
+                        $scope.emptyInput = true;
+                    }, 100);
+                }
+            };
+
+            footerBtnService.setMainBtn('Next', true, rightButtonClick);
 
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
@@ -25,35 +47,6 @@
                     }
                 ));
             }
-
-            $scope.init = function () {
-                globalIdService.setIDs('', '', '', '');
-
-                sliderPageService.setPageActive(0);
-                sliderPageService.setReschedule(false);
-
-                var rightButtonClick = function () {
-                    if ($scope.idList.userId) {
-                        $scope.openModal();
-                        deferModal.promise.then(function (pinCode) {
-                            window.location = '#/user/' + $scope.idList.userId + '/pin/' + pinCode;
-                        });
-                    } else {
-                        $scope.emptyInput = false;
-                        $timeout(function () {
-                            $scope.emptyInput = true;
-                        }, 100);
-                    }
-                };
-
-                footerBtnService.setRight('Next', true, rightButtonClick);
-                footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft('', false, null);
-
-                headerBtnService.setEditButton(false, null);
-
-                subHeaderService.setVisible(false);
-            }          
 
             $scope.initModal = function () {
                 $scope.passcode = "";

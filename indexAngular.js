@@ -62,7 +62,7 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource', 'ngAnimate
             templateUrl: "views/home.html",
             controller: "HomeCtrl"
         })
-        .when("/user/:usercode/pin/:pincode", {
+        .when("/user/:usercode/pin/:pincode?", {
             templateUrl: "views/user.html",
             controller: "UserCtrl"
         })
@@ -93,6 +93,6 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngRoute', 'ngResource', 'ngAnimate
 
     .constant('$ionicLoadingConfig', {
         template: '<div class="item-icon"><ion-spinner icon="bubbles"/></div>'
-    })
+    });
 
 

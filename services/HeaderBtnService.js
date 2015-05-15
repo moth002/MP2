@@ -1,7 +1,8 @@
 ﻿angular.module('services')
-    .factory('headerBtnService', ['globalIdService', '$ionicPopup', function (globalIdService, $ionicPopup) {
+    .factory('headerBtnService', ['globalIdService', '$ionicPopup',
+        function (globalIdService, $ionicPopup) {
 
-    var idList = globalIdService.getIDs();
+        var idList = globalIdService.getIDs();
 
         var userClick = function () {
             $ionicPopup.confirm({
@@ -14,7 +15,7 @@
             });
         };
         var patientClick = function () {
-            window.location = '#/user/' + idList.userId + '/pin/4321';
+            window.location = '#/user/' + idList.userId + '/pin/';
         };
         var orderClick = function () {
             window.location = '#/patient/' + idList.patientId;
@@ -29,6 +30,11 @@
             order: orderClick
         }
 
+        // Subheader
+        var subHeader = {
+            isVisible: false
+        };
+
         return {
             getEditButton: function () {
                 return editButton;
@@ -39,6 +45,13 @@
             },
             getEditBtnClicks: function() {
                 return editBtnClicks;
+            },
+            // Subheader
+            getSubHeader: function () {
+                return subHeader;
+            },
+            setSubHeaderVisible: function (v) {
+                subHeader.isVisible = v;
             }
         }
 }]);

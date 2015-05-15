@@ -1,44 +1,35 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("ScheduleCtrl", [
-        '$scope', '$http', '$routeParams', 'footerBtnService', 'cordovaReadyService', 'globalIdService', '$q', '$ionicLoading', '$ionicPopup', 'chkbxSpecimenService', 'sliderPageService',
-        function ($scope, $http, $routeParams, footerBtnService, cordovaReadyService, globalIdService, $q, $ionicLoading, $ionicPopup, chkbxSpecimenService, sliderPageService) {
+        '$scope', 'webEclairService', 'footerBtnService', '$ionicPopup', 'chkbxSpecimenService', 'sliderPageService',
+        function ($scope, webEclairService, footerBtnService, $ionicPopup, chkbxSpecimenService, sliderPageService) {
             $scope.init = function () {
-
-                $ionicLoading.show();
-
-                sliderPageService.setPageActive(5);
-                sliderPageService.setReschedule(true);
-
-                $scope.idList = globalIdService.getIDs();
-                var defer = $q.defer();
 
                 $scope.model = {
                     chkboxSpecimens: chkbxSpecimenService.getSpecimenList(),
                     dateTime: undefined
                 }
 
-                defer.promise.then(function () {
-                    $ionicLoading.hide();
-                    $ionicLoading.show({
-                        template: 'HL7 message sent to LIS',
-                        duration: '1500'
-                    });
-                });
+                sliderPageService.setPageActive(4);
+                sliderPageService.setReschedule(true);                
+
+                // -----------------------------------------------------------------------------
+                // this should be replaced with a service to send the LIS message and pront the reciept
+                // -----------------------------------------------------------------------------
+                //defer.promise.then(function () {
+                //    $ionicLoading.hide();
+                //    $ionicLoading.show({
+                //        template: 'HL7 message sent to LIS',
+                //        duration: '1500'
+                //    });
+                //});
 
                 var patientModel = {
-                    nhi: $scope.idList.patientId,
+                    nhi: null,
                     scheme: 'NHI'
                 }
 
-                $http.post(window.apiUrl + 'PatientValidation', patientModel).success(function (response) {
-                    $scope.patient = response;
-                    defer.resolve();
-                });
-
-                $http.get(window.apiUrl + 'GetUserData', { params: {id: $scope.idList.userId} }).success(function(result) {
-                    $scope.user = result;
-                    defer.resolve();
-                });
+                webEclairService.getUserData($scope);
+                webEclairService.patientValidation(patientModel, $scope);
 
                 var rightButtonClick = function () {
                     var d = new Date();
@@ -62,9 +53,7 @@
                     });
                 };
 
-                footerBtnService.setRight('Reschedule', true, rightButtonClick);
-                footerBtnService.setMiddle('', false, null);
-                footerBtnService.setLeft('Back', true, null);
+                footerBtnService.setMainBtn('Reschedule', true, rightButtonClick);
 
             }
         }

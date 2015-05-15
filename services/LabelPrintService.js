@@ -1,5 +1,6 @@
 ﻿angular.module('services')
-    .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', '$ionicLoading', function (cordovaReadyService, globalIdService, $ionicLoading) {
+    .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', '$ionicLoading',
+        function (cordovaReadyService, globalIdService, $ionicLoading) {
 
         function success(result) {
             return true;

@@ -1,9 +1,9 @@
-﻿<div class="c1" ng-init="init()"></div>
+﻿<div class="c1" ng-init="model = { userId: ''}"></div>
 <div ng-if="isEmptyInput()" class="c3">
     <div class="list">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
-                <input ng-model="idList.userId" type="text" placeholder="Scan or enter your ID" capitalise />
+                <input ng-model="model.userId" type="text" placeholder="Scan or enter your ID" capitalise />
             </label>
             <button class="button button-clear icon-left ion-camera" ng-click="scanCode()">Scan</button>
         </div>

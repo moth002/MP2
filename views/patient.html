@@ -1,4 +1,4 @@
-﻿<div class="c1" ng-init="init()">
+﻿<div class="c1" ng-init="model = { orderId: ''}">
 
     <ion-list show-reorder="shouldShowEdit">
         <ion-item class="item">
@@ -25,7 +25,7 @@
     <div class="list">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
-                <input ng-model="idList.orderId" type="text" placeholder="Scan or enter order" capitalise />
+                <input ng-model="model.orderId" type="text" placeholder="Scan or enter order" capitalise />
             </label>
             <button class="button button-clear icon-left ion-camera" ng-click="scanCode()">Scan</button>
         </div>

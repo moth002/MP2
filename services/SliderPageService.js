@@ -42,7 +42,7 @@ angular.module('services')
                 pages[i].active = true;
             },
             setReschedule: function (reschedule) {
-                pages[5].visable = reschedule;
+                //pages[5].visable = reschedule; //Don't forget the unit tests below
             }
         }
 });
@@ -72,11 +72,11 @@ describe("Services", function () {
             expect(pages.getPages()[5].active).toBe(false);
             expect(pages.getPages()[6].active).toBe(false);
         });
-        it('should return slide 5 as visible or invisible', function () {
-            pages.setReschedule(true);
-            expect(pages.getPages()[5].visable).toBe(true);
-            pages.setReschedule(false);
-            expect(pages.getPages()[5].visable).toBe(false);
-        });
+        //it('should return slide 5 as visible or invisible', function () {
+        //    pages.setReschedule(true);
+        //    expect(pages.getPages()[5].visable).toBe(true);
+        //    pages.setReschedule(false);
+        //    expect(pages.getPages()[5].visable).toBe(false);
+        //});
     });
 });

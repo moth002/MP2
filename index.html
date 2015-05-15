@@ -31,13 +31,13 @@
     <script src="services/FooterBtnService.js"></script>
     <script src="services/GlobalIdService.js"></script>
     <script src="services/HeaderBtnService.js"></script>
-    <script src="controllers/FooterBtnCtrl.js"></script>
     <script src="services/NotificationDlgService.js"></script>
     <script src="services/LabelPrintService.js"></script>
     <script src="services/ChbxSpecimenService.js"></script>
-    <script src="services/SubHeaderService.js"></script>
     <script src="services/SliderPageService.js"></script>
+    <script src="services/WebEclairService.js"></script>
     <script src="controllers/HeaderBtnCtrl.js"></script>
+    <script src="controllers/FooterBtnCtrl.js"></script>
     <script src="controllers/HomeCtrl.js"></script>
     <script src="controllers/UserCtrl.js"></script>
     <script src="controllers/PatientCtrl.js"></script>
@@ -46,7 +46,6 @@
     <script src="controllers/SideMenuBtnCtrl.js"></script>
     <script src="controllers/CompleteCtrl.js"></script>
     <script src="controllers/ScheduleCtrl.js"></script>
-    <script src="controllers/SubHeaderCtrl.js"></script>>
     <script src="controllers/SliderPageCtrl.js"></script>
     <script src="directives/Directives.js"></script>
 
@@ -59,12 +58,12 @@
             <h1 class="title">
                 <img src="./Content/images/product_logo.png" width="127" height="20"/>
             </h1>
-            <button class="button button-icon icon ion-edit" style="color: #00A65E;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>
+            <button class="button button-icon ion-edit" style="color: #00A65E;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>
         </ion-header-bar>
-        <ion-header-bar class="bar bar-subheader" ng-controller="SubHeaderCtrl" ng-show="subHeader.isVisible">
-            <button class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="openPopup()">Comment</button>
+        <ion-header-bar class="bar bar-subheader" ng-controller="HeaderBtnCtrl" ng-show="subHeader.isVisible">
+            <button class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="addComment()">Comment</button>
         </ion-header-bar>
-        <ion-content id="content" padding="false" class="scroll-content has-header has-footer">
+        <ion-content id="content" padding="false" class="scroll-content has-header has-footer" ng-controller="HeaderBtnCtrl" ng-class="{'has-subheader': subHeader.isVisible}">
             <div class="progress-Bar" ng-controller="SliderPageCtrl">
                 <div class="slider-pager">
                     <div class="slider-pager-page" ng-repeat="slides in pages | filter:{visable : true}" ng-class="{active: slides.active}" id="{{slides.index}}">
@@ -79,7 +78,7 @@
             <div class="button-bar">
                 <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
                 <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
-                <button class="button button-footer icon-right ion-arrow-right-a" ng-show="rightButton.isVisible" ng-click="btnRight()">{{rightButton.title}}</button>
+                <button class="button button-footer icon-right ion-arrow-right-a" ng-show="mainButton.isVisible" ng-click="btnMain()">{{mainButton.title}}</button>
             </div>
         </ion-footer-bar>
     </ion-side-menu-content>
@@ -242,10 +241,10 @@
         </div>
         <div class="col">
             <div class="row-center">
-                <button class="button button-icon ion-close" style="color: #00A65E;" ng-click="btnSideMenu()"></button>
+                <button class="button button-icon ion-close" style="color: #E83836;" ng-click="closeModal()"></button>
             </div>
             <div class="row-bottom">
-                <button class="button button-icon ion-checkmark" style="color: #00A65E;" ng-click="btnSideMenu()"></button>
+                <button class="button button-icon ion-checkmark" style="color: #00A65E;" ng-click="closeModal()"></button>
             </div>
         </div>
     </div>

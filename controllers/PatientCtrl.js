@@ -33,7 +33,7 @@
             
             var patientModel = {
                 nhi: $routeParams.barcode,
-                scheme: 'nhi'
+                scheme: 'NHI' //'NHIHITEKCARE'
             }
 
             webEclairService.patientValidation(patientModel, $scope);

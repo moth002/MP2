@@ -4,7 +4,7 @@
         <ion-item class="item">
             <h4>User</h4>
             <h3 style="color: #00539F;">{{user.Name}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #00A65E"
+            <ion-reorder-button class="ion-edit" style="color: #00539F"
                                 ng-click="editButtons.user()">
             </ion-reorder-button>
         </ion-item>
@@ -15,7 +15,7 @@
             <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
             <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
             <h3 style="color: #00539F;">{{patient.Age}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #00A65E"
+            <ion-reorder-button class="ion-edit" style="color: #00539F"
                                 ng-click="editButtons.patient()">
             </ion-reorder-button>
         </ion-item>
@@ -27,7 +27,7 @@
             <label class="item-input-wrapper">
                 <input ng-model="model.orderId" type="text" placeholder="Scan or enter order" capitalise />
             </label>
-            <button class="button button-clear icon-left ion-camera" ng-click="scanCode()">Scan</button>
+            <button class="button button-clear icon-left ion-camera" style="color: #74B5E4;" ng-click="scanCode()">Scan</button>
         </div>
     </div>
 </div>

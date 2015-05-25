@@ -94,49 +94,51 @@
                 </label>
             </div>
         </div>
-        <div class="list">
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-home"></i>
-                <span style="padding-left: 10px;">Home</span>
-            </div>
-            <label class="item item-input item-select" ng-click="btnBluetooth()" ng-init="init()">
-                <i class="icon ion-bluetooth"></i>
-                <span style="padding-left: 10px;">
+        <ion-content class="scroll-content" style="top: 88px; bottom: 65px;">
+            <div class="list">
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-home"></i>
+                    <span style="padding-left: 10px;">Home</span>
+                </div>
+                <label class="item item-input item-select" ng-click="btnBluetooth()" ng-init="init()">
+                    <i class="icon ion-bluetooth"></i>
+                    <span style="padding-left: 10px;">
                         {{bluetooth}}
                     </span>
-                <select class="select" ng-model="selectedPrinter" ng-options="printer.name for printer in printerOptions"></select>
-            </label>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-gear-b"></i>
-                <span style="padding-left: 10px;">Setting</span>
+                    <select class="select" ng-model="selectedPrinter" ng-options="printer.name for printer in printerOptions"></select>
+                </label>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-gear-b"></i>
+                    <span style="padding-left: 10px;">Setting</span>
+                </div>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-iphone"></i>
+                    <span style="padding-left: 10px;">Manage Device</span>
+                </div>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-locked"></i>
+                    <span style="padding-left: 10px;">Security Pin</span>
+                </div>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-android-bulb"></i>
+                    <span style="padding-left: 10px;">Quick Tips</span>
+                </div>
+                <div class="item item-divider"></div>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-toggle-filled"></i>
+                    <span style="padding-left: 10px;">Register Device</span>
+                </div>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-toggle"></i>
+                    <span style="padding-left: 10px;">Unregister Device</span>
+                </div>
+                <div class="item item-divider"></div>
+                <div class="item" ng-click="btnHome()">
+                    <i class="icon ion-ios-telephone"></i>
+                    <span style="padding-left: 10px;">Contact Sysmex</span>
+                </div>
             </div>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-iphone"></i>
-                <span style="padding-left: 10px;">Manage Device</span>
-            </div>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-locked"></i>
-                <span style="padding-left: 10px;">Security Pin</span>
-            </div>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-home"></i>
-                <span style="padding-left: 10px;">Quick Tips</span>
-            </div>
-            <div class="item item-divider"></div>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-toggle-filled"></i>
-                <span style="padding-left: 10px;">Register Device</span>
-            </div>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-toggle"></i>
-                <span style="padding-left: 10px;">Unregister Device</span>
-            </div>
-            <div class="item item-divider"></div>
-            <div class="item" ng-click="btnHome()">
-                <i class="icon ion-ios-telephone"></i>
-                <span style="padding-left: 10px;">Contact Sysmex</span>
-            </div>
-        </div>
+        </ion-content>
         <div class="Sysmex-logo-box">
             <img src="images/sysmex_logo.png" style="width: 108px; height: 35px;" />
         </div>

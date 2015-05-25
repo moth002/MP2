@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
-        '$scope', 'webEclairService', 'footerBtnService', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService',
-        function ($scope, webEclairService, footerBtnService, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService) {
+        '$scope', 'webEclairService', 'footerBtnService', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService', 'labelPrintService',
+        function ($scope, webEclairService, footerBtnService, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService, labelPrintService) {
 
             $scope.model = {
                 message: "Scan the collected and labelled samples",
@@ -57,6 +57,7 @@
                                     }
                                 });
                                 chkbxSpecimenService.setSpecimenList($scope.model.chkboxSpecimens);
+                                labelPrintService.printOrderReciept($scope.patient.NHI, $scope.patient.Name, $scope.patient.DOB, $scope.user.Name);
                                 window.location = needToReschedule ? '#/schedule' : '#/complete/' + $scope.model.dateTime;
                             }
                         }

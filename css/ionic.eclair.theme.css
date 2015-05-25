@@ -28,12 +28,17 @@
      background-color: #0076BE;
  }
 
+/*.slider-pager .slider-pager-page.active {
+      font-size: 200%;
+      vertical-align: sub;
+}*/
+
 input::-moz-placeholder, textarea::-moz-placeholder {
-  color: #00539F; }
+  color: white; }
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  color: #00539F; }
+  color: white; }
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #00539F;
+  color: white;
   text-indent: 0; }
 
 .item-input-wrapper {
@@ -96,7 +101,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 .checkbox.checkbox-eclair input:before, .checkbox.checkbox-eclair .checkbox-icon:before {
   border-color: #00A65E; }
 .checkbox.checkbox-eclair input:checked:before, .checkbox.checkbox-eclair input:checked + .checkbox-icon:before {
-  background: #00b1e8; }
+  background: #74B5E4; }
 
 /*.card.card-labels .item:last-child {
     border-bottom: 1px; }*/

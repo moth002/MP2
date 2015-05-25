@@ -1,6 +1,6 @@
 ﻿angular.module('services')
-    .service('webEclairService', ['$http', '$q', 'globalIdService', '$ionicPopup', '$ionicLoading',
-        function ($http, $q, globalIdService, $ionicPopup, $ionicLoading) {
+    .service('webEclairService', ['$http', '$q', 'globalIdService', '$ionicPopup', '$ionicLoading', '$timeout',
+        function ($http, $q, globalIdService, $ionicPopup, $ionicLoading, $timeout) {
             var defer = $q.defer();
             var idList = globalIdService.getIDs();
             
@@ -39,7 +39,9 @@
             this.userLogon = function (userModel, $scope) {
                 $ionicLoading.show();
                 defer.promise.then(function () {
-                    $ionicLoading.hide();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                 });
 
                 $http({
@@ -75,7 +77,9 @@
                 $ionicLoading.show();
 
                 defer.promise.then(function () {
-                    $ionicLoading.hide();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                 });
 
                 patientModel.nhi = patientModel.nhi ? patientModel.nhi : idList.patientId;
@@ -113,7 +117,9 @@
                 $ionicLoading.show();
 
                 defer.promise.then(function () {
-                    $ionicLoading.hide();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                 });
 
                 orderModel.patientId = idList.patientId;

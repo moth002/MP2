@@ -1,35 +1,31 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("ScheduleCtrl", [
-        '$scope', 'webEclairService', 'footerBtnService', '$ionicPopup', 'chkbxSpecimenService', 'sliderPageService',
-        function ($scope, webEclairService, footerBtnService, $ionicPopup, chkbxSpecimenService, sliderPageService) {
-            $scope.init = function () {
-
+        '$scope', 'webEclairService', 'footerBtnService', '$ionicPopup', 'chkbxSpecimenService', 'sliderPageService', 'globalIdService',
+        function ($scope, webEclairService, footerBtnService, $ionicPopup, chkbxSpecimenService, sliderPageService, globalIdService) {
+            $scope.init = function() {
                 $scope.model = {
                     chkboxSpecimens: chkbxSpecimenService.getSpecimenList(),
                     dateTime: undefined
                 }
 
-                sliderPageService.setPageActive(4);
-                sliderPageService.setReschedule(true);                
+                $scope.idList = globalIdService.getIDs();
 
-                // -----------------------------------------------------------------------------
-                // this should be replaced with a service to send the LIS message and pront the reciept
-                // -----------------------------------------------------------------------------
-                //defer.promise.then(function () {
-                //    $ionicLoading.hide();
-                //    $ionicLoading.show({
-                //        template: 'HL7 message sent to LIS',
-                //        duration: '1500'
-                //    });
-                //});
+                sliderPageService.setPageActive(4);
+                sliderPageService.setReschedule(true);
 
                 var patientModel = {
                     nhi: null,
                     scheme: 'NHI'
                 }
 
+                //var orderModel = {
+                //    orderId: null,
+                //    patientId: null
+                //}
+
                 webEclairService.getUserData($scope);
                 webEclairService.patientValidation(patientModel, $scope);
+                //webEclairService.orderMatching(orderModel, $scope);
 
                 var rightButtonClick = function () {
                     var d = new Date();
@@ -54,7 +50,6 @@
                 };
 
                 footerBtnService.setMainBtn('Reschedule', true, rightButtonClick);
-
             }
         }
     ]);

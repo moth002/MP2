@@ -9,7 +9,7 @@
     padding: 8px 16px;
      color: #00539F;
 }.menu.sideMenu .toggle {
-       top: 5px;
+       /*top: 5px;*/
 }.menu.sideMenu input:checked + .track {
      border-color: #68BD49;
      background-color: #68BD49;

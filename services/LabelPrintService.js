@@ -1,6 +1,6 @@
 ﻿angular.module('services')
-    .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', '$ionicLoading',
-        function (cordovaReadyService, globalIdService, $ionicLoading) {
+    .factory('labelPrintService', ['cordovaReadyService', 'globalIdService', '$ionicLoading', '$cordovaBluetoothSerial',
+        function (cordovaReadyService, globalIdService, $ionicLoading, $cordovaBluetoothSerial) {
 
         function success(result) {
             return true;
@@ -77,21 +77,31 @@
 
                 var idList = globalIdService.getIDs();
                 var printer = idList.printerId;
-                cordovaReadyService(window.bluetoothSerial.connect(printer, success, failure));
 
-                try {
-                    setTimeout(function () {
-                        $ionicLoading.show({
-                            template: 'HL7 message sent to LIS',
-                            duration: '2000'
-                        });
-                        cordovaReadyService(window.bluetoothSerial.write(zplString, success, failure));
-                        labelPrinter.close();
-                    }, 3000);
-                }
-                catch (e) {
-                    //return false;
-                }
+                $cordovaBluetoothSerial.connect(printer).then(
+                    function () {
+                        //alert("Bluetooth connected", "Bluetooth LE", "Oops!");
+                        $cordovaBluetoothSerial.write(zplString).then(function () { }, function () { });
+                        $cordovaBluetoothSerial.disconnect().then(function () { }, function () { });
+                    },
+                    function () { alert("Bluetooth NOT connected", "Bluetooth LE", "Oops!"); }
+                );
+
+                //cordovaReadyService(window.bluetoothSerial.connect(printer, success, failure));
+
+                //try {
+                //    setTimeout(function () {
+                //        $ionicLoading.show({
+                //            template: 'HL7 message sent to LIS',
+                //            duration: '2000'
+                //        });
+                //        cordovaReadyService(window.bluetoothSerial.write(zplString, success, failure));
+                //        labelPrinter.close();
+                //    }, 3000);
+                //}
+                //catch (e) {
+                //    //return false;
+                //}
             },
 
             close: function() {

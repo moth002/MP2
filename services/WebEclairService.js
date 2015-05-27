@@ -41,7 +41,7 @@
                 defer.promise.then(function () {
                     $timeout(function () {
                         $ionicLoading.hide();
-                    }, 1000);
+                    }, 1500);
                 });
 
                 $http({
@@ -79,7 +79,7 @@
                 defer.promise.then(function () {
                     $timeout(function () {
                         $ionicLoading.hide();
-                    }, 1000);
+                    }, 1500);
                 });
 
                 patientModel.nhi = patientModel.nhi ? patientModel.nhi : idList.patientId;
@@ -119,7 +119,7 @@
                 defer.promise.then(function () {
                     $timeout(function () {
                         $ionicLoading.hide();
-                    }, 1000);
+                    }, 1500);
                 });
 
                 orderModel.patientId = idList.patientId;

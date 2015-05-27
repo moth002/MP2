@@ -106,7 +106,7 @@
                     <span style="padding-left: 10px;">
                         {{bluetooth}}
                     </span>
-                    <select class="select" ng-model="selectedPrinter" ng-options="printer.name for printer in printerOptions"></select>
+                    <select class="select" ng-model="selectedPrinter" ng-options="printer.name for printer in printerOptions" ng-change="onPrinterSelected(selectedPrinter)"></select>
                 </label>
                 <div class="item" ng-click="btnHome()">
                     <i class="icon ion-gear-b"></i>
@@ -264,21 +264,12 @@
             </div>
         </div>
     </div>
-    <!--<div class="card" style="padding: 5%">
-        <textarea id="commentsArea" class="comment-textarea" placeholder="Enter comment"></textarea>
-        <button class="button button-passPopup ion-home button-light button-stretch" ng-click="goHome()"></button>
-        <button class="button button-passPopup ion-home button-light button-stretch" ng-click="goHome()"></button>
-    </div>-->
-    <!--<ion-modal-view>
-        <ion-header-bar class="bar bar-header bar-light">
-            <button class="button button-clear icon ion-chevron-left" style="color: #00A65E;" ng-click="modal.hide()">Back</button>
-        </ion-header-bar>
-        <ion-content class="padding">
-            <div class="card" style="padding: 5%">
-                <textarea id="commentsArea" class="comment-textarea" placeholder="Enter comment"></textarea>
-            </div>
-        </ion-content>
-    </ion-modal-view>-->
-
-
 </script>
+
+<script id="prinitng-warning.html" type="text/ng-template">
+    <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 8px 8px 8px 65px;">
+        <i class="icon ion-alert-circled" style="color: #FCC810 ; font-size: 45px;"></i>
+        No device connected
+    </div>
+</script>
+

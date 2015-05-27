@@ -29,7 +29,7 @@
                 /// This is not correct (if there is a problem with printing) the error will be reported n number of times
                 /// need to pass the information then check if the connection is possible, only then print the n number of lables. 
                 /////// ------------------------
-                labelPrintService.connect();
+                //labelPrintService.connect();
                 //for (var i = 0; i < $scope.order.Specimens.length; i++) {
                 labelPrintService.printSpecimenLabel(
                     $scope.patient.Name + " "
@@ -40,7 +40,6 @@
                 //$scope.order.Barcodes[i]);
                 //}
                 //labelPrintService.close();
-
             };
 
             var orderModel = {

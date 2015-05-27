@@ -40,6 +40,10 @@
 
                 }
 
+                $scope.onPrinterSelected = function (selectedPrinter) {
+                    globalIdService.setPrinter(selectedPrinter.id);
+                };
+
                 $scope.ctlDeviceActive = {
                     value: true
                 }

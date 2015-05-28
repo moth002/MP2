@@ -1,13 +1,15 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("SideMenuBtnCtrl", [
-        '$scope', 'cordovaReadyService', '$ionicSideMenuDelegate', 'globalIdService',
-            function ($scope, cordovaReadyService, $ionicSideMenuDelegate, globalIdService) {
+        '$scope', 'cordovaReadyService', '$ionicSideMenuDelegate', 'globalIdService', '$cordovaDevice',
+            function ($scope, cordovaReadyService, $ionicSideMenuDelegate, globalIdService, $cordovaDevice) {
 
                 $scope.init = function () {
 
                     //////// ------------------------
                     //////// Think of placing a spinner untill the timer is done below
                     //////// ------------------------
+
+                    $scope.deviceID = $cordovaDevice.getUUID();
 
                     $scope.getList = function (devices) {
                         if (devices.length !== 0) {
@@ -34,10 +36,8 @@
                     }
 
                     //setTimeout(function () { // oddly the timer is needed to ensure all services are available.
-                        cordovaReadyService(window.bluetoothSerial.list($scope.getList, $scope.falure));
+                    cordovaReadyService(window.bluetoothSerial.list($scope.getList, $scope.falure));
                     //}, 2000);
-
-
                 }
 
                 $scope.onPrinterSelected = function (selectedPrinter) {
@@ -65,6 +65,5 @@
 
                 $scope.btnBluetooth = function () {
                 };
-
             }
     ]);

@@ -23,7 +23,8 @@
     <script src="scripts/ng-cordova.js"></script>
 
     <script type="text/javascript">
-        var apiUrl = "http://eclair2008r2:8080/Eclair/api/MobilePhlebotomy/";
+        //var apiUrl = "http://eclair2008r2:8080/Eclair/api/MobilePhlebotomy/";
+        var apiUrl = "http://mohammed-pc/Eclair/api/MobilePhlebotomy/";
     </script>
 
     <script src="indexAngular.js"></script>
@@ -137,6 +138,10 @@
                 <div class="item" ng-click="btnHome()">
                     <i class="icon ion-ios-telephone"></i>
                     <span style="padding-left: 10px;">Contact Sysmex</span>
+                </div>
+                <div class="item item-divider"></div>
+                <div class="item" ng-click="btnHome()">
+                    <span style="padding-left: 10px;">{{deviceID}}</span>
                 </div>
             </div>
         </ion-content>

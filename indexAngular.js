@@ -7,8 +7,8 @@
 }());
 
 angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource', 'ngAnimate', 'services', 'controllers'])
-    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate',
-        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate) {
+    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate', '$cordovaDevice',
+        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate, $cordovaDevice) {
             $ionicPlatform.ready(function () {
 
                 cordovaReadyService(window.plugins.insomnia.keepAwake());
@@ -26,6 +26,10 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
                 }
                 ionic.Platform.isFullScreen = true;
                 //ionic.Platform.showStatusBar(false);
+
+                window.plugins.uniqueDeviceID.get(function (uuid) { alert(uuid); }, function () { });
+
+                //alert($cordovaDevice.getUUID());
             });
 
             $ionicPlatform.registerBackButtonAction(function (event) {

@@ -29,27 +29,33 @@
 
     <script src="indexAngular.js"></script>
     <script src="scripts/index.js"></script>
+    <script src="controllers/CollectCtrl.js"></script>
+    <script src="controllers/CompleteCtrl.js"></script>
+    <script src="controllers/FooterBtnCtrl.js"></script>
+    <script src="controllers/HeaderBtnCtrl.js"></script>
+    <script src="controllers/HomeCtrl.js"></script>
+    <script src="controllers/OrderCtrl.js"></script>
+    <script src="controllers/PatientCtrl.js"></script>
+    <script src="controllers/DeviceStatusCtrl.js"></script>
+    <script src="controllers/ScheduleCtrl.js"></script>
+    <script src="controllers/SideMenuBtnCtrl.js"></script>
+    <script src="controllers/SliderPageCtrl.js"></script>
+    <script src="controllers/SubHeaderCtrl.js"></script>
+    <script src="controllers/UserCtrl.js"></script>
+    <script src="directives/Directives.js"></script>
+    <script src="services/ChbxSpecimenService.js"></script>
     <script src="services/CordovaReadyService.js"></script>
+    <script src="services/DeviceStatusService.js"></script>
     <script src="services/FooterBtnService.js"></script>
     <script src="services/GlobalIdService.js"></script>
     <script src="services/HeaderBtnService.js"></script>
-    <script src="services/NotificationDlgService.js"></script>
     <script src="services/LabelPrintService.js"></script>
-    <script src="services/ChbxSpecimenService.js"></script>
+    <!--<script src="services/NotificationDlgService.js"></script>--> 
+    <script src="services/ScanBarcodeService.js"></script>
     <script src="services/SliderPageService.js"></script>
+    <script src="services/SubHeaderService.js"></script>
     <script src="services/WebEclairService.js"></script>
-    <script src="controllers/HeaderBtnCtrl.js"></script>
-    <script src="controllers/FooterBtnCtrl.js"></script>
-    <script src="controllers/HomeCtrl.js"></script>
-    <script src="controllers/UserCtrl.js"></script>
-    <script src="controllers/PatientCtrl.js"></script>
-    <script src="controllers/OrderCtrl.js"></script>
-    <script src="controllers/CollectCtrl.js"></script>
-    <script src="controllers/SideMenuBtnCtrl.js"></script>
-    <script src="controllers/CompleteCtrl.js"></script>
-    <script src="controllers/ScheduleCtrl.js"></script>
-    <script src="controllers/SliderPageCtrl.js"></script>
-    <script src="directives/Directives.js"></script>
+
 
 </head>
 <body>
@@ -62,28 +68,28 @@
             </h1>
             <button class="button button-icon ion-edit" style="color: #00539F;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>
         </ion-header-bar>
-        <ion-header-bar class="bar bar-subheader" ng-controller="HeaderBtnCtrl" ng-show="subHeader.isVisible">
-            <button class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="addComment()">Comment</button>
+        <ion-header-bar class="bar bar-subheader" ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
+            <button ng-controller="HeaderBtnCtrl" class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="addComment()">Comment</button>
         </ion-header-bar>
-        <ion-content id="content" padding="false" class="scroll-content has-header has-footer" ng-controller="HeaderBtnCtrl" ng-class="{'has-subheader': subHeader.isVisible}">
-            <div class="progress-Bar" ng-controller="SliderPageCtrl">
-                <div class="slider-pager">
+        <ion-content padding="false" class="scroll-content has-header" ng-controller="DeviceStatusCtrl"
+                     ng-class="{'has-subheader': device.hasSubheader, 'contentWithLogo': device.isRegistered == false, 'hasSubheader': device.isRegistered}">
+            <div class="progress-Bar" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">
+                <div class="slider-pager" ng-controller="SliderPageCtrl">
                     <div class="slider-pager-page" ng-repeat="slides in pages | filter:{visable : true}" ng-class="{active: slides.active}" id="{{slides.index}}">
                         <i class="icon ion-record"></i>
                     </div>
                 </div>
             </div>
             <div ng-view></div>
-        </ion-content>
-
-        <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="FooterBtnCtrl">
-            <div class="button-bar">
+        </ion-content>       
+        <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">
+            <div class="button-bar" ng-controller="FooterBtnCtrl">
                 <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
                 <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
                 <button class="button button-footer icon-right ion-arrow-right-a" ng-show="mainButton.isVisible" ng-click="btnMain()">{{mainButton.title}}</button>
             </div>
         </ion-footer-bar>
-    </ion-side-menu-content>
+</ion-side-menu-content>
     <ion-side-menu class="sideMenu" side="left" ng-controller="SideMenuBtnCtrl">
         <div class="item item-divider">
             <div class="item item-toggle">
@@ -138,10 +144,6 @@
                 <div class="item" ng-click="btnHome()">
                     <i class="icon ion-ios-telephone"></i>
                     <span style="padding-left: 10px;">Contact Sysmex</span>
-                </div>
-                <div class="item item-divider"></div>
-                <div class="item" ng-click="btnHome()">
-                    <span style="padding-left: 10px;">{{deviceID}}</span>
                 </div>
             </div>
         </ion-content>
@@ -276,5 +278,16 @@
         <i class="icon ion-alert-circled" style="color: #FCC810 ; font-size: 45px;"></i>
         No device connected
     </div>
+</script>
+
+<script id="my-popover.html" type="text/ng-template">
+    <ion-popover-view>
+        <ion-header-bar>
+            <h1 class="title">My Popover Title</h1>
+        </ion-header-bar>
+        <ion-content>
+            Hello!
+        </ion-content>
+    </ion-popover-view>
 </script>
 

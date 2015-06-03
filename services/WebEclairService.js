@@ -1,9 +1,63 @@
 ﻿angular.module('services')
-    .service('webEclairService', ['$http', '$q', 'globalIdService', '$ionicPopup', '$ionicLoading', '$timeout',
-        function ($http, $q, globalIdService, $ionicPopup, $ionicLoading, $timeout) {
+    .service('webEclairService', ['$http', '$q', 'globalIdService', '$ionicPopup', '$ionicLoading', '$timeout', '$cordovaDevice', 'deviceStatusService',
+        function ($http, $q, globalIdService, $ionicPopup, $ionicLoading, $timeout, $cordovaDevice, deviceStatusService) {
             var defer = $q.defer();
             var idList = globalIdService.getIDs();
-            
+
+            this.adminLogon = function(adminModel) {
+                $ionicLoading.show();
+                defer.promise.then(function () {
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1500);
+                });
+
+                adminModel.deviceId = $cordovaDevice.getUUID();
+
+                $http({
+                    'method': 'post',
+                    'url': window.apiUrl + 'AdminLogon',
+                    'data': adminModel
+                })
+                .success(function () {
+                    deviceStatusService.setRegistrationStatus(true);
+                    defer.resolve();
+                    window.location = '#/';
+                })
+                .error(function (err, status) {
+                    defer.resolve();
+                    if (status === 404) {
+                        $ionicPopup.alert({
+                            templateUrl: 'usercodeAndPin-Warning.html',
+                            okType: 'button-footer'
+                        }).then(function () {
+                            window.location = '#/register';
+                        });
+                    } else {
+                        $ionicPopup.alert({
+                            template: err.Message,
+                            okType: 'button-footer'
+                        }).then(function () {
+                            window.location = '#/register';
+                        });
+                    }
+                });
+            };        
+            this.getDeviceValidation = function () {
+                $http({
+                    'method': 'get',
+                    'url': window.apiUrl + 'getDeviceValidation',
+                    'params': { id: $cordovaDevice.getUUID() }
+                })
+                .success(function () {
+                    deviceStatusService.setRegistrationStatus(true);
+                })
+                .error(function () {
+                    deviceStatusService.setRegistrationStatus(false);
+                    window.location = '#/register';
+                });
+            };
+
             //----------------------------------------
             // needs to validate with token as well, to be used with next patient
             //----------------------------------------
@@ -44,6 +98,8 @@
                     }, 1500);
                 });
 
+                userModel.deviceId = $cordovaDevice.getUUID();
+
                 $http({
                     'method': 'post',
                     'url': window.apiUrl + 'UserLogon',
@@ -82,7 +138,7 @@
                     }, 1500);
                 });
 
-                patientModel.nhi = patientModel.nhi ? patientModel.nhi : idList.patientId;
+                patientModel.nhi = patientModel.nhi || idList.patientId;
 
                 $http({
                     'method': 'post',
@@ -123,7 +179,7 @@
                 });
 
                 orderModel.patientId = idList.patientId;
-                orderModel.orderId = orderModel.orderId ? orderModel.orderId : idList.orderId;
+                orderModel.orderId = orderModel.orderId || idList.orderId;
 
                 $http({
                     'method': 'post',

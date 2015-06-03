@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HomeCtrl", [
-        '$scope', 'cordovaReadyService', 'footerBtnService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'sliderPageService',
-        function ($scope, cordovaReadyService, footerBtnService,  $ionicPopup, $q, $timeout, headerBtnService, sliderPageService) {
+        '$scope', 'cordovaReadyService', 'footerBtnService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'sliderPageService', 'deviceStatusService',
+        function ($scope, cordovaReadyService, footerBtnService, $ionicPopup, $q, $timeout, headerBtnService, sliderPageService, deviceStatusService) {
 
             $scope.emptyInput = true;
             $scope.isEmptyInput = function () {
@@ -13,7 +13,7 @@
 
             headerBtnService.setEditButton(false, null);
 
-            headerBtnService.setSubHeaderVisible(false);
+            deviceStatusService.setHasSubheaderStatus(false);
 
             var deferModal = $q.defer();
             var rightButtonClick = function () {

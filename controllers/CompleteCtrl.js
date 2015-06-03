@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CompleteCtrl", [
-        '$scope', '$routeParams', 'webEclairService', 'footerBtnService', 'headerBtnService', 'sliderPageService',
-        function ($scope, $routeParams, webEclairService, footerBtnService, headerBtnService, sliderPageService) {
+        '$scope', '$routeParams', 'webEclairService', 'footerBtnService', 'deviceStatusService', 'sliderPageService',
+        function ($scope, $routeParams, webEclairService, footerBtnService, deviceStatusService, sliderPageService) {
 
             sliderPageService.setPageActive(6);
             sliderPageService.setReschedule(false);
@@ -23,6 +23,6 @@
 
             footerBtnService.setMainBtn('Next Patient', true, rightButtonClick);
 
-            headerBtnService.setSubHeaderVisible(false);
+            deviceStatusService.setHasSubheaderStatus(false);
         }
     ]);

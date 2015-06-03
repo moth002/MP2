@@ -1,11 +1,13 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("HeaderBtnCtrl", [
-        '$scope', '$ionicSideMenuDelegate', '$ionicPopup', 'headerBtnService',
-            function ($scope, $ionicSideMenuDelegate, $ionicPopup, headerBtnService) {
+        '$scope', '$ionicSideMenuDelegate', '$ionicPopup', 'headerBtnService', 'deviceStatusService',
+            function ($scope, $ionicSideMenuDelegate, $ionicPopup, headerBtnService, deviceStatusService) {
+
+                //$scope.device = deviceStatusService.getDeviceStatus();
 
                 $scope.editButton = headerBtnService.getEditButton();
 
-                $scope.subHeader = headerBtnService.getSubHeader();
+                //$scope.subHeader = headerBtnService.getSubHeader();
 
                 $scope.btnSideMenu = function () {
                     $ionicSideMenuDelegate.toggleLeft();

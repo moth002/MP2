@@ -1,7 +1,7 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
-        '$scope', 'webEclairService', 'footerBtnService', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService', 'labelPrintService',
-        function ($scope, webEclairService, footerBtnService, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService, labelPrintService) {
+        '$scope', 'webEclairService', 'footerBtnService', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService', 'labelPrintService', 'deviceStatusService',
+        function ($scope, webEclairService, footerBtnService, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService, labelPrintService, deviceStatusService) {
 
             $scope.model = {
                 message: "Scan the collected and labelled samples",
@@ -16,7 +16,7 @@
 
             headerBtnService.setEditButton(false, null);
 
-            headerBtnService.setSubHeaderVisible(true);
+            deviceStatusService.setHasSubheaderStatus(true);
 
 
             var orderModel = {

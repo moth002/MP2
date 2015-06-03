@@ -10,6 +10,13 @@
     height:100%;
 }
 
+.form_error {
+    color: red;
+}
+
+
+/*.ng-submitted{background: red}*/
+
 .frame
 {
     margin: auto;
@@ -28,8 +35,11 @@
     font-size: 12px;
 }
 
-.blockPhoto {
-    
+.contentWithLogo {
+  background-image: url('../images/eclair_logon_footer.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 .Sysmex-logo-box {

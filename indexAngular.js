@@ -7,10 +7,9 @@
 }());
 
 angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource', 'ngAnimate', 'services', 'controllers'])
-    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate', '$cordovaDevice',
-        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate, $cordovaDevice) {
+    .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate', 'webEclairService',
+        function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate, webEclairService) {
             $ionicPlatform.ready(function () {
-
                 cordovaReadyService(window.plugins.insomnia.keepAwake());
 
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -24,12 +23,11 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
                     cordovaReadyService(window.StatusBar.overlaysWebView(true));
                     cordovaReadyService(window.StatusBar.backgroundColorByName("white"));
                 }
-                ionic.Platform.isFullScreen = true;
+                //ionic.Platform.isFullScreen = true;
                 //ionic.Platform.showStatusBar(false);
 
-                window.plugins.uniqueDeviceID.get(function (uuid) { alert(uuid); }, function () { });
+                webEclairService.getDeviceValidation();
 
-                //alert($cordovaDevice.getUUID());
             });
 
             $ionicPlatform.registerBackButtonAction(function (event) {
@@ -57,6 +55,7 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
 
             $rootScope.$on('$routeChangeSuccess', function () {
                 $ionicScrollDelegate.scrollTop();
+                webEclairService.getDeviceValidation();
             });
 
     }])
@@ -65,6 +64,10 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
         $routeProvider.when("/", {
             templateUrl: "views/home.html",
             controller: "HomeCtrl"
+        })
+        .when("/register", {
+            templateUrl: "views/register.html",
+            controller: "DeviceStatusCtrl"
         })
         .when("/user/:usercode/pin/:pincode?", {
             templateUrl: "views/user.html",

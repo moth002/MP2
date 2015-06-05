@@ -1,6 +1,6 @@
 ﻿angular.module('mobilePhlebotomy')
-    .controller("DeviceStatusCtrl", ['$scope', 'deviceStatusService', 'webEclairService',
-        function ($scope, deviceStatusService, webEclairService) {
+    .controller("DeviceStatusCtrl", ['$scope', 'deviceStatusService', 'webEclairService', '$ionicSideMenuDelegate', '$timeout',
+        function ($scope, deviceStatusService, webEclairService, $ionicSideMenuDelegate, $timeout) {
 
             $scope.device = deviceStatusService.getDeviceStatus();
 
@@ -14,6 +14,23 @@
                     }
                     webEclairService.adminLogon(adminModel);
                 }
+            };
+
+            $scope.updateDNS = function () {
+                webEclairService.getDeviceValidation($scope.dns);
+                window.location = '#/';
+            };
+
+            $scope.btnUregisterDevice = function () {
+                $ionicSideMenuDelegate.toggleLeft();
+                webEclairService.getUnregisterDevice();
+            };
+
+            $scope.btnManageDevice = function () {
+                localStorage.removeItem('apiUrl');
+                $ionicSideMenuDelegate.toggleLeft();
+                window.location = '#/manageDevice';
+                
             };
         }
     ])

@@ -5,7 +5,8 @@
             patientId: '',
             orderId: '',
             tokenId: '',
-            printerId: ''
+            printerId: '',
+            apiUrl: ''
         };
 
         return {
@@ -17,6 +18,9 @@
                 idList.patientId = p ? p : idList.patientId;
                 idList.orderId = o ? o : idList.orderId;
                 idList.tokenId = t ? t : idList.tokenId;
+            },
+            setApiUrl: function(a) {
+                idList.apiUrl = a;
             },
             setPrinter: function(p) {
                 idList.printerId = p;

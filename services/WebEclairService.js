@@ -3,7 +3,26 @@
         function ($http, $q, globalIdService, $ionicPopup, $ionicLoading, $timeout, $cordovaDevice, deviceStatusService) {
             var defer = $q.defer();
             var idList = globalIdService.getIDs();
+            var apiUrl = localStorage.getItem('apiUrl');
 
+            this.getUnregisterDevice = function () {
+                $http({
+                    'method': 'get',
+                    'url': apiUrl + 'GetUnregisterDevice',
+                    'params': { id: $cordovaDevice.getUUID() }
+                })
+                .success(function (response) {
+                    window.location = '#/register';
+                })
+                .error(function (err, status) {
+                    $ionicPopup.alert({
+                        template: err.code,
+                        okType: 'button-footer'
+                    }).then(function () {
+                        //window.location = '#/';
+                    });
+                });
+            };
             this.adminLogon = function(adminModel) {
                 $ionicLoading.show();
                 defer.promise.then(function () {
@@ -16,7 +35,7 @@
 
                 $http({
                     'method': 'post',
-                    'url': window.apiUrl + 'AdminLogon',
+                    'url': apiUrl + 'AdminLogon',
                     'data': adminModel
                 })
                 .success(function () {
@@ -43,19 +62,44 @@
                     }
                 });
             };        
-            this.getDeviceValidation = function () {
+            this.getDeviceValidation = function (dns) {
+                $ionicLoading.show();
+                defer.promise.then(function () {
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 500);
+                });
+                if (dns || localStorage.getItem('apiUrl')) {
+                    apiUrl = dns ? "http://" + dns + "/Eclair/api/MobilePhlebotomy/" : apiUrl;
+                    localStorage.setItem('apiUrl', apiUrl);
+                } else {
+                    apiUrl = '';
+                };
+
                 $http({
                     'method': 'get',
-                    'url': window.apiUrl + 'getDeviceValidation',
-                    'params': { id: $cordovaDevice.getUUID() }
+                    'url': apiUrl + 'GetDNSConnection'
                 })
                 .success(function () {
-                    deviceStatusService.setRegistrationStatus(true);
+                    $http({
+                            'method': 'get',
+                            'url': apiUrl + 'getDeviceValidation',
+                            'params': { id: $cordovaDevice.getUUID() }
+                        })
+                        .success(function() {
+                            deviceStatusService.setRegistrationStatus(true);
+                        })
+                        .error(function() {
+                            deviceStatusService.setRegistrationStatus(false);
+                            window.location = '#/register';
+                        });
+                    defer.resolve();
                 })
                 .error(function () {
+                    defer.resolve();
                     deviceStatusService.setRegistrationStatus(false);
-                    window.location = '#/register';
-                });
+                    window.location = '#/manageDevice';
+                });             
             };
 
             //----------------------------------------
@@ -65,7 +109,7 @@
 
                 $http({
                     'method': 'get',
-                    'url': window.apiUrl + 'GetUserData',
+                    'url': apiUrl + 'GetUserData',
                     'params': { id: idList.userId }
                 })
                 .success(function (response) {
@@ -102,7 +146,7 @@
 
                 $http({
                     'method': 'post',
-                    'url': window.apiUrl + 'UserLogon',
+                    'url': apiUrl + 'UserLogon',
                     'data': userModel
                 })
                 .success(function (response) {
@@ -142,7 +186,7 @@
 
                 $http({
                     'method': 'post',
-                    'url': window.apiUrl + 'PatientValidation',
+                    'url': apiUrl + 'PatientValidation',
                     'data': patientModel
                 })
                 .success(function (response) {
@@ -183,7 +227,7 @@
 
                 $http({
                     'method': 'post',
-                    'url': window.apiUrl + 'OrderMatching',
+                    'url': apiUrl + 'OrderMatching',
                     'data': orderModel
                 })
                 .success(function (response) {

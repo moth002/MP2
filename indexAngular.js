@@ -65,6 +65,10 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
             templateUrl: "views/home.html",
             controller: "HomeCtrl"
         })
+        .when("/manageDevice", {
+            templateUrl: "views/manageDevice.html",
+            controller: "DeviceStatusCtrl"
+        })
         .when("/register", {
             templateUrl: "views/register.html",
             controller: "DeviceStatusCtrl"
@@ -100,6 +104,6 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
 
     .constant('$ionicLoadingConfig', {
         template: '<div class="item-icon"><ion-spinner icon="bubbles"/></div>'
-    });
+    })
 
 

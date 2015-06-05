@@ -41,6 +41,15 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: white;
   text-indent: 0; }
 
+.card .item.item-input input {
+    /*background-color: #74B5E4;*/
+    padding: 10Px;
+    /*color: white;*/
+    /*opacity: 0.6;*/ 
+    width: 95%;
+    border: 1px solid #74b5e4;
+}
+
 .item-input-wrapper {
   background: #74b5e4;
 } .item-input-wrapper input {

@@ -10,6 +10,8 @@
     <link href="css/index.css" rel="stylesheet"/>  
     <link href="css/ionic.eclair.theme.css" rel="stylesheet"/>
     <link href="css/animate.min.css" rel="stylesheet"/>
+    <link href="css/mfb.css" rel="stylesheet" />
+    <link href="css/mfb.eclair.theme.css" rel="stylesheet" />
 
     <!-- MPwithAngularJS references -->
     <script src="scripts/angular.min.js"></script>
@@ -21,7 +23,7 @@
     <script src="scripts/angular-touch.min.js"></script>
     <script src="scripts/angular-ui-router.min.js"></script>
     <script src="scripts/ionic.min.js"></script>
-    <script src="scripts/ionic-angular.min.js"></script>
+    <script src="scripts/ionic-angular.min.js"></script>   
 
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="cordova.js"></script>
@@ -56,7 +58,7 @@
     <script src="services/SliderPageService.js"></script>
     <script src="services/SubHeaderService.js"></script>
     <script src="services/WebEclairService.js"></script>
-
+    <script src="scripts/mfb-directive.js"></script>
 
 </head>
 <body>
@@ -69,11 +71,11 @@
             </h1>
             <button class="button button-icon ion-edit" style="color: #00539F;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>
         </ion-header-bar>
-        <ion-header-bar class="bar bar-subheader" ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
+        <ion-header-bar class="bar bar-subheader" ng-controller="DeviceStatusCtrl" ng-show="false">
             <button ng-controller="HeaderBtnCtrl" class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="addComment()">Comment</button>
         </ion-header-bar>
         <ion-content padding="false" class="scroll-content has-header" ng-controller="DeviceStatusCtrl"
-                     ng-class="{'has-subheader': device.hasSubheader, 'contentWithLogo': device.isRegistered == false, 'has-footer': device.isRegistered}">
+                     ng-class="{'has-subheader': false, 'contentWithLogo': device.isRegistered == false, 'has-footer': device.isRegistered}">
             <div class="progress-Bar" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">
                 <div class="slider-pager" ng-controller="SliderPageCtrl">
                     <div class="slider-pager-page" ng-repeat="slides in pages | filter:{visable : true}" ng-class="{active: slides.active}" id="{{slides.index}}">
@@ -82,7 +84,7 @@
                 </div>
             </div>
             <div ng-view></div>
-        </ion-content>       
+        </ion-content>
         <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">
             <div class="button-bar" ng-controller="FooterBtnCtrl">
                 <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
@@ -90,7 +92,7 @@
                 <button class="button button-footer icon-right ion-arrow-right-a" ng-show="mainButton.isVisible" ng-click="btnMain()">{{mainButton.title}}</button>
             </div>
         </ion-footer-bar>
-</ion-side-menu-content>
+    </ion-side-menu-content>
     <ion-side-menu class="sideMenu" side="left" ng-controller="SideMenuBtnCtrl">
         <div class="item item-divider">
             <div class="item item-toggle">
@@ -149,10 +151,16 @@
             </div>
         </ion-content>
         <div class="Sysmex-logo-box">
-            <img src="images/sysmex_logo.png" style="width: 108px; height: 35px;" />
+            <img src="images/sysmex_logo.png" style="width: 108px; height: 35px;"/>
         </div>
     </ion-side-menu>
 </ion-side-menus>
+
+    <nav mfb-menu position="br" effect="zoomin" 
+         active-icon="ion-close" resting-icon="ion-plus-round"
+         toggling-method="click" ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
+        <button mfb-button icon="ion-compose" label="Add comment" ng-controller="HeaderBtnCtrl" ng-click="addComment()"></button>
+    </nav>   
 
 </body>
 </html>

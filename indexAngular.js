@@ -6,7 +6,7 @@
     var controllers = angular.module('controllers', []);
 }());
 
-angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource', 'ngAnimate', 'services', 'controllers'])
+angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource', 'ngAnimate', 'ng-mfb', 'services', 'controllers'])
     .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate', 'webEclairService',
         function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate, webEclairService) {
             $ionicPlatform.ready(function () {

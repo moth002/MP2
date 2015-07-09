@@ -2,8 +2,8 @@
 
     <ion-list show-reorder="shouldShowEdit">
         <ion-item class="item">
-            <h4>{{'UserLabel' | translate}}</h4>
-            <h3 style="color: #00539F;">{{user.Name}}</h3>
+            <h4 style="color: #00539F;">{{'UserLabel' | translate}}</h4>
+            <h3 style="color: black;">{{user.Name}}</h3>
             <ion-option-button class="button-edit" ng-click="editButtons.user()">Edit</ion-option-button>
             <!--<ion-reorder-button class="ion-edit" style="color: #00539F"
                                     ng-click="editButtons.user()">
@@ -12,10 +12,10 @@
         <ion-item class="item item-thumbnail-right">
             <img ng-if="patient.Gender == 'Female'" src="./images/Female.png"/>
             <img ng-if="patient.Gender == 'Male'" src="./images/Male.png"/>
-            <h4>{{'PatientLabel' | translate}}</h4>
-            <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
-            <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
-            <h3 style="color: #00539F;">{{patient.Age}}</h3>
+            <h4 style="color: #00539F;">{{'PatientLabel' | translate}}</h4>
+            <h3 style="color: black;">{{patient.Name}} ({{patient.NHI}})</h3>
+            <h3 style="color: black;">{{patient.Gender}}, {{patient.DOB}},</h3>
+            <h3 style="color: black;">{{patient.Age}}</h3>
             <ion-option-button class="button-edit" ng-click="editButtons.patient()">Edit</ion-option-button>
             <!--<ion-reorder-button class="ion-edit" style="color: #00539F"
                                     ng-click="editButtons.patient()">
@@ -32,7 +32,7 @@
                     <button class="button" type="submit" ng-hide=true></button>
                 </form>
             </label>
-            <button class="button button-clear icon-left ion-camera" style="color: #0076BE;" ng-click="scanCode()">Scan</button>
+            <button class="button button-clear icon-left ion-camera" style="color: #00539F;" ng-click="scanCode()">Scan</button>
             <!--<div style="max-width: 70px; margin-left: 10px;">
                 <button class="button button-next ion-arrow-right-a button-switch" style="color: white;" ng-hide="userCodeForm.userCode.$invalid" ng-click="rightButtonClick()"></button>
                 <button class="button button-next ion-camera button-switch" style="color: white;" ng-show="userCodeForm.userCode.$invalid" ng-click="scanCode()"></button>

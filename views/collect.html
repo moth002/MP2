@@ -1,20 +1,20 @@
-﻿<div class="c1" ng-init="init()">
+﻿<div class="c1">
     <ion-list>
         <ion-item class="item">
-            <h4>{{'UserLabel' | translate}}</h4>
-            <h3 style="color: #00539F;">{{user.Name}}</h3>
+            <h4 style="color: #00539F;">{{'UserLabel' | translate}}</h4>
+            <h3 style="color: black">{{user.Name}}</h3>
         </ion-item>
         <ion-item class="item item-thumbnail-right">
             <img ng-if="patient.Gender == 'Female'" src="./images/Female.png" />
             <img ng-if="patient.Gender == 'Male'" src="./images/Male.png" />
-            <h4>{{'PatientLabel' | translate}}</h4>
-            <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
-            <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
-            <h3 style="color: #00539F;">{{patient.Age}}</h3>
+            <h4 style="color: #00539F;">{{'PatientLabel' | translate}}</h4>
+            <h3 style="color: black">{{patient.Name}} ({{patient.NHI}})</h3>
+            <h3 style="color: black">{{patient.Gender}}, {{patient.DOB}},</h3>
+            <h3 style="color: black">{{patient.Age}}</h3>
         </ion-item>
-        <ion-item class="item">
-            <h4>{{'OrderLabel' | translate}}</h4>
-            <h3 style="color: #00539F;">{{order.OrderId}}</h3>
+        <ion-item class="item item-text-wrap">
+            <h4 style="color: #00539F;">{{'OrderLabel' | translate}}</h4>
+            <h3 style="color: black">{{order.OrderId}}</h3>
         </ion-item>
     </ion-list>
 </div>
@@ -29,12 +29,12 @@
                 {{ item.name }}
             </div>
             <div class="button-bar">
-                <button class="button button-block button-card" style="border-right: 1px solid" ng-click="scanCode()">{{'ScanButton' | translate}}</button>
-                <button class="button button-block button-card" ng-click="rightButtonClick()">{{'CompleteButton' | translate}}</button>
+                <button class="button button-block button-card icon-top ion-camera" style="border-right: 1px solid" ng-click="scanCode()">{{'ScanButton' | translate}}</button>
+                <button class="button button-block button-card icon-right icon-right ion-arrow-right-a" ng-click="rightButtonClick()">{{'CompleteButton' | translate}}</button>
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <script id="dateTime-Confirm.html" type="text/ng-template">

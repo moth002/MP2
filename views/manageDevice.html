@@ -1,13 +1,13 @@
 ﻿<div class="c3">
     <div class="card">
         <form name="manageDeviceForm" ng-submit="updateDNS()">
-            <div class="item item-text-wrap" style="color: #00539F">
+            <div class="item item-text-wrap" style="font-weight: normal; color: black; border: 0">
                 Please enter Eclair host domain name
             </div>
             <div class="list">
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label" style="color: #00539F;">Eclair server (include port)</span>
-                    <input name="dns" ng-model="dns" type="text" required>
+                    <span class="input-label" style="color: black;">Eclair server (include port)</span>
+                    <input name="dns" ng-model="dns" type="text" required capitalise>
                 </label>
             </div>
             <button type="submit" class="button button-block button-clear button-card">Amend</button>

@@ -1,18 +1,18 @@
 ﻿<div class="c3">
     <div class="card">
         <form name="adminLogon">
-            <div class="item item-text-wrap" style="color: #00539F">
+            <div class="item item-text-wrap" style="color: black; border: 0; font-weight: normal">
                 {{'DeviceRegistrationMessage' | translate}}
             </div>
             <div class="list">
-                <label class="item item-input item-stacked-label">
+                <label class="item item-input item-stacked-label" style="border: 0">
                     <span class="input-label form_error" style="width: 10px;" ng-show="adminLogon.$submitted && adminLogon.userCode.$invalid">*</span>
-                    <span class="input-label" style="color: #00539F; font-weight: bold;">{{'UserCodeLabel' | translate}}</span>
+                    <span class="input-label" style="color: black; font-weight: normal">{{'UserCodeLabel' | translate}}</span>
                     <input class="adminLogon_input" name="userCode" ng-model="userCode" type="text" required capitalise>
                 </label>
-                <label class="item item-input item-stacked-label">
+                <label class="item item-input item-stacked-label" style="border: 0">
                     <span class="input-label form_error" style="width: 10px;" ng-show="adminLogon.$submitted && adminLogon.password.$invalid">*</span>
-                    <span class="input-label" style="color: #00539F; font-weight: bold;">{{'PasswordLabel' | translate}}</span>
+                    <span class="input-label" style="color: black; font-weight: normal">{{'PasswordLabel' | translate}}</span>
                     <input class="adminLogon_input" name="password" ng-model="password" type="password" required>
                 </label>
             </div>

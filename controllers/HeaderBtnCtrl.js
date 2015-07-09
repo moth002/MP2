@@ -21,7 +21,8 @@
                 $scope.btnGoHome = function () {
                     $ionicPopup.confirm({
                         title: 'Log off',
-                        template: 'Are you sure you want to Log Off?'
+                        template: 'Are you sure you want to Log Off?',
+                        okType: 'button-footer'
                     }).then(function (res) {
                         if (res) {
                             window.location = '#/home';
@@ -32,7 +33,8 @@
                 $scope.optOutOfOrder = function () {
                     $ionicPopup.confirm({
                         title: 'Cancel Order Collection',
-                        template: 'Are you sure you want to cancel the collection of this order?'
+                        template: 'Are you sure you want to cancel the collection of this order?',
+                        okType: 'button-footer'
                     }).then(function (res) {
                         if (res) {
                             deviceStatusService.setHasSubheaderStatus(false);

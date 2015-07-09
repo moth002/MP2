@@ -1,6 +1,7 @@
-﻿angular.module('services')
-    .service('webEclairService', ['$http', '$q', 'globalIdService', '$ionicPopup', '$ionicLoading', '$timeout', '$cordovaDevice', 'deviceStatusService',
-        function ($http, $q, globalIdService, $ionicPopup, $ionicLoading, $timeout, $cordovaDevice, deviceStatusService) {
+﻿
+angular.module('services')
+    .service('webEclairService', ['$http', '$q', 'globalIdService', '$ionicPopup', '$ionicLoading', '$timeout', '$cordovaDevice', 'deviceStatusService', '$translate',
+        function ($http, $q, globalIdService, $ionicPopup, $ionicLoading, $timeout, $cordovaDevice, deviceStatusService, $translate) {
             var defer = $q.defer();
             var idList = globalIdService.getIDs();
             var apiUrl = localStorage.getItem('apiUrl');
@@ -12,25 +13,17 @@
                     'params': { id: $cordovaDevice.getUUID() }
                 })
                 .success(function (response) {
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                     window.location = '#/register';
                 })
                 .error(function (err, status) {
-                    $ionicPopup.alert({
-                        template: err.code,
-                        okType: 'button-footer'
-                    }).then(function () {
-                        //window.location = '#/';
-                    });
+                    window.location = '#/manageDevice';
                 });
             };
-            this.adminLogon = function(adminModel) {
-                $ionicLoading.show();
-                defer.promise.then(function () {
-                    $timeout(function () {
-                        $ionicLoading.hide();
-                    }, 1500);
-                });
-
+            this.adminLogon = function (adminModel) {
+                var deffered = $q.defer();
                 adminModel.deviceId = $cordovaDevice.getUUID();
 
                 $http({
@@ -40,11 +33,14 @@
                 })
                 .success(function () {
                     deviceStatusService.setRegistrationStatus(true);
-                    defer.resolve();
-                    window.location = '#/';
+                    deffered.resolve();
+                    window.location = '#/home';
                 })
                 .error(function (err, status) {
-                    defer.resolve();
+                    deffered.reject();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                     if (status === 404) {
                         $ionicPopup.alert({
                             templateUrl: 'usercodeAndPin-Warning.html',
@@ -61,51 +57,69 @@
                         });
                     }
                 });
-            };        
+                return deffered.promise;
+            };
             this.getDeviceValidation = function (dns) {
                 $ionicLoading.show();
-                defer.promise.then(function () {
+                var deffered = $q.defer();
+
+                if (dns || localStorage.getItem('apiUrl')) {
+                    apiUrl = dns ? "http://" + dns + "/Eclair/api/MobilePhlebotomy/" : localStorage.getItem('apiUrl');
+                    localStorage.setItem('apiUrl', apiUrl);
+                } else { // take me to manage device if there is no dns entered or the ROM field does not exist
+                    deffered.reject();
+                    deviceStatusService.setRegistrationStatus(true);
                     $timeout(function () {
                         $ionicLoading.hide();
-                    }, 500);
-                });
-                if (dns || localStorage.getItem('apiUrl')) {
-                    apiUrl = dns ? "http://" + dns + "/Eclair/api/MobilePhlebotomy/" : apiUrl;
-                    localStorage.setItem('apiUrl', apiUrl);
-                } else {
-                    apiUrl = '';
+                    }, 1000);
+                    window.location = '#/manageDevice';
+                    return deffered.promise;
                 };
 
                 $http({
                     'method': 'get',
                     'url': apiUrl + 'GetDNSConnection'
-                })
-                .success(function () {
+                }).then(function () {
                     $http({
-                            'method': 'get',
-                            'url': apiUrl + 'getDeviceValidation',
-                            'params': { id: $cordovaDevice.getUUID() }
-                        })
-                        .success(function() {
-                            deviceStatusService.setRegistrationStatus(true);
-                        })
-                        .error(function() {
-                            deviceStatusService.setRegistrationStatus(false);
-                            window.location = '#/register';
-                        });
-                    defer.resolve();
-                })
-                .error(function () {
-                    defer.resolve();
-                    deviceStatusService.setRegistrationStatus(false);
-                    window.location = '#/manageDevice';
-                });             
+                        'method': 'get',
+                        'url': apiUrl + 'getDeviceValidation',
+                        'params': { id: $cordovaDevice.getUUID() }
+                    }).then(function () { // device is registered
+                        deffered.resolve();
+                        deviceStatusService.setRegistrationStatus(true); // the Sysmex infinit at the bototm
+                    }, function () { // device is not registered
+                        deffered.reject();
+                        deviceStatusService.setRegistrationStatus(false);
+                        window.location = '#/register';
+                    })
+                    .finally(function () {
+                        $translate.use('ENZ');
+                        $translate.refresh();
+                    });
+                }, function () { // wrong dns entered
+                    deffered.reject();
+                    localStorage.removeItem('apiUrl');
+
+                    $ionicPopup.alert({
+                        template: "<div class='item item-icon-left' style='border: 0; white-space: normal; background-color: transparent; padding: 8px 8px 8px 65px;'><i class='icon ion-alert-circled' style='color: #FCC810 ; font-size: 45px;'></i>The DNS you entered is not valid</div>",
+                        okType: 'button-footer'
+                    });
+
+                }).finally(function() {
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
+                });
+
+                return deffered.promise;
             };
 
             //----------------------------------------
-            // needs to validate with token as well, to be used with next patient
+            // needs to validate with token as well, to be used such that a logged in user will not be asked to re-enter their passcode
             //----------------------------------------
-            this.getUserData = function ($scope) {
+            this.getUserData = function () {
+
+                var deffered = $q.defer();
 
                 $http({
                     'method': 'get',
@@ -113,34 +127,36 @@
                     'params': { id: idList.userId }
                 })
                 .success(function (response) {
-                    $scope.user = response;
+                    deffered.resolve(response);
+                    //$scope.user = response;
                 })
                 .error(function (err, status) {
                     //defer.resolve();
+                    deffered.reject();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                     if (status === 401) {
                         $ionicPopup.alert({
                             templateUrl: 'unauthorised-error.html',
                             okType: 'button-footer'
                         }).then(function () {
-                            window.location = '#/';
+                            window.location = '#/home';
                         });
                     } else {
                         $ionicPopup.alert({
                             template: err.Message,
                             okType: 'button-footer'
                         }).then(function () {
-                            window.location = '#/';
+                            window.location = '#/home';
                         });
                     }
                 });
+                return deffered.promise;
             };
-            this.userLogon = function (userModel, $scope) {
-                $ionicLoading.show();
-                defer.promise.then(function () {
-                    $timeout(function () {
-                        $ionicLoading.hide();
-                    }, 1500);
-                });
+            this.userLogon = function (userModel) {
+
+                var deferred = $q.defer();
 
                 userModel.deviceId = $cordovaDevice.getUUID();
 
@@ -150,37 +166,36 @@
                     'data': userModel
                 })
                 .success(function (response) {
-                    $scope.user = response;
                     globalIdService.setIDs(userModel.barcode, '', '', response.Token);
-                    defer.resolve();
+                    deferred.resolve(response);
                 })
                 .error(function (err, status) {
-                    defer.resolve();
+                    deferred.reject();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                     if (status === 404) {
                         $ionicPopup.alert({
                             templateUrl: 'usercodeAndPin-Warning.html',
                             okType: 'button-footer'
                         }).then(function () {
-                            window.location = '#/';
+                            window.location = '#/home';
                         });
                     } else {
                         $ionicPopup.alert({
                             template: err.Message,
                             okType: 'button-footer'
                         }).then(function () {
-                            window.location = '#/';
+                            window.location = '#/home';
                         });
                     }
                 });
-            };
-            this.patientValidation = function (patientModel, $scope) {
-                $ionicLoading.show();
 
-                defer.promise.then(function () {
-                    $timeout(function () {
-                        $ionicLoading.hide();
-                    }, 1500);
-                });
+                return deferred.promise;
+            };
+            this.patientValidation = function (patientModel) {
+
+                var deffered = $q.defer();
 
                 patientModel.nhi = patientModel.nhi || idList.patientId;
 
@@ -190,56 +205,59 @@
                     'data': patientModel
                 })
                 .success(function (response) {
-                    $scope.patient = response;
+                    //$scope.patient = response;
                     globalIdService.setIDs(idList.userId, patientModel.nhi, '', idList.tokenId);
-                    defer.resolve();
+                    deffered.resolve(response);
                 })
-                .error(function(err, status) {
-                    defer.resolve();
+                .error(function (err, status) {
+                    deffered.reject();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                     if (status === 404)
                         $ionicPopup.alert({
                             templateUrl: "noPatient-warning.html",
                             okType: 'button-footer'
-                        }).then(function() {
+                        }).then(function () {
                             window.location = '#/user/' + idList.userId + '/pin/';
                         });
                     if (status === 401) {
                         $ionicPopup.alert({
                             templateUrl: 'unauthorised-error.html',
                             okType: 'button-footer'
-                        }).then(function() {
-                            window.location = '#/';
+                        }).then(function () {
+                            window.location = '#/home';
                         });
                     }
                 });
+                return deffered.promise;
             };
-            this.orderMatching = function (orderModel, $scope) {
-                $ionicLoading.show();
+            this.orderMatching = function (orderModel) {
 
-                defer.promise.then(function () {
-                    $timeout(function () {
-                        $ionicLoading.hide();
-                    }, 1500);
-                });
+                var deferred = $q.defer();
 
                 orderModel.patientId = idList.patientId;
                 orderModel.orderId = orderModel.orderId || idList.orderId;
 
                 $http({
                     'method': 'post',
-                    'url': apiUrl + 'OrderMatching',
+                    'url': apiUrl + 'OrderMatch',
                     'data': orderModel
                 })
                 .success(function (response) {
-                    $scope.order = response;
+                    //$scope.order = response;
+                    response.chkboxSpecimens = [];
                     globalIdService.setIDs(idList.userId, idList.patientId, orderModel.orderId, idList.tokenId);
-                    defer.resolve();
-                    for (var i = 0; i < $scope.order.Specimens.length; i++) {
-                        $scope.model.chkboxSpecimens.push({ name: $scope.order.Specimens[i], code: $scope.order.Barcodes[i], checked: undefined });
+                    for (var i = 0; i < response.Specimens.length; i++) {
+                        response.chkboxSpecimens.push({ name: response.Specimens[i], code: response.Barcodes[i], checked: undefined });
                     }
+                    deferred.resolve(response);
                 })
                 .error(function (err, status) {
-                    defer.resolve();
+                    deferred.reject();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
                     if (status === 404)
                         $ionicPopup.alert({
                             templateUrl: "mismatched-error.html",
@@ -252,7 +270,40 @@
                             templateUrl: 'unauthorised-error.html',
                             okType: 'button-footer'
                         }).then(function () {
-                            window.location = '#/';
+                            window.location = '#/home';
+                        });
+                    }
+                });
+
+                return deferred.promise;
+            };
+            this.cancelOrderCollect = function (orderModel) {
+
+                $http({
+                    'method': 'post',
+                    'url': apiUrl + 'CancelOrderCollect',
+                    'data': orderModel
+                })
+                .success(function (response) {
+                    globalIdService.setIDs(idList.userId, idList.patientId, '', idList.tokenId);
+                    //defer.resolve();
+                    window.location = '#/patient/' + idList.patientId;
+                })
+                .error(function (err, status) {
+                    //defer.resolve();
+                    if (status === 404)
+                        $ionicPopup.alert({
+                            templateUrl: "mismatched-error.html",
+                            okType: 'button-footer'
+                        }).then(function () {
+                            window.location = '#/patient/' + idList.patientId;
+                        });
+                    if (status === 401) {
+                        $ionicPopup.alert({
+                            templateUrl: 'unauthorised-error.html',
+                            okType: 'button-footer'
+                        }).then(function () {
+                            window.location = '#/home';
                         });
                     }
                 });

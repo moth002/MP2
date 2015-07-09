@@ -14,7 +14,7 @@
                             template: "Scanning failed: " + error,
                             okType: 'button-footer'
                         }).then(function () {
-                            window.location = '#/';
+                            window.location = '#/home';
                         });
                     }
                 ));

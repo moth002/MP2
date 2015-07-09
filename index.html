@@ -22,8 +22,9 @@
     <script src="scripts/angular-sanitize.min.js"></script>
     <script src="scripts/angular-touch.min.js"></script>
     <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="scripts/angular-translate.min.js"></script>
     <script src="scripts/ionic.min.js"></script>
-    <script src="scripts/ionic-angular.min.js"></script>   
+    <script src="scripts/ionic-angular.min.js"></script>
 
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="cordova.js"></script>
@@ -48,6 +49,7 @@
     <script src="directives/Directives.js"></script>
     <script src="services/ChbxSpecimenService.js"></script>
     <script src="services/CordovaReadyService.js"></script>
+    <script src="services/CustomTranslateLoader.js"></script>
     <script src="services/DeviceStatusService.js"></script>
     <script src="services/FooterBtnService.js"></script>
     <script src="services/GlobalIdService.js"></script>
@@ -68,13 +70,15 @@
             <h1 class="title">
                 <img src="./Content/images/product_logo.png" width="127" height="20"/>
             </h1>
-            <button class="button button-icon ion-edit" style="color: #00539F;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>
+            <!--<button class="button button-icon ion-more" style="color: #00539F;" ng-controller="DeviceStatusCtrl" ng-show=true ng-click="openPopover($event)"></button>-->
+            <!--<button class="button button-icon ion-edit" style="color: #00539F;" ng-show="editButton.isVisible" ng-click="btnEditList()"></button>-->
         </ion-header-bar>
         <ion-header-bar class="bar bar-subheader" ng-controller="DeviceStatusCtrl" ng-show="false">
             <button ng-controller="HeaderBtnCtrl" class="button button-icon button-block button-card ion-plus-round" style="margin: 0" ng-click="addComment()">Comment</button>
         </ion-header-bar>
         <ion-content padding="false" class="scroll-content has-header" ng-controller="DeviceStatusCtrl"
-                     ng-class="{'has-subheader': false, 'contentWithLogo': device.isRegistered == false, 'has-footer': device.isRegistered}">
+                     ng-class="{'has-subheader': false, 'contentWithLogo': device.isRegistered == false, 'has-footer': false}">
+            <!--ng-class="{'has-subheader': false, 'contentWithLogo': device.isRegistered == false, 'has-footer': device.isRegistered}">-->
 
             <div class="progress-Bar" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">
                 <div class="slider-pager" ng-controller="SliderPageCtrl">
@@ -85,18 +89,20 @@
             </div>
             <div ng-view></div>
         </ion-content>
-        <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">
+        <!--<ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="DeviceStatusCtrl" ng-show="device.isRegistered">-->
+        <ion-footer-bar class="bar-light" style="padding: 0;" ng-controller="DeviceStatusCtrl" ng-show=false>
             <div class="button-bar" ng-controller="FooterBtnCtrl">
                 <button class="button button-footer icon-left ion-arrow-left-a" ng-show="leftButton.isVisible" ng-click="btnLeft()">{{leftButton.title}}</button>
                 <button class="button button-footer" ng-show="middleButton.isVisible" ng-click="btnMiddle()">{{middleButton.title}}</button>
                 <button class="button button-footer icon-right ion-arrow-right-a" ng-show="mainButton.isVisible" ng-click="btnMain()">{{mainButton.title}}</button>
             </div>
         </ion-footer-bar>
-        <nav mfb-menu position="br" effect="zoomin"
-             active-icon="ion-close" resting-icon="ion-plus-round"
-             toggling-method="click" ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
-            <button mfb-button icon="ion-compose" label="Add comment" ng-controller="HeaderBtnCtrl" ng-click="addComment()"></button>
-        </nav> 
+        <nav mfb-menu position="tr" effect="slidein-spring"
+             active-icon="ion-minus-round" resting-icon="ion-plus-round"
+             toggling-method="click"  ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
+            <button mfb-button mfb-button-close icon="ion-compose" label="Add comment" ng-controller="HeaderBtnCtrl" ng-click="addComment()"></button>
+            <button mfb-button mfb-button-close icon="ion-close" label="Cancel collect" ng-controller="HeaderBtnCtrl" ng-click="optOutOfOrder()"></button>
+        </nav>
     </ion-side-menu-content>
     <ion-side-menu class="sideMenu" side="left" ng-controller="SideMenuBtnCtrl">
         <div class="item item-divider">
@@ -289,12 +295,19 @@
 </script>
 
 <script id="my-popover.html" type="text/ng-template">
-    <ion-popover-view>
+    <ion-popover-view style="height: 160px;">
         <ion-header-bar>
-            <h1 class="title">My Popover Title</h1>
+            <h1 class="title">Select an Option</h1>
         </ion-header-bar>
         <ion-content>
-            Hello!
+            <div class="list">
+                <div class="item" style="color: #00A65E;">
+                    Add a comment
+                </div>
+                <div class="item" style="color: #00A65E;">
+                    Cancel the collection
+                </div>
+            </div>
         </ion-content>
     </ion-popover-view>
 </script>

@@ -2,12 +2,12 @@
 <div class="c1" ng-init="model = { patientId: ''}">
     <ion-list show-reorder="shouldShowEdit">
         <ion-item class="item">
-            <h4>User</h4>
+            <h4>{{'UserLabel' | translate}}</h4>
             <h3 style="color: #00539F;">{{user.Name}}</h3>
-            <!--<ion-option-button class="button-assertive">Edit</ion-option-button>-->
-            <ion-reorder-button class="ion-edit" style="color: #00539F"
+            <ion-option-button class="button-edit" ng-click="editButtons.user()">Edit</ion-option-button>
+            <!--<ion-reorder-button class="ion-edit" style="color: #00539F"
                                 ng-click="editButtons.user()">
-            </ion-reorder-button>
+            </ion-reorder-button>-->
         </ion-item>
     </ion-list>
 </div>
@@ -16,10 +16,17 @@
     <div class="list">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
-                <input ng-model="model.patientId" type="text" placeholder="Scan or enter patient NHI" capitalise />
+                <form name="patientForm" ng-submit="rightButtonClick()">
+                    <input name="patientId" ng-model="model.patientId" type="text" placeholder="{{'PatientIdPlaceholder' | translate}}" required capitalise />
+                    <button class="button" type="submit" ng-hide=true></button>
+                </form>
             </label>
-            <button class="button button-clear icon-left ion-camera" style="color: #74B5E4;" ng-click="scanCode()">Scan</button>
-        </div>
+            <button class="button button-clear icon-left ion-camera" style="color: #0076BE;" ng-click="scanCode()">Scan</button>
+            <!--<div style="max-width: 70px; margin-left: 10px;">
+            <button class="button button-next ion-arrow-right-a button-switch" style="color: white;" ng-hide="userCodeForm.userCode.$invalid" ng-click="rightButtonClick()"></button>
+            <button class="button button-next ion-camera button-switch" style="color: white;" ng-show="userCodeForm.userCode.$invalid" ng-click="scanCode()"></button>
+        </div>-->
+        </div>  
     </div>
 </div>
   

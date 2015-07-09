@@ -37,7 +37,7 @@
 
                     //setTimeout(function () { // oddly the timer is needed to ensure all services are available.
                     cordovaReadyService(window.bluetoothSerial.list($scope.getList, $scope.falure));
-                    //}, 2000);
+                    //}, 1000);
                 }
 
                 $scope.onPrinterSelected = function (selectedPrinter) {
@@ -60,7 +60,7 @@
 
                 $scope.btnHome = function () {
                     $ionicSideMenuDelegate.toggleLeft();
-                    window.location = '#/';
+                    window.location = '#/home';
                 };
 
                 $scope.btnBluetooth = function () {

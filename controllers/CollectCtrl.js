@@ -1,23 +1,32 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CollectCtrl", [
-        '$scope', 'webEclairService', 'footerBtnService', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService', 'labelPrintService', 'deviceStatusService',
-        function ($scope, webEclairService, footerBtnService, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService, labelPrintService, deviceStatusService) {
+        '$scope', 'webEclairService', '$ionicLoading', 'cordovaReadyService', '$ionicPopup', 'sliderPageService', 'chkbxSpecimenService', 'headerBtnService', 'labelPrintService', 'deviceStatusService', '$timeout',
+        function ($scope, webEclairService, $ionicLoading, cordovaReadyService, $ionicPopup, sliderPageService, chkbxSpecimenService, headerBtnService, labelPrintService, deviceStatusService, $timeout) {
+
+            var stopLoadingSpinner = function () {
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 1000);
+            };
 
             $scope.model = {
                 message: "Scan the collected and labelled samples",
-                chkboxSpecimens: [],
+                //chkboxSpecimens: [],
                 dateTime: undefined
             }
 
+            // Progress bar indicator
             sliderPageService.setPageActive(4);
             sliderPageService.setReschedule(false);
 
-            $scope.shouldShowEdit = false;
+            // No longer required
+            //$scope.shouldShowEdit = false;
 
-            headerBtnService.setEditButton(false, null);
+            // No longer required
+            //headerBtnService.setEditButton(false, null);
 
+            // Displays extra menu for mfb or popover icon
             deviceStatusService.setHasSubheaderStatus(true);
-
 
             var orderModel = {
                 orderId: null,
@@ -29,11 +38,22 @@
                 scheme: 'NHI'
             }
 
-            webEclairService.getUserData($scope);
-            webEclairService.orderMatching(orderModel, $scope);
-            webEclairService.patientValidation(patientModel, $scope);
+            $ionicLoading.show();
+            webEclairService.orderMatching(orderModel)
+                .then(function (response) {
+                    $scope.order = response;
+                });
+            webEclairService.patientValidation(patientModel)
+                .then(function (response) {
+                    $scope.patient = response;
+                });
+            webEclairService.getUserData()
+                .then(function (response) {
+                    $scope.user = response;
+                    stopLoadingSpinner(); 
+                });
 
-            var rightButtonClick = function () {
+            $scope.rightButtonClick = function () {
                 var d = new Date();
                 $scope.model.dateTime = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
                 $ionicPopup.prompt({
@@ -51,12 +71,12 @@
                             // Returning a value will cause the promise to resolve with the given value.
                             if ($scope.model.dateTime) {
                                 var needToReschedule = false;
-                                $scope.model.chkboxSpecimens.forEach(function (item) {
+                                $scope.order.chkboxSpecimens.forEach(function (item) {
                                     if (item.checked === undefined) {
                                         needToReschedule = true;
                                     }
                                 });
-                                chkbxSpecimenService.setSpecimenList($scope.model.chkboxSpecimens);
+                                chkbxSpecimenService.setSpecimenList($scope.order.chkboxSpecimens);
                                 labelPrintService.printOrderReciept($scope.patient.NHI, $scope.patient.Name, $scope.patient.DOB, $scope.user.Name);
                                 window.location = needToReschedule ? '#/schedule' : '#/complete/' + $scope.model.dateTime;
                             }
@@ -65,8 +85,8 @@
                 });
             };
 
-            footerBtnService.setMainBtn('Next', true, rightButtonClick);
-
+            // No longer required
+                //footerBtnService.setMainBtn('Complete', true, $scope.rightButtonClick);
 
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(

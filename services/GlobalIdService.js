@@ -6,7 +6,7 @@
             orderId: '',
             tokenId: '',
             printerId: '',
-            apiUrl: ''
+            previousActivable: ''
         };
 
         return {
@@ -27,6 +27,9 @@
             },
             isPrinterPaired: function() {
                 return idList.printerId !== '';
+            },
+            setPreviousActivable: function (pA) {
+                idList.previousActivable = pA;
             }
         }
 

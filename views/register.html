@@ -1,22 +1,22 @@
 ﻿<div class="c3">
-    <div class="card" style="opacity: 0.85;">
+    <div class="card">
         <form name="adminLogon">
             <div class="item item-text-wrap" style="color: #00539F">
-                This device is not registered. Please login as administrator to register the device.
+                {{'DeviceRegistrationMessage' | translate}}
             </div>
             <div class="list">
                 <label class="item item-input item-stacked-label">
                     <span class="input-label form_error" style="width: 10px;" ng-show="adminLogon.$submitted && adminLogon.userCode.$invalid">*</span>
-                    <span class="input-label" style="color: #00539F; font-weight: bold;">User code</span>
+                    <span class="input-label" style="color: #00539F; font-weight: bold;">{{'UserCodeLabel' | translate}}</span>
                     <input class="adminLogon_input" name="userCode" ng-model="userCode" type="text" required capitalise>
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label form_error" style="width: 10px;" ng-show="adminLogon.$submitted && adminLogon.password.$invalid">*</span>
-                    <span class="input-label" style="color: #00539F; font-weight: bold;">Password</span>
+                    <span class="input-label" style="color: #00539F; font-weight: bold;">{{'PasswordLabel' | translate}}</span>
                     <input class="adminLogon_input" name="password" ng-model="password" type="password" required>
                 </label>
             </div>
-            <button class="button button-block button-clear button-card" ng-click="logonAdmin()">Logon</button>
+            <button class="button button-block button-clear button-card" ng-click="logonAdmin()">{{'LogonButton' | translate}}</button>
         </form>
     </div>
 </div>

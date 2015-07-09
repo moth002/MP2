@@ -1,28 +1,35 @@
 ﻿ angular.module('mobilePhlebotomy')
     .controller("OrderCtrl", [
-        '$scope', 'webEclairService', '$routeParams', 'footerBtnService', 'labelPrintService', 'headerBtnService', 'sliderPageService',
-        function ($scope, webEclairService, $routeParams, footerBtnService, labelPrintService, headerBtnService, sliderPageService) {
-            
-            $scope.emptyInput = true;
-            $scope.isEmptyInput = function () {
-                return $scope.emptyInput;
+        '$scope', 'webEclairService', '$routeParams', '$ionicLoading', 'labelPrintService', 'headerBtnService', 'sliderPageService', 'deviceStatusService', '$timeout',
+        function ($scope, webEclairService, $routeParams, $ionicLoading, labelPrintService, headerBtnService, sliderPageService, deviceStatusService, $timeout) {
+
+            var stopLoadingSpinner = function () {
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 1000);
             };
 
+            //$scope.emptyInput = true;
+            //$scope.isEmptyInput = function () {
+            //    return $scope.emptyInput;
+            //};
+
+            // Progress bar indicator
             sliderPageService.setPageActive(3);
             sliderPageService.setReschedule(false);
 
-            $scope.shouldShowEdit = false;
-            $scope.editButtons = headerBtnService.getEditBtnClicks();
-            var editListAllowed = function () {
-                $scope.shouldShowEdit = !$scope.shouldShowEdit;
-            }
-            headerBtnService.setEditButton(true, editListAllowed);
+            // Possibly no longer needed to show an edit icon in the header bar
+                //$scope.shouldShowEdit = false;
+                //$scope.editButtons = headerBtnService.getEditBtnClicks(); // no edits here
+                //var editListAllowed = function () {
+                //    $scope.shouldShowEdit = !$scope.shouldShowEdit;
+                //}
+                //headerBtnService.setEditButton(true, editListAllowed);
 
-            var rightButtonClick = function () {
+            // Maybe change the name to goButtonClick or doneButtonClick. Also includes shaking animation, timeout for ng-show and ng-hide
+            $scope.rightButtonClick = function () {
                 window.location = '#/collect';
             };
-
-            footerBtnService.setMainBtn('Collect', true, rightButtonClick);
 
             $scope.printLabels = function () {
                 /////// ------------------------
@@ -44,16 +51,40 @@
 
             var orderModel = {
                 orderId: $routeParams.orderId,
-                patientId: null
+                patientId: null,
+                previousActivable: ''
             }
             
             var patientModel = {
                 nhi: null,
                 scheme: 'NHI'
             }
-            webEclairService.getUserData($scope);
-            webEclairService.orderMatching(orderModel, $scope);
-            webEclairService.patientValidation(patientModel, $scope);         
+
+            //$ionicLoading.show();
+            webEclairService.orderMatching(orderModel)
+                .then(function (response) {
+                    $scope.order = response;
+                    orderModel.previousActivable = $scope.order.PreviousActivable; // stores original activable value
+                    var cancelOrderCollectClick = function () { // defines button click method
+                        webEclairService.cancelOrderCollect(orderModel);
+                    }
+                    headerBtnService.setCancelCollectBtn(cancelOrderCollectClick);
+
+                    // Displays extra menu for mfb or popover icon
+                    deviceStatusService.setHasSubheaderStatus(true);
+                });
+            webEclairService.patientValidation(patientModel)
+                .then(function (response) {
+                    $scope.patient = response;
+                });
+            webEclairService.getUserData()
+                .then(function (response) {
+                    $scope.user = response;
+                    stopLoadingSpinner(); 
+                });
+
+            // No longer required
+                //footerBtnService.setMainBtn('Collect', true, $scope.rightButtonClick);
 
         }
     ]);

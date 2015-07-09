@@ -3,9 +3,21 @@
     <div class="list">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
-                <input ng-model="model.userId" type="text" placeholder="Scan or enter your ID" capitalise />
+                <form name="userCodeForm" ng-submit="rightButtonClick()">
+                    <input name="userCode" ng-model="model.userId" type="text" placeholder="{{'UserIdPlaceholder' | translate}}" required capitalise/>
+                    <button class="button" type="submit" ng-hide=true></button>
+                </form>
             </label>
-            <button class="button button-clear icon-left ion-camera" style="color: #74B5E4;" ng-click="scanCode()">Scan</button>
+            <button class="button button-clear icon-left ion-camera" style="color: #0076BE;" ng-click="scanCode()">Scan</button>
+            <!--<div style="max-width: 70px; margin-left: 10px;">
+                <button class="button button-next ion-arrow-right-a button-switch" style="color: white;" ng-hide="userCodeForm.userCode.$invalid" ng-click="rightButtonClick()"></button>
+                <button class="button button-next ion-camera button-switch" style="color: white;" ng-show="userCodeForm.userCode.$invalid" ng-click="scanCode()"></button>
+            </div>-->
+        </div>
+    </div>
+    <div class="list">
+        <div class="item item-body" style="padding: 0 10px; border: 0;">
+            <img class="full-image" src="./Content/images/ScanTips.png" />
         </div>
     </div>
 </div>

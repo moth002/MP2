@@ -18,6 +18,10 @@
             },
             setHasFooterStatus: function (s) {
                 device.hasFooter = s;
+            },
+            resetDeviceStatus: function () {
+                device.isRegistered = false; device.hasFooter = false; device.hasSubheader = false;
+                return device;
             }
         }
 });

@@ -6,7 +6,18 @@
     var controllers = angular.module('controllers', []);
 }());
 
-angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource', 'ngAnimate', 'ng-mfb', 'services', 'controllers'])
+angular.module("mobilePhlebotomy",
+    [
+        'ionic',
+        'ngCordova',
+        'ngRoute',
+        'ngResource',
+        'ngAnimate',
+        'ng-mfb',
+        'services',
+        'controllers',
+        'pascalprecht.translate'
+    ])
     .run(['$ionicPlatform', 'globalIdService', '$injector', 'cordovaReadyService', '$rootScope', '$ionicScrollDelegate', 'webEclairService',
         function ($ionicPlatform, globalIdService, $injector, cordovaReadyService, $rootScope, $ionicScrollDelegate, webEclairService) {
             $ionicPlatform.ready(function () {
@@ -26,7 +37,7 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
                 //ionic.Platform.isFullScreen = true;
                 //ionic.Platform.showStatusBar(false);
 
-                webEclairService.getDeviceValidation();
+                //webEclairService.getDeviceValidation();
 
             });
 
@@ -58,10 +69,19 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
                 webEclairService.getDeviceValidation();
             });
 
+            //$rootScope.$on('$translateChangeError', function () {
+            //    alert('hello');
+            //});
+
     }])
 
-    .config(["$routeProvider", function ($routeProvider) {
-        $routeProvider.when("/", {
+    .config(["$routeProvider", '$translateProvider', function ($routeProvider, $translateProvider) {
+
+        $translateProvider
+                //.preferredLanguage('ENZ')
+                .useLoader('customTranslateLoader', {});
+
+        $routeProvider.when("/home", {
             templateUrl: "views/home.html",
             controller: "HomeCtrl"
         })
@@ -73,7 +93,7 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
             templateUrl: "views/register.html",
             controller: "DeviceStatusCtrl"
         })
-        .when("/user/:usercode/pin/:pincode?", {
+        .when("/user/:usercode?/pin/:pincode?", {
             templateUrl: "views/user.html",
             controller: "UserCtrl"
         })
@@ -98,7 +118,7 @@ angular.module("mobilePhlebotomy", ['ionic', 'ngCordova', 'ngRoute', 'ngResource
             controller: "ScheduleCtrl"
         })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/home'
         });
     }])
 

@@ -6,6 +6,7 @@
                 //$scope.device = deviceStatusService.getDeviceStatus();
 
                 $scope.editButton = headerBtnService.getEditButton();
+                $scope.cancelOrderCollectButton = headerBtnService.getCancelCollectBtn();
 
                 //$scope.subHeader = headerBtnService.getSubHeader();
 
@@ -23,10 +24,22 @@
                         template: 'Are you sure you want to Log Off?'
                     }).then(function (res) {
                         if (res) {
-                            window.location = '#/';
+                            window.location = '#/home';
                         }
                     });
                 };
+
+                $scope.optOutOfOrder = function () {
+                    $ionicPopup.confirm({
+                        title: 'Cancel Order Collection',
+                        template: 'Are you sure you want to cancel the collection of this order?'
+                    }).then(function (res) {
+                        if (res) {
+                            deviceStatusService.setHasSubheaderStatus(false);
+                            $scope.cancelOrderCollectButton.click();
+                        }
+                    });
+                }
 
                 $scope.addComment = function() {
                     $scope.commentModal = $ionicPopup.show({

@@ -16,7 +16,9 @@
             deviceStatusService.setHasSubheaderStatus(false);
 
             var deferModal = $q.defer();
-            var rightButtonClick = function () {
+
+            $scope.rightButtonClick = function () {
+                cordova.plugins.Keyboard.close();
                 if ($scope.model.userId) {
                     $scope.openModal();
                     deferModal.promise.then(function (pinCode) {
@@ -30,7 +32,7 @@
                 }
             };
 
-            footerBtnService.setMainBtn('Next', true, rightButtonClick);
+            footerBtnService.setMainBtn('Next', true, $scope.rightButtonClick);
 
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(

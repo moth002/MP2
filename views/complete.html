@@ -1,13 +1,13 @@
 ﻿<div class="c1" ng-init="init()">
     <div class="list">
         <div class="item item-text-wrap">
-            <h4>User</h4>
+            <h4>{{'UserLabel' | translate}}</h4>
             <h3 style="color: #00539F;">{{user.Name}}</h3>
         </div>
         <div class="item item-thumbnail-right">
             <img ng-if="patient.Gender == 'Female'" src="./images/Female.png" />
             <img ng-if="patient.Gender == 'Male'" src="./images/Male.png" />
-            <h4>Patient</h4>
+            <h4>{{'PatientLabel' | translate}}</h4>
             <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
             <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
             <h3 style="color: #00539F;">{{patient.Age}}</h3>
@@ -15,10 +15,13 @@
     </div>
 </div>
 <div class="c3">
-    <div class="list">
-        <div class="item item-text-wrap item-icon-left" style="border: 0;">
-            <i class="icon ion-android-checkmark-circle" style="color: #68BD49; font-size: 45px;"></i>
-            New order <span style="color: #00539F">95876</span> created. Collection due <span style="color: #00539F">{{ dateTime }}</span>
+    <div class="card">
+        <div class="list" style="margin: 0 20px;">
+            <div class="item item-text-wrap item-icon-left" style="border: 0;">
+                <i class="icon ion-android-checkmark-circle" style="color: #68BD49; font-size: 45px;"></i>
+                New order <span style="color: #00539F">95876</span> created. Collection due <span style="color: #00539F">{{ dateTime }}</span>
+            </div>
+            <button class="button button-block button-card" ng-click="rightButtonClick()">Next Patient</button>
         </div>
     </div>
 </div>

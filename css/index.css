@@ -33,10 +33,10 @@
 }
 
 .contentWithLogo {
-  background-image: url('../images/eclair_logon_footer.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom;
+    background-image: url('../images/eclair_logon_footer.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 .Sysmex-logo-box {
@@ -81,6 +81,7 @@
     /* Inner content */
     padding: 4%;
     z-index: 10;
+    opacity: 0.85;
 }
 .error-message {
     margin-top: 30px;

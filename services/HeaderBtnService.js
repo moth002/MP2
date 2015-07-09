@@ -10,7 +10,7 @@
                 template: 'Are you sure you want to Log Off?'
             }).then(function (res) {
                 if (res) {
-                    window.location = '#/';
+                    window.location = '#/home';
                 }
             });
         };
@@ -35,6 +35,10 @@
             isVisible: false
         };
 
+        var cancelCollectButton = {
+            click: null
+        }
+
         return {
             getEditButton: function () {
                 return editButton;
@@ -52,6 +56,12 @@
             },
             setSubHeaderVisible: function (v) {
                 subHeader.isVisible = v;
+            },
+            getCancelCollectBtn: function () {
+                return cancelCollectButton;
+            },
+            setCancelCollectBtn: function (c) {
+                cancelCollectButton.click = c;
             }
         }
 }]);

@@ -1,8 +1,15 @@
 ﻿angular.module('mobilePhlebotomy')
     .controller("CompleteCtrl", [
-        '$scope', '$routeParams', 'webEclairService', 'footerBtnService', 'deviceStatusService', 'sliderPageService',
-        function ($scope, $routeParams, webEclairService, footerBtnService, deviceStatusService, sliderPageService) {
+        '$scope', '$routeParams', 'webEclairService', 'footerBtnService', 'deviceStatusService', 'sliderPageService', '$ionicLoading', '$timeout',
+        function ($scope, $routeParams, webEclairService, footerBtnService, deviceStatusService, sliderPageService, $ionicLoading, $timeout) {
 
+            var stopLoadingSpinner = function () {
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 1000);
+            };
+
+            // Progress bar indicator
             sliderPageService.setPageActive(6);
             sliderPageService.setReschedule(false);
 
@@ -14,15 +21,25 @@
                 scheme: 'NHI'
             }
 
-            webEclairService.getUserData($scope);
-            webEclairService.patientValidation(patientModel, $scope);
+            $ionicLoading.show();
+            webEclairService.patientValidation(patientModel)
+                .then(function (response) {
+                    $scope.patient = response;
+                });
+            webEclairService.getUserData()
+                .then(function (response) {
+                    $scope.user = response;
+                    stopLoadingSpinner(); 
+                });
 
-            var rightButtonClick = function () {
-                window.location = '#/user/so' + '/pin/';
+            $scope.rightButtonClick = function () {
+                window.location = '#/user//pin/';
             };
 
-            footerBtnService.setMainBtn('Next Patient', true, rightButtonClick);
+            // No longer required ???
+                //footerBtnService.setMainBtn('Next Patient', true, rightButtonClick);
 
+            // Removes display of extra menu for mfb or popover icon
             deviceStatusService.setHasSubheaderStatus(false);
         }
     ]);

@@ -1,53 +1,47 @@
 ﻿<div class="c1">
     <ion-list show-reorder="shouldShowEdit">
         <ion-item class="item item-text-wrap">
-            <h4>User</h4>
+            <h4>{{'UserLabel' | translate}}</h4>
             <h3 style="color: #00539F;">{{user.Name}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #00539F"
-                                ng-click="editButtons.user()">
-            </ion-reorder-button>
         </ion-item>
         <ion-item class="item item-thumbnail-right">
-            <img ng-if="patient.Gender == 'Female'" src="./images/Female.png" />
-            <img ng-if="patient.Gender == 'Male'" src="./images/Male.png" />
-            <h4>Patient</h4>
+            <img ng-if="patient.Gender == 'Female'" src="./images/Female.png"/>
+            <img ng-if="patient.Gender == 'Male'" src="./images/Male.png"/>
+            <h4>{{'PatientLabel' | translate}}</h4>
             <h3 style="color: #00539F;">{{patient.Name}} ({{patient.NHI}})</h3>
             <h3 style="color: #00539F;">{{patient.Gender}}, {{patient.DOB}},</h3>
             <h3 style="color: #00539F;">{{patient.Age}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #00539F"
-                                ng-click="editButtons.patient()">
-            </ion-reorder-button>
         </ion-item>
         <ion-item class="item item-text-wrap">
-            <h4>Order</h4>
+            <h4>{{'OrderLabel' | translate}}</h4>
             <h3 style="color: #00539F;">{{order.OrderId}}</h3>
-            <ion-reorder-button class="ion-edit" style="color: #00539F"
-                                ng-click="editButtons.order()">
-            </ion-reorder-button>
         </ion-item>
     </ion-list>
 </div>
 <div class="c3">
     <div class="card">
-        <div class="item item-divider" style="background-color: #68BD49">
-            Testing Requested:
+        <div class="item item-divider" style="background-image: linear-gradient(#7BC57C, #00A651);">
+            {{'TestTableHeader' | translate}}
         </div>
         <ul class="list" >
-            <li class="item" ng-repeat="t in order.Tests">
+            <li class="item" ng-repeat="t in order.Tests track by $index">
                 <div style="color: #00539F">{{t}}</div>
             </li>
         </ul>
     </div>
     <div class="card card-labels">
-        <div class="item item-divider" style="background-color: #68bd49">
-            Specimens to be collected:
+        <div class="item item-divider" style="background-image: linear-gradient(#7BC57C, #00A651);">
+            {{'SpecimenTableHeader' | translate}}
         </div>
         <ul class="list">
-            <li class="item item-text-wrap" ng-repeat="s in order.Specimens">
+            <li class="item item-text-wrap" ng-repeat="s in order.Specimens track by $index">
                 <div style="color: #00539F">{{s}}</div>
             </li>
         </ul>
-        <button class="button button-block button-card" ng-click="printLabels()">Print Labels</button>
+        <div class="button-bar">
+            <button class="button button-block button-card" style="border-right: 1px solid" ng-click="printLabels()">{{'PrintLabelsButton' | translate}}</button>
+            <button class="button button-block button-card" ng-click="rightButtonClick()">{{'CollectButton' | translate}}</button>
+        </div>
     </div>
 </div>
 

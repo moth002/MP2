@@ -273,6 +273,14 @@ angular.module('services')
                             window.location = '#/home';
                         });
                     }
+                    if (status === 409) { // the order selected is inProgress and cannot be accessed
+                        $ionicPopup.alert({
+                            templateUrl: 'inprogress-conflict.html',
+                            okType: 'button-footer'
+                        }).then(function () {
+                            window.location = '#/patient/' + idList.patientId;
+                        });
+                    }
                 });
 
                 return deferred.promise;

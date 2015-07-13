@@ -6,12 +6,12 @@
     <title></title>
 
     <!--<link href="Content/ionic.min.css" rel="stylesheet"/>-->
-    <link href="css/ionic.min.css" rel="stylesheet" />
-    <link href="css/index.css" rel="stylesheet"/>  
+    <link href="css/ionic.min.css" rel="stylesheet"/>
+    <link href="css/index.css" rel="stylesheet"/>
     <link href="css/ionic.eclair.theme.css" rel="stylesheet"/>
     <link href="css/animate.min.css" rel="stylesheet"/>
-    <link href="css/mfb.css" rel="stylesheet" />
-    <link href="css/mfb.eclair.theme.css" rel="stylesheet" />
+    <link href="css/mfb.css" rel="stylesheet"/>
+    <link href="css/mfb.eclair.theme.css" rel="stylesheet"/>
 
     <!-- MPwithAngularJS references -->
     <script src="scripts/angular.min.js"></script>
@@ -99,7 +99,7 @@
         </ion-footer-bar>
         <nav mfb-menu position="tr" effect="slidein-spring"
              active-icon="ion-minus-round" resting-icon="ion-plus-round"
-             toggling-method="click"  ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
+             toggling-method="click" ng-controller="DeviceStatusCtrl" ng-show="device.hasSubheader">
             <button mfb-button mfb-button-close icon="ion-compose" label="Add comment" ng-controller="HeaderBtnCtrl" ng-click="addComment()"></button>
             <button mfb-button mfb-button-close icon="ion-close" label="Cancel collect" ng-controller="HeaderBtnCtrl" ng-click="optOutOfOrder()"></button>
         </nav>
@@ -169,6 +169,13 @@
 
 </body>
 </html>
+
+<script id="inprogress-conflict.html" type="text/ng-template">
+    <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 12px 8px 12px 65px;">
+        <i class="icon ion-alert-circled" style="color: #FCC810 ; font-size: 45px;"></i>
+        Order already in progress
+    </div>
+</script>
 
 <script id="unauthorised-error.html" type="text/ng-template">
     <div class="item item-icon-left" style="border: 0; white-space: normal; background-color: transparent; padding: 12px 8px 12px 65px;">

@@ -18,12 +18,14 @@
 
             $scope.updateDNS = function () {
                 // see if you can add a .then to wait for the new dns to be set
-                webEclairService.getDeviceValidation($scope.dns)
-                    .then(function() {
-                        window.location = '#/home';
-                    }, function() {
-                        window.location = '#/manageDevice';
-                    });
+                if ($scope.manageDeviceForm.$valid) {
+                    webEclairService.getDeviceValidation($scope.dns)
+                        .then(function() {
+                            window.location = '#/home';
+                        }, function() {
+                            window.location = '#/manageDevice';
+                        });
+                }
             };
 
             $scope.btnUregisterDevice = function () {

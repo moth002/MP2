@@ -52,7 +52,8 @@
             var orderModel = {
                 orderId: $routeParams.orderId,
                 patientId: null,
-                previousActivable: ''
+                previousActivable: '',
+                checkInprogress: true
             }
             
             var patientModel = {

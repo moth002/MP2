@@ -30,7 +30,8 @@
 
             var orderModel = {
                 orderId: null,
-                patientId: null
+                patientId: null,
+                checkInprogress: false
             }
 
             var patientModel = {

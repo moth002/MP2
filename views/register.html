@@ -8,15 +8,15 @@
                 <label class="item item-input item-stacked-label" style="border: 0">
                     <span class="input-label form_error" style="width: 10px;" ng-show="adminLogon.$submitted && adminLogon.userCode.$invalid">*</span>
                     <span class="input-label" style="color: black; font-weight: normal">{{'UserCodeLabel' | translate}}</span>
-                    <input class="adminLogon_input" name="userCode" ng-model="userCode" type="text" required capitalise>
+                    <input class="adminLogon_input" name="userCode" ng-model="userCode" type="text" tabindex="1" data-dependency="second" required capitalise>
                 </label>
                 <label class="item item-input item-stacked-label" style="border: 0">
                     <span class="input-label form_error" style="width: 10px;" ng-show="adminLogon.$submitted && adminLogon.password.$invalid">*</span>
                     <span class="input-label" style="color: black; font-weight: normal">{{'PasswordLabel' | translate}}</span>
-                    <input class="adminLogon_input" name="password" ng-model="password" type="password" required>
+                    <input class="adminLogon_input" name="password" id="second" ng-model="password" type="password" tabindex="2" required>
                 </label>
             </div>
-            <button class="button button-block button-clear button-card" ng-click="logonAdmin()">{{'LogonButton' | translate}}</button>
+            <button class="button button-block button-clear button-card" ng-click="logonAdmin()" tabindex="3">{{'LogonButton' | translate}}</button>
         </form>
     </div>
 </div>

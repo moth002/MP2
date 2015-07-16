@@ -53,7 +53,8 @@
                 orderId: $routeParams.orderId,
                 patientId: null,
                 previousActivable: '',
-                checkInprogress: true
+                checkInprogress: true,
+                checkDate: true
             }
             
             var patientModel = {

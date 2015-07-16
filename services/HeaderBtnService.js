@@ -7,7 +7,8 @@
         var userClick = function () {
             $ionicPopup.confirm({
                 title: 'Log off',
-                template: 'Are you sure you want to Log Off?'
+                template: 'Are you sure you want to Log Off?',
+                okType: 'button-footer'
             }).then(function (res) {
                 if (res) {
                     window.location = '#/home';

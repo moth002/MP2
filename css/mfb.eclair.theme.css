@@ -1,3 +1,7 @@
 ﻿.mfb-component__button--main, .mfb-component__button--child {
     background-color: #00539F;
 }
+
+[data-mfb-label]:after {
+    background-color: rgba(0,83,159,0.8);
+}

@@ -128,10 +128,8 @@ angular.module('services')
                 })
                 .success(function (response) {
                     deffered.resolve(response);
-                    //$scope.user = response;
                 })
                 .error(function (err, status) {
-                    //defer.resolve();
                     deffered.reject();
                     $timeout(function () {
                         $ionicLoading.hide();
@@ -205,7 +203,6 @@ angular.module('services')
                     'data': patientModel
                 })
                 .success(function (response) {
-                    //$scope.patient = response;
                     globalIdService.setIDs(idList.userId, patientModel.nhi, '', idList.tokenId);
                     deffered.resolve(response);
                 })
@@ -245,7 +242,6 @@ angular.module('services')
                     'data': orderModel
                 })
                 .success(function (response) {
-                    //$scope.order = response;
                     response.chkboxSpecimens = [];
                     globalIdService.setIDs(idList.userId, idList.patientId, orderModel.orderId, idList.tokenId);
                     for (var i = 0; i < response.Specimens.length; i++) {
@@ -294,11 +290,9 @@ angular.module('services')
                 })
                 .success(function (response) {
                     globalIdService.setIDs(idList.userId, idList.patientId, '', idList.tokenId);
-                    //defer.resolve();
                     window.location = '#/patient/' + idList.patientId;
                 })
                 .error(function (err, status) {
-                    //defer.resolve();
                     if (status === 404)
                         $ionicPopup.alert({
                             templateUrl: "mismatched-error.html",
@@ -315,5 +309,26 @@ angular.module('services')
                         });
                     }
                 });
+            };
+            this.collectOrder = function (orderModel) {
+
+                var deferred = $q.defer();
+
+                $http({
+                    'method': 'post',
+                    'url': apiUrl + 'CollectOrder',
+                    'data': orderModel
+                })
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+                .error(function (err, status) {
+                    deferred.reject();
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 1000);
+                });
+
+                return deferred.promise;
             };
         }]);

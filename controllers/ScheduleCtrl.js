@@ -7,6 +7,7 @@
                 $timeout(function () {
                     $ionicLoading.hide();
                 }, 1000);
+                $scope.$apply(); // refresh the $scope
             };
 
             $scope.model = {
@@ -28,7 +29,8 @@
             var orderModel = {
                 orderId: null,
                 patientId: null,
-                checkInprogress: false
+                checkInprogress: false,
+                checkDate : false
             }
 
             $ionicLoading.show();

@@ -31,7 +31,8 @@
             var orderModel = {
                 orderId: null,
                 patientId: null,
-                checkInprogress: false
+                checkInprogress: false,
+                checkDate: true
             }
 
             var patientModel = {
@@ -77,9 +78,22 @@
                                         needToReschedule = true;
                                     }
                                 });
-                                chkbxSpecimenService.setSpecimenList($scope.order.chkboxSpecimens);
-                                labelPrintService.printOrderReciept($scope.patient.NHI, $scope.patient.Name, $scope.patient.DOB, $scope.user.Name);
-                                window.location = needToReschedule ? '#/schedule' : '#/complete/' + $scope.model.dateTime;
+                                webEclairService.collectOrder($scope.order)
+                                    .then(function() {
+                                        chkbxSpecimenService.setSpecimenList($scope.order.chkboxSpecimens);
+                                        labelPrintService.printOrderReciept($scope.patient.NHI, $scope.patient.Name, $scope.patient.DOB, $scope.user.Name);
+                                        //$ionicLoading.show({
+                                        //    template: 'HL7 message sent to LIS',
+                                        //    duration: '1500'
+                                        //});
+                                        window.location = needToReschedule ? '#/schedule': '#/complete/' + $scope.model.dateTime;
+                                    },
+                                    function() {
+                                        $ionicPopup.alert({
+                                            template: "Sending HL7 message failed",
+                                            okType: 'button-footer'
+                                        });
+                                    });
                             }
                         }
                     }]
@@ -102,7 +116,10 @@
                         }
                     },
                     function (error) {
-                        alert("Scanning failed: " + error);
+                        $ionicPopup.alert({
+                            template: "Scanning failed: " + error,
+                            okType: 'button-footer'
+                        });
                     }
                 ));
             }

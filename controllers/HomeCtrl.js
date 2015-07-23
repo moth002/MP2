@@ -3,20 +3,24 @@
         '$scope', 'cordovaReadyService', 'footerBtnService', '$ionicPopup', '$q', '$timeout', 'headerBtnService', 'sliderPageService', 'deviceStatusService',
         function ($scope, cordovaReadyService, footerBtnService, $ionicPopup, $q, $timeout, headerBtnService, sliderPageService, deviceStatusService) {
 
+            // Shaking animation on the empty input field 
             $scope.emptyInput = true;
             $scope.isEmptyInput = function () {
                 return $scope.emptyInput;
             };
 
+            // Progress bar indicator
             sliderPageService.setPageActive(0);
             sliderPageService.setReschedule(false);
 
-            headerBtnService.setEditButton(false, null);
+            //headerBtnService.setEditButton(false, null);
 
+            // Hides extra menu for mfb or popover icon
             deviceStatusService.setHasSubheaderStatus(false);
 
             var deferModal = $q.defer();
 
+            // Maybe change the name to goButtonClick or doneButtonClick. Also includes shaking animation, timeout for ng-show and ng-hide
             $scope.rightButtonClick = function () {
                 cordova.plugins.Keyboard.close();
                 if ($scope.model.userId) {
@@ -32,8 +36,9 @@
                 }
             };
 
-            footerBtnService.setMainBtn('Next', true, $scope.rightButtonClick);
+            //footerBtnService.setMainBtn('Next', true, $scope.rightButtonClick);
 
+            // The scanning function
             $scope.scanCode = function () {
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
                     function (result) {

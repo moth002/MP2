@@ -24,7 +24,7 @@
         <div class="list">
             <div class="item item-checkbox" ng-repeat="item in order.chkboxSpecimens" style="font-size: 12px;">
                 <label class="checkbox checkbox-eclair">
-                    <input type="checkbox" ng-checked="item.checked" disabled="disabled">
+                    <input type="checkbox" ng-model="item.checked" ng-checked="item.checked" ng-disabled="item.checked != true">
                 </label>
                 {{ item.name }}
             </div>

@@ -74,7 +74,7 @@
                             if ($scope.model.dateTime) {
                                 var needToReschedule = false;
                                 $scope.order.chkboxSpecimens.forEach(function (item) {
-                                    if (item.checked === undefined) {
+                                    if (item.checked !== true) {
                                         needToReschedule = true;
                                     }
                                 });
@@ -107,9 +107,9 @@
                 cordovaReadyService(window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
                         if (!result.cancelled){
-                            $scope.model.chkboxSpecimens.forEach(function(item) {
+                            $scope.order.chkboxSpecimens.forEach(function(item) {
                                 if (item.code === result.text) {
-                                    item.checked = 'checked';
+                                    item.checked = true;
                                     $scope.$apply(); // refresh the $scope
                                 }
                             });

@@ -9,8 +9,6 @@
   </author>
   <content src="index.html" />
   <access origin="*" />
-  <preference name="SplashScreen" value="screen" />
-  <preference name="KeyboardDisplayRequiresUserAction" value="false" />
   <vs:features />
   <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.2.0" />
   <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
@@ -20,6 +18,10 @@
   <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
   <gap:plugin name="com.ionic.keyboard" version="1.0.3" />
   <gap:plugin name="com.kerosieben.cordova.plugins.ios7scrollfix" version="0.1.0" />
+
+  <preference name="SplashScreen" value="screen" />
+  <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+  <preference name="IOS7PreventWebViewScrolling" value="true"/>
 
   <!-- Android -->
   <icon src="res/icons/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi" />

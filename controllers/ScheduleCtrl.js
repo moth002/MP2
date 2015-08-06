@@ -65,7 +65,7 @@
                         type: 'button-footer',
                         onTap: function () {
                             // Returning a value will cause the promise to resolve with the given value.
-                            window.location = '#/complete/' + $scope.model.dateTime;
+                            window.location = '#/complete/' + $scope.model.dateTime + '/pre/schedule';
                         }
                     }]
                 });

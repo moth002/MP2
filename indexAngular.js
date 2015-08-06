@@ -109,7 +109,7 @@ angular.module("mobilePhlebotomy",
             templateUrl: "views/collect.html",
             controller: "CollectCtrl"
         })
-        .when("/complete/:dateTime", {
+        .when("/complete/:dateTime/pre/:precursor", {
             templateUrl: "views/complete.html",
             controller: "CompleteCtrl"
         })

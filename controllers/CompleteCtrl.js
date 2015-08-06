@@ -14,6 +14,7 @@
             sliderPageService.setReschedule(false);
 
             var d = new Date($routeParams.dateTime);
+            $scope.schedule = $routeParams.pre === 'schedule';
             $scope.dateTime = d.toDateString();
 
             var patientModel = {

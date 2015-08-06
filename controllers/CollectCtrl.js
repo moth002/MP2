@@ -86,7 +86,7 @@
                                         //    template: 'HL7 message sent to LIS',
                                         //    duration: '1500'
                                         //});
-                                        window.location = needToReschedule ? '#/schedule': '#/complete/' + $scope.model.dateTime;
+                                        window.location = needToReschedule ? '#/schedule': '#/complete/' + $scope.model.dateTime + '/pre/complete';
                                     },
                                     function() {
                                         $ionicPopup.alert({
